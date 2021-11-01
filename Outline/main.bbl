@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Levy(1980)]{levy_skin_1980}
+S.~William Levy.
+\newblock Skin problems of the leg amputee.
+\newblock \emph{Prosthetics and Orthotics International}, 4\penalty0
+  (1):\penalty0 37--44, April 1980.
+\newblock ISSN 0309-3646.
+\newblock \doi{10.3109/03093648009103113}.
+
+\end{thebibliography}

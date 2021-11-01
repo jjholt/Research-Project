@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="ITAP.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0998546"
+     inkscape:cx="267.76267"
+     inkscape:cy="176.38695"
+     inkscape:window-width="1272"
+     inkscape:window-height="1395"
+     inkscape:window-x="1282"
+     inkscape:window-y="556"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid10960" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 79.374999,68.791666 5.291667,-15.875"
+       id="path11476" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="79.375"
+       y="51.858337"
+       id="text13482"><tspan
+         sodipodi:role="line"
+         id="tspan13480"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="79.375"
+         y="51.858337">Flange</tspan></text>
+    <rect
+       style="mix-blend-mode:normal;fill:#000000;fill-opacity:0.409912;stroke:#000000;stroke-width:0.249481"
+       id="rect19539"
+       width="58.957001"
+       height="18.181793"
+       x="16.79266"
+       y="80.828178"
+       rx="0"
+       ry="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 35.616996,97.759982 33.248219,114.08415"
+       id="path21855" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="22.772926"
+       y="116.4707"
+       id="text26963"><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="22.772926"
+         y="116.4707"
+         id="tspan29257">Bone cement</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:3.52778px;stroke-width:0.264583"
+         x="22.772926"
+         y="120.88042"
+         id="tspan3812">(possible)</tspan></text>
+    <path
+       id="path896"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.264999"
+       d="m 75.929842,59.599199 0.0011,25.312666 h -53.72181 c -2.851696,0 -5.147489,2.295793 -5.147489,5.14749 0,2.851695 2.295793,5.147487 5.147489,5.147487 h 53.721786 l 0.0011,23.482288 a 23.693623,34.952096 0 0 0 9.9627,-19.157485 c 0.774335,1.335775 2.217608,2.231395 3.878835,2.231395 h 39.820307 c 0.24121,-1.12362 1.23365,-1.962161 2.43138,-1.962161 h 3.38481 c 1.19772,0 2.19017,0.838541 2.43137,1.962161 h 4.51497 c 2.48321,0 4.48241,-1.99921 4.48241,-4.48242 v -3.620968 c 0.0876,1.307504 1.29066,2.336808 2.77242,2.336808 h 5.55625 c 1.50412,0 2.721,-1.060649 2.77554,-2.396236 0.44245,0.635209 1.40003,1.073319 2.51613,1.073319 h 5.55625 c 1.53908,0 2.77812,-0.832607 2.77812,-1.867069 v -4.203362 c 0,-1.034462 -1.23904,-1.867069 -2.77812,-1.867069 h -5.55625 c -1.1161,0 -2.07368,0.43811 -2.51613,1.073319 -0.0545,-1.335587 -1.27142,-2.396236 -2.77554,-2.396236 h -5.55625 c -1.48176,0 -2.68484,1.029304 -2.77244,2.336808 v -5.382101 c 0,-2.48321 -1.9992,-4.482412 -4.48241,-4.482412 h -5.0736 c -0.12811,1.257382 -1.17216,2.236039 -2.46445,2.236039 h -3.3848 c -1.29229,0 -2.33589,-0.978657 -2.46393,-2.236039 H 89.773443 c -1.523283,0 -2.863411,0.753078 -3.672644,1.907895 A 23.693623,34.952096 0 0 0 75.929842,59.599199 Z" />
+    <rect
+       style="fill:#ff0000;fill-opacity:0.409912;stroke:#ff0000;stroke-width:0.264999"
+       id="rect6579"
+       width="5.4458947"
+       height="5.2051916"
+       x="13.507768"
+       y="87.159149" />
+    <rect
+       style="fill:#ff0000;fill-opacity:0.409912;stroke:#ff0000;stroke-width:0.264999"
+       id="rect6579-3"
+       width="5.4458947"
+       height="5.2051916"
+       x="165.88934"
+       y="88.111893" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 15.729594,89.102207 21.986198,72.777669"
+       id="path6718" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="15.948328"
+       y="71.884995"
+       id="text12244"><tspan
+         sodipodi:role="line"
+         id="tspan12242"
+         style="stroke-width:0.264583"
+         x="15.948328"
+         y="71.884995">Sensor</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 169.9577,90.926165 169.9464,75.195781"
+       id="path1005" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="163.52176"
+       y="70.576172"
+       id="text3583"><tspan
+         sodipodi:role="line"
+         id="tspan3581"
+         style="stroke-width:0.264583"
+         x="163.52176"
+         y="70.576172">Wave</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="163.52176"
+         y="74.985886"
+         id="tspan3585">Generator</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 35.368325,89.720382 37.996037,71.19155"
+       id="path5256" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="33.931179"
+       y="70.66864"
+       id="text6778"><tspan
+         sodipodi:role="line"
+         id="tspan6776"
+         style="stroke-width:0.264583"
+         x="33.931179"
+         y="70.66864">Stem</tspan></text>
+    <rect
+       style="fill:#ff0000;fill-opacity:0.409912;stroke:#ff0000;stroke-width:0.264999"
+       id="rect6579-36"
+       width="5.4458947"
+       height="5.2051916"
+       x="78.836357"
+       y="108.35574" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 83.33148,112.47438 9.928297,8.68396"
+       id="path8232" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="87.879807"
+       y="123.91416"
+       id="text11558"><tspan
+         sodipodi:role="line"
+         id="tspan11556"
+         style="stroke-width:0.264583"
+         x="87.879807"
+         y="123.91416">Sensor</tspan></text>
+  </g>
+</svg>

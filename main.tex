@@ -1,0 +1,17 @@
+\documentclass[oneside]{article}
+\input{settings.tex}
+\begin{document}
+	\tableofcontents
+
+	\section{}
+		\subimport{files/}{1}
+	\section{}
+		\subimport{files/}{2}
+	
+	\bibliography{bibliography}
+
+	\begin{appendices}
+		\section{Matlab code}
+		\subimport{files/}{appendix.tex}
+	\end{appendices}
+\end{document}
