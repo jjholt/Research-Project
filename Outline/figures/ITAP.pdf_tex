@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{476.39323833bp}%
+    \setlength{\unitlength}{531.52632325bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,20 +50,28 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.44499371)%
+  \begin{picture}(1,0.44693026)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ITAP.pdf}}%
-    \put(0.39271308,0.42904541){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Flange\end{tabular}}}}%
+    \put(0.15496327,0.31950978){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Prosthesis\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ITAP.pdf}}%
-    \put(0.05591816,0.04458747){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone cement\\(possible)\end{tabular}}}}%
+    \put(0.91732963,0.32494646){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ITAP.pdf}}%
-    \put(0.01531028,0.30988235){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0.62665543,0.435495){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Soft tissue\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{ITAP.pdf}}%
-    \put(0.893405,0.31767013){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Wave\\Generator\end{tabular}}}}%
+    \put(0.50018773,0.00391341){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Flange\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{ITAP.pdf}}%
-    \put(0.12231224,0.31711993){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stem\end{tabular}}}}%
+    \put(0.75598758,0.3305816){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone cement\\(possible)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{ITAP.pdf}}%
-    \put(0.44331857,0.00029724){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0.83657943,0.10739987){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{ITAP.pdf}}%
+    \put(0.01800573,0.13625422){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Wave\\Generator\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{ITAP.pdf}}%
+    \put(0.75754251,0.10091301){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stem\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{ITAP.pdf}}%
+    \put(0.45296671,0.384873){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{ITAP.pdf}}%
+    \put(0.30125615,0.09555406){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Spigot\end{tabular}}}}%
   \end{picture}%
 \endgroup%
