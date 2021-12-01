@@ -27,69 +27,87 @@
     <task id="1" name="Outline" note="" work="208800" start="20211031T000000Z" end="20211105T000000Z" work-start="20211101T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <task id="2" name="Risk Assessment form" note="" work="94500" start="20211031T000000Z" end="20211104T101500Z" work-start="20211101T080000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work"/>
       <task id="3" name="Attachment research" note="" work="114300" start="20211031T000000Z" end="20211104T164500Z" work-start="20211101T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="4" name="Outline submission" note="" work="0" start="20211105T000000Z" end="20211105T000000Z" work-start="20211105T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <task id="4" name="Outline submission  (Milestone)" note="" work="0" start="20211105T000000Z" end="20211105T000000Z" work-start="20211105T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
         <constraint type="must-start-on" time="20211105T000000Z"/>
       </task>
     </task>
-    <task id="5" name="Literature Review" note="" work="286200" start="20211106T000000Z" end="20211119T163000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="5" name="Initial research" note="" work="432000" start="20211106T000000Z" end="20211119T170000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <task id="6" name="ITAP" note="" work="144000" start="20211106T000000Z" end="20211112T170000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <constraint type="must-start-on" time="20211106T000000Z"/>
       </task>
-      <task id="7" name="Motors and sensors" note="" work="142200" start="20211112T170000Z" end="20211119T163000Z" work-start="20211115T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-        <predecessors>
-          <predecessor id="1" predecessor-id="6" type="FS"/>
-        </predecessors>
+      <task id="7" name="Vibrotactile feedback (Forces and Frequencies)" note="" work="144000" start="20211110T000000Z" end="20211116T170000Z" work-start="20211110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <constraint type="must-start-on" time="20211110T000000Z"/>
+      </task>
+      <task id="8" name="Motors and sensors" note="" work="144000" start="20211115T000000Z" end="20211119T170000Z" work-start="20211115T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <constraint type="must-start-on" time="20211115T000000Z"/>
       </task>
     </task>
-    <task id="8" name="FEA modelling" note="" work="1126800" start="20211108T000000Z" end="20211231T090000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="9" name="FEA modelling" note="" work="1493100" start="20211108T000000Z" end="20211220T170000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20211113T000000Z"/>
-      <task id="9" name="Basic rod design" note="" work="406800" start="20211108T000000Z" end="20211126T090000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-        <constraint type="must-start-on" time="20211108T000000Z"/>
+      <task id="10" name="Learning" note="" work="288000" start="20211108T000000Z" end="20211119T170000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <constraint type="start-no-earlier-than" time="20211108T000000Z"/>
       </task>
-      <task id="10" name="Increase complexity" note="" work="720000" start="20211126T090000Z" end="20211231T090000Z" work-start="20211126T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="11" name="Basic rod design" note="" work="576000" start="20211108T000000Z" end="20211203T170000Z" work-start="20211108T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="9" type="FS"/>
+          <predecessor id="1" predecessor-id="10" type="SS"/>
+        </predecessors>
+      </task>
+      <task id="12" name="Full-out ITAP" note="" work="629100" start="20211203T170000Z" end="20211220T170000Z" work-start="20211206T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="11" type="FS"/>
+        </predecessors>
+        <task id="13" name="Parametise spigot lengths" note="" work="312300" start="20211203T170000Z" end="20211220T154500Z" work-start="20211206T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="14" name="Parametise bone cavity diameter" note="" work="316800" start="20211203T170000Z" end="20211220T170000Z" work-start="20211206T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      </task>
+    </task>
+    <task id="15" name="Prototyping" note="" work="3743100" start="20211122T000000Z" end="20220311T170000Z" work-start="20211122T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="16" name="Ordering of parts" note="" work="432000" start="20211122T000000Z" end="20211210T170000Z" work-start="20211122T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <constraint type="must-start-on" time="20211122T000000Z"/>
+      </task>
+      <task id="17" name="Measuring devices" note="" work="720000" start="20211210T170000Z" end="20220114T170000Z" work-start="20211213T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="18" name="Vibration motors" note="" work="719100" start="20211210T170000Z" end="20220114T164500Z" work-start="20211213T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="19" name="Emulation of skin-ITAP interface" note="" work="1872000" start="20211210T170000Z" end="20220311T170000Z" work-start="20211213T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="11" name="Prototyping" note="" work="2158200" start="20211231T090000Z" end="20220218T090000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="8" type="FS"/>
-      </predecessors>
-      <task id="12" name="Measuring devices" note="" work="576000" start="20211231T090000Z" end="20220128T090000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="13" name="Vibration motors" note="" work="574200" start="20211231T090000Z" end="20220128T083000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="14" name="Emulation of skin-ITAP interface" note="" work="1008000" start="20211231T090000Z" end="20220218T090000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="15" name="Prototype" note="" work="0" start="20220218T090000Z" end="20220218T090000Z" work-start="20220218T090000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-        <predecessors>
-          <predecessor id="1" predecessor-id="14" type="FS"/>
-          <predecessor id="1" predecessor-id="13" type="FS"/>
-          <predecessor id="1" predecessor-id="12" type="FS"/>
-        </predecessors>
-      </task>
-    </task>
-    <task id="16" name="Project Talks" note="" work="403200" start="20220314T000000Z" end="20220401T000000Z" work-start="20220314T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="20" name="Project Talks" note="" work="403200" start="20220314T000000Z" end="20220401T000000Z" work-start="20220314T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20220401T000000Z"/>
-      <task id="17" name="Preparation" note="" work="403200" start="20220314T000000Z" end="20220331T170000Z" work-start="20220314T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="21" name="Preparation" note="" work="403200" start="20220314T000000Z" end="20220331T170000Z" work-start="20220314T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <constraint type="start-no-earlier-than" time="20220314T000000Z"/>
       </task>
-      <task id="18" name="Project talks day" note="" work="0" start="20220401T000000Z" end="20220401T000000Z" work-start="20220401T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <task id="22" name="Project talks day (Milestone)" note="" work="0" start="20220401T000000Z" end="20220401T000000Z" work-start="20220401T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
         <constraint type="must-start-on" time="20220401T000000Z"/>
       </task>
     </task>
-    <task id="19" name="Final report" note="" work="2158200" start="20211231T090000Z" end="20220503T000000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="23" name="Final report" note="" work="3312000" start="20211122T000000Z" end="20220503T000000Z" work-start="20211122T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20220201T000000Z"/>
-      <task id="20" name="Writing" note="" work="1425600" start="20211231T090000Z" end="20220310T140000Z" work-start="20211231T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="24" name="Writing &amp; Production of figures" note="" work="1872000" start="20211122T000000Z" end="20220218T170000Z" work-start="20211122T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="11" type="SS"/>
-          <predecessor id="1" predecessor-id="8" type="SS"/>
+          <predecessor id="1" predecessor-id="15" type="SS"/>
+          <predecessor id="1" predecessor-id="9" type="SS"/>
         </predecessors>
       </task>
-      <task id="21" name="Revision by supervisors" note="" work="732600" start="20220310T140000Z" end="20220415T083000Z" work-start="20220310T140000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="25" name="Revision by supervisors" note="" work="748800" start="20220218T170000Z" end="20220328T170000Z" work-start="20220221T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="20" type="FS"/>
+          <predecessor id="1" predecessor-id="24" type="FS"/>
         </predecessors>
       </task>
-      <task id="22" name="Final report due" note="" work="0" start="20220503T000000Z" end="20220503T000000Z" work-start="20220503T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <task id="26" name="Preparation of manuscript for publication" note="" work="691200" start="20220328T170000Z" end="20220429T170000Z" work-start="20220329T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="25" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="27" name="Final report due  (Milestone)" note="" work="0" start="20220503T000000Z" end="20220503T000000Z" work-start="20220503T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
         <constraint type="must-start-on" time="20220503T000000Z"/>
       </task>
     </task>

@@ -1,17 +1,28 @@
-\documentclass[oneside]{article}
+\documentclass[oneside]{report}
 \input{settings.tex}
 \begin{document}
+% \input{preamble}
 	\tableofcontents
+	\clearpage
 
-	\section{}
-		\subimport{files/}{1}
-	\section{}
-		\subimport{files/}{2}
+	\chapter{Outline}
+		\subimport{src/Outline}{main}
+	\chapter{Literature Review}
+		\subimport{src/Literature/}{main}
+	\chapter{Introduction}
+		\subimport{src/Introduction/}{main}
+	\chapter{Modelling}
+		\subimport{src/Modelling/}{main}
+	\chapter{Experiment}
+		\subimport{src/Experiment/}{main}
+	\clearpage
 	
-	\bibliography{bibliography}
-
-	\begin{appendices}
-		\section{Matlab code}
-		\subimport{files/}{appendix.tex}
-	\end{appendices}
+	\bibliography{
+		src/Outline/bib_Outline,
+		src/Modelling/bib_Model,
+		src/Experiment/bib_Experiment
+	}
+	% \begin{appendices}
+	% 	\subimport{files/}{appendix.tex}
+	% \end{appendices}
 \end{document}

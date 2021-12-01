@@ -1,0 +1,112 @@
+\section{Motivation}
+Intraosseous transcutaneous amputation prostheses (ITAP) \cite{kang_osseocutaneous_2010} (See Figure \ref{fig:ITAP-nosensors}) provide amputees an alternative attachment of artificial limbs, bypassing the role of the residual limb's soft tissue.
+Following an amputation, there is often a functional need for a prosthesis. Traditionally, these contain a socket wherein the residual limb (stump) is placed.
+This leads to loss of bone density, and -- particularly for leg prostheses -- friction against the socket, uneven loads on the soft tissue, and other abuses cause severe skin problems \citep{levy_skin_1980}.
+The purpose of ITAP is to shift the load from the soft tissue to the skeleton, while achieving cutaneous integration.
+
+An amputation is not just the loss of a limb, but also the loss of tactile feedback and other information one gathers with that limb.
+Generally, prosthetics users rely on visual feedback and secondary cues, such as sound or changes in pressure on the residual limb \cite{schofield_applications_2014}.
+Sensory feedback, particularly vibrotactile, is associated with better object recognition, manipulation and grip force control \cite{schiefer_artificial_2018}\cite{rosenbaum-chou_development_2016}.
+While sensory feedback must be achieved through electrical stimulation for stump prosthetics, we hypothesise that ITAP can be the vehicle for transmission of haptic feedback.
+However, little is understood about the consequence of vibrations on either the skin-implant or the bone-implant interfaces.
+
+\begin{figure}[h]\centering
+    \incfig[0.85]{ITAP-nosensors}
+    \caption{ITAP anatomy \cite{kang_osseocutaneous_2010}.}
+    \label{fig:ITAP-nosensors}
+\end{figure}
+
+Following amputation, and depending on the bone quality of the residuum, ITAP may be press-fitted or cemented into the remaining bone in the amputated limb.
+It is unclear what effect this has on vibrations propagating through ITAP that are transmitted to the bone and surrounding soft tissue.
+Therefore, this project aims to \textbf{investigate the effect that press-fitting and cementing have on the forces experienced by cells during vibrotactile feedback}.
+These results will feed into a larger research project to ensure the safety and reliability of haptic feedback and its use in the development of cognitive control over artificial limbs.
+
+
+\section{Procedure}
+This project will investigate vibrotactile force propagation (exemplified in Figure \ref{fig:model-data}) along ITAP devices.
+The initial computational modelling phase aims to determine the effect on vibrations of each of the following: the presence of the flange, different stem diameters, and the presence of bone cement.
+It begins with a simple metal rod and builds up to an ITAP such that it is possible to parametise both its characteristics and the interface with bone.
+Finally, it will ascertain whether there is a measurable difference between the forces at the ITAP-bone interface for cemented and press-fitted implants.
+
+\begin{figure}[h]\centering
+    \begin{tikzpicture}[scale=0.85]
+        \begin{axis}[
+            xlabel = ITAP length, ylabel = Amplitude, title = Generate waves and define damping ratio,
+            domain=0:40,xtick=\empty, ytick=\empty,
+            samples=100,
+            axis lines = left, ymax=1.2, ymin=-1.2
+            ]
+            \addplot[] {cos(deg(x))*exp(-0.1*x)};
+            \addplot[dashed] {exp(-0.1*x)};
+            \legend{Generated wave, Damping ratio}
+        \end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}[scale=0.85]
+    \begin{axis}[
+        xlabel = ITAP length, ylabel = Amplitude, title = Experimentally determine threshold of perception,
+        domain=0:40,
+        samples=100,xtick=\empty, ytick=\empty,
+        axis lines = left, ymax=1.2, ymin=-1.2,
+        align=center,
+        ]
+        \addplot[] {cos(deg(x))*exp(-0.1*x)};
+        \addplot[dashed, red, domain=30:40] {0.02};
+        % \draw[-stealth] (axis cs: 35,0.5) node[above]{Perception \\ Threshold}-- (axis cs: 35,0.05);
+        \addplot[dashed] coordinates {(30,-0.8) (30,0.3)};
+        \draw (axis cs: 30,-0.8) node[below]{ITAP-Tissue interface};
+        \legend{Generated wave, Perception Threshold}
+    \end{axis}
+\end{tikzpicture}
+\caption{The experimental procedure has two phases: Defining the damping ratio along the ITAP, and determining the threshold for perception.}
+\label{fig:model-data}
+\end{figure}
+
+The subsequent protoyping phase aims to establish a threshold of perception for soft tissue and to validate the computational model.
+This phase will progress similarly, beginning with the metal rod design and finishing with an ITAP of one particular dimension; emulating the ITAP-bone and ITAP-soft tissue interfaces.
+
+A range of frequencies and magnitudes of vibration must be selected, and the appropriate vibration motor and sensors must be sourced.
+Walking is fully simulated with frequencies of 1 Hz to 1 KHz \cite{antonsson_frequency_1985}.
+As for upper limbs, we find studies on the discrimination of vibrations in the range of \SIrange{50}{360}{Hz} \cite{rosenbaum-chou_development_2016}.  
+A literature review will determine appropriate frequencies for emulation of upper limb vibrotactile feedback.
+\clearpage
+\section{Timing}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llcc}
+    WBS & Name & Start & Finish \\ \hline
+    \textbf{1} & \textbf{Outline} &\textbf{1 Nov} &\textbf{5 Nov} \\
+    1.1 & Risk Assessment form &1 Nov &4 Nov  \\
+    1.2 & Attachment research &1 Nov &4 Nov   \\
+    1.3 & Outline submission &5 Nov &5 Nov   \\
+    
+    \textbf{2} & \textbf{Initial Research} &\textbf{8 Nov} &\textbf{19 Nov} \\
+    2.1 & ITAP & 8 Nov &12 Nov \\
+    2.2 & Vibrotactile feedback (Forces and frequencies) & 10 Nov & 16 Nov\\
+    2.3 & Motors and sensors & 15 Nov & 19 Nov \\
+    
+    \textbf{3} & \textbf{FEA modelling} & \textbf{8 Nov} & \textbf{20 Dec}\\
+    3.1 & Learning & 8 Nov & 19 Nov \\
+    3.2 & Basic rod design & 8 Nov & 3 Dec \\
+    3.3 & Full-out ITAP & 26 Nov & 17 Dec \\
+    3.3.1 & Parametise spigot lengths & 26 Nov & 10 Dec \\
+    3.3.2 & Parametise bone cavity diameter & 3 Dec & 20 Dec \\
+
+    \textbf{4} & \textbf{Prototyping} & \textbf{22 Nov} & \textbf{11 Mar}    \\
+    4.1 & Ordering of parts & 22 Nov & 10 Dec  \\
+    4.2 & Measuring devices & 13 Dec & 14 Jan   \\
+    4.3 & Vibration motors & 13 Dec & 14 Jan   \\
+    4.4 & Emulation of skin-ITAP interface & 13 Dec & 11 Mar \\
+    % 4.5 & Prototype &28 Jan &28 Jan    \\
+    
+    \textbf{5} & \textbf{Project Talks} & \textbf{14 Mar} & \textbf{1 Apr}   \\
+    5.1 & Preparation & 14 Mar & 31 Mar    \\
+    5.2 & Project talks day & 1 Apr & 1 Apr\\
+    
+    \textbf{6} & \textbf{Final report} &\textbf{22 Nov} &\textbf{3 May}\\
+    6.1 & Writing \& Production of figures &22 Nov &18 Feb\\
+    6.2 & Revision by supervisors &21 Feb &28 Mar  \\
+    6.3 & Preparation of manuscript for publication &29 Mar &29 Apr\\
+    6.4 & Final report due &3 May &3 May \\
+\end{tabular}
+\end{table}
