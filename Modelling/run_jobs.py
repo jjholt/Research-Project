@@ -15,7 +15,7 @@ from sketch import *
 from visualization import *
 from connectorBehavior import *
 
-from generate_models import get_jobs
+# from generate_models import get_jobs
 jobs = get_jobs()
 
 for job in jobs:
