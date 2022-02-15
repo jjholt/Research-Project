@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'ITAP-nosensors.pdf' (pdf, eps, ps)
+%% Accompanies image file 'experimental-setup.PNG.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{485.77350255bp}%
+    \setlength{\unitlength}{1271.25bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,20 +50,14 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.47684368)%
+  \begin{picture}(1,0.60058997)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{ITAP-nosensors.pdf}}%
-    \put(0.25880923,0.38629291){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Artificial\\Limb\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{ITAP-nosensors.pdf}}%
-    \put(0.91485777,0.34306899){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{ITAP-nosensors.pdf}}%
-    \put(0.59805541,0.46120336){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Soft tissue\end{tabular}}}}%
-    \put(0.45311601,0.00428199){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Flange\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{ITAP-nosensors.pdf}}%
-    \put(0.74384136,0.33552521){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone cement\end{tabular}}}}%
-    \put(0.73470987,0.11041756){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stem\end{tabular}}}}%
-    \put(0.23544795,0.10455387){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Spigot\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{ITAP-nosensors.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{experimental-setup.PNG.pdf}}%
+    \put(0.82869549,0.31048365){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{experimental-setup.PNG.pdf}}%
+    \put(0.3106975,0.54681395){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{experimental-setup.PNG.pdf}}%
+    \put(0.05925342,0.40034006){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Wave\\Generator\end{tabular}}}}%
   \end{picture}%
 \endgroup%
