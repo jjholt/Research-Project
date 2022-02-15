@@ -7,8 +7,8 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="ITAP.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="ITAP.pdf"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,12 +24,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.5554293"
-     inkscape:cx="424.64161"
-     inkscape:cy="279.3441"
+     inkscape:cx="258.12809"
+     inkscape:cy="280.30847"
      inkscape:window-width="2550"
-     inkscape:window-height="712"
+     inkscape:window-height="1395"
      inkscape:window-x="4"
-     inkscape:window-y="1239"
+     inkscape:window-y="704"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:snap-global="false">
@@ -108,7 +108,7 @@
        id="rect1451-3-3"
        width="77.377464"
        height="23.198317"
-       x="119.31487"
+       x="118.25655"
        y="71.484154" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -146,7 +146,7 @@
        id="rect19539"
        width="69.560165"
        height="18.153414"
-       x="-188.63698"
+       x="-187.57866"
        y="-92.300613"
        rx="0"
        ry="0"
@@ -281,5 +281,43 @@
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 185.22036,90.334886 -5.847,16.475684"
        id="path6718" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 115.22422,88.702104 131.94377,115.9085"
+       id="path373" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="128.85217"
+       y="118.19723"
+       id="text3127"><tspan
+         sodipodi:role="line"
+         id="tspan3125"
+         style="stroke-width:0.264583"
+         x="128.85217"
+         y="118.19723">Collar</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.337802px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 115.67941,72.649181 3.30325,-21.027988"
+       id="path8232-3" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="115.0923"
+       y="50.087288"
+       id="text11558-6"><tspan
+         sodipodi:role="line"
+         id="tspan11556-7"
+         style="stroke-width:0.264583"
+         x="115.0923"
+         y="50.087288">Sensor</tspan></text>
+    <rect
+       style="fill:#ff0000;fill-opacity:0.409912;stroke:#ff0000;stroke-width:0.264999"
+       id="rect6579-36-5"
+       width="5.4458947"
+       height="5.2051916"
+       x="-118.82876"
+       y="-76.267868"
+       transform="scale(-1)" />
   </g>
 </svg>
