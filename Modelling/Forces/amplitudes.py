@@ -43,20 +43,21 @@ sensors = [
     'sensor_stem', 'sensor_collar',
 ]
 
-force_offset = 0.001 #Offset from base for point where force will be applied. 0 < force_offset < base_height
-force_direction = (0.0,0.0,-1.0) # (x,y,z) Force is applied simultaneously on all directions. By default, the vise is on the x-axis.
+mesh_size = 0.01
+force_offset_from_base = 0.001 #Offset from base for point where force will be applied. 0 < force_offset_from_base < base_height
+force_direction = (0.0, 0.0, -1.0) # (x,y,z) Force is applied simultaneously on all directions. By default, the vise is on the x-axis.
 
 frequency = 900
-# frequencies = [1,10,20,30,40]
-# for f in range (50,901, 50):
-#     frequencies.append(f)
-mesh_sizes = [0.01, 0.005, 0.0025, 0.00125]
-for i, mesh_size in enumerate(mesh_sizes):
-     # Change amplitude of sinewave here
-    curve = Curve("Sinewave", 0.01, 2*math.pi*frequency)
+curves = [
+    Curve("Sinewave", 1.0e-2, 2*math.pi*frequency),
+    Curve("Sinewave", 1.0e-3, 2*math.pi*frequency),
+    Curve("Sinewave", 200.0e-6, 2*math.pi*frequency),
+]
+
+for i, curve in enumerate(curves):
 
     model_name = 'Model-%d'%i
-    job_name = 'Job-%d_mesh-%d'%(i,mesh_size)
+    job_name = 'Job-%d_%d-um'%(i,curve.amp*1e6)
 ##################################################################################
 ############################### Define subroutines ###############################
 ##################################################################################
@@ -131,8 +132,6 @@ for i, mesh_size in enumerate(mesh_sizes):
             region= mdb.models[model_name].rootAssembly.sets[sensor],
             sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3')
         )
-        # del mdb.models[model_name].fieldOutputRequests['F-Output-1']
-        # del mdb.models[model_name].historyOutputRequests['H-Output-1']
     ############################### Create model ###############################
     mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     stem = create_stem("stem", stem_height, stem_radius, stem_tip_radius)
@@ -143,9 +142,9 @@ for i, mesh_size in enumerate(mesh_sizes):
     base = create_cylinder("base", base_radius,base_height)
     quarter(base)
     plane = mdb.models[model_name].parts[base].DatumPlaneByPrincipalPlane(
-        offset=force_offset, principalPlane=XZPLANE
+        offset=force_offset_from_base, principalPlane=XZPLANE
     )
-    if force_offset > base_height or force_offset <= 0:
+    if force_offset_from_base > base_height or force_offset_from_base <= 0:
         print("Offset is outside of base bounds. Pick something between 0 and %d, non-inclusive" %base_height)
     else:
         mdb.models[model_name].parts[base].PartitionCellByDatumPlane(
@@ -210,7 +209,7 @@ for i, mesh_size in enumerate(mesh_sizes):
     )
     mdb.models[model_name].rootAssembly.Set(
         name='force_point',
-        vertices= mdb.models[model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, force_offset, base_radius), ))
+        vertices= mdb.models[model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, force_offset_from_base, base_radius), ))
     )
     mdb.models[model_name].rootAssembly.Set(
         name='sensor_collar',
@@ -228,13 +227,13 @@ for i, mesh_size in enumerate(mesh_sizes):
     ############################### Create step ###############################
 
     mdb.models[model_name].ImplicitDynamicsStep(
-        initialInc=0.01/frequency, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(2.0/frequency)
+        initialInc=0.01/frequency, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(1.0/frequency)
     )
     ############################### Request outputs ###############################
     for sensor in sensors:
         output_requests(sensor)
     del mdb.models[model_name].historyOutputRequests['H-Output-1']
-
+    
     ############################### Apply periodic force ###############################
     mdb.models[model_name].PeriodicAmplitude(
         a_0=0.0, data=((0.0, curve.amp), ), frequency=curve.freq, name=curve.name, start=0.0, timeSpan=STEP
@@ -247,7 +246,6 @@ for i, mesh_size in enumerate(mesh_sizes):
     )
     
     ############################### Create job ###############################
-    
     jobs.append(job_name)
     mdb.Job(
         atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
