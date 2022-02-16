@@ -44,16 +44,21 @@ sensors = [
 ]
 
 force_offset = 0.001 #Offset from base for point where force will be applied. 0 < force_offset < base_height
+mesh_size = 0.01
 
+# Populate frequencies
 frequencies = [1,10,20,30,40]
 for f in range (50,901, 50):
     frequencies.append(f)
 
+
+############################### Main loop ###############################
 for i, frequency in enumerate(frequencies):
      # Change amplitude of sinewave here
     curve = Curve("Sinewave", 0.01, 2*math.pi*frequency)
 
     model_name = 'Model-%d'%i
+    job_name = 'Job-%d_%d-Hz'%(i,frequency)
 ##################################################################################
 ############################### Define subroutines ###############################
 ##################################################################################
@@ -128,8 +133,6 @@ for i, frequency in enumerate(frequencies):
             region= mdb.models[model_name].rootAssembly.sets[sensor],
             sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3')
         )
-        del mdb.models[model_name].fieldOutputRequests['F-Output-1']
-        del mdb.models[model_name].historyOutputRequests['H-Output-1']
     ############################### Create model ###############################
     mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     stem = create_stem("stem", stem_height, stem_radius, stem_tip_radius)
@@ -196,9 +199,9 @@ for i, frequency in enumerate(frequencies):
         thickness=ON, tieRotations=ON
     )
     ############################### Mesh ###############################
-    mesh(stem, 0.01,"[#ff ]")
-    mesh(collar, 0.01,"[#f ]")
-    mesh(base, 0.01,"[#ff ]")
+    mesh(stem, mesh_size,"[#ff ]")
+    mesh(collar, mesh_size,"[#f ]")
+    mesh(base, mesh_size,"[#ff ]")
 
     ############################### Create points of interest ###############################
     mdb.models[model_name].rootAssembly.Set(
@@ -225,12 +228,12 @@ for i, frequency in enumerate(frequencies):
     ############################### Create step ###############################
 
     mdb.models[model_name].ImplicitDynamicsStep(
-        initialInc=0.01/frequency, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(1.0/frequency)
+        initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(1.0/frequency)
     )
     ############################### Request outputs ###############################
     for sensor in sensors:
         output_requests(sensor)
-    
+    del mdb.models[model_name].historyOutputRequests['H-Output-1']
     ############################### Apply periodic force ###############################
     mdb.models[model_name].PeriodicAmplitude(
         a_0=0.0, data=((0.0, curve.amp), ), frequency=curve.freq, name=curve.name, start=0.0, timeSpan=STEP
@@ -242,7 +245,6 @@ for i, frequency in enumerate(frequencies):
     )
     
     ############################### Create job ###############################
-    job_name = 'Job-%d_%d-Hz'%(i,frequency)
     jobs.append(job_name)
     mdb.Job(
         atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
