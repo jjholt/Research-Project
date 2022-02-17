@@ -4,8 +4,8 @@ frequencies = [1, 10, 20, 30, 40]
 for i in range(50,901, 50):
     frequencies.append(i)
 
-
-for frequency in enumerate(frequencies):
+jobs = []
+for i, frequency in enumerate(frequencies):
     model_name = 'Model-%d'%(i)
     job_name = 'Job-%d_%d-Hz' %(i, frequency)
 

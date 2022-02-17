@@ -1,5 +1,5 @@
 from Modelling import *
-
+jobs = []
 base_height = 0.045
 offsets = range(1, int(base_height*1000), 5) #From 1 to 45 mm, this is converted to SI inside the loop.
 
