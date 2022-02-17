@@ -7,7 +7,7 @@ for i in range(50,901, 50):
 jobs = []
 for i, frequency in enumerate(frequencies):
     model_name = 'Model-%d'%(i)
-    job_name = 'Job-%d_%d-Hz' %(i, frequency)
+    job_name = 'Job-%d_%d-Hz' %(i, frequency) if i >= 10 else 'Job-0%d_%d-Hz' %(i, frequency)
 
     model = Model(model_name) # Create new model
     

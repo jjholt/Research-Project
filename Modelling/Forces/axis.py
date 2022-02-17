@@ -12,7 +12,9 @@ for x in range (-1, 2, 1):
 
 for i, force_direction in enumerate(force_directions):
     model_name = 'Model-%d'%i
-    job_name = 'Job-%d_axes_%d_%d_%d'%(i,force_direction[0],force_direction[1],force_direction[2])
+    j1 = 'Job-%d_axes_%d_%d_%d'%(i,force_direction[0],force_direction[1],force_direction[2])
+    j2 = 'Job-0%d_axes_%d_%d_%d'%(i,force_direction[0],force_direction[1],force_direction[2])
+    job_name = j1 if i > 10 else j2
 
 
     model = Model(model_name)
