@@ -114,9 +114,9 @@ class Model:
                 sectionPoints=DEFAULT, variables=('U', )
             )
             mdb.models[self.model_name].HistoryOutputRequest(
-                createStepName='Step-1', name=sensor, rebar=EXCLUDE,
+                createStepName='Step-1', frequency = 1, name=sensor, rebar=EXCLUDE,
                 region= mdb.models[self.model_name].rootAssembly.sets[sensor],
-                sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3')
+                sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3'),
             )
         del mdb.models[self.model_name].historyOutputRequests['H-Output-1']
     def __create_titanium(self):
@@ -179,7 +179,7 @@ class Model:
         )
     def __step(self):
         mdb.models[self.model_name].ImplicitDynamicsStep(
-            initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(2.0/self.frequency)
+            initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(4.0/self.frequency)
         )
     def __apply_force(self, force_direction):
         mdb.models[self.model_name].ConcentratedForce(
