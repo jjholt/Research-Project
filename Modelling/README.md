@@ -1,3 +1,7 @@
+# Coordinates showing in abaqus
+```Python
+session.journalOptions.setValues(replayGeometry=COORDINATE, recoverGeometry=COORDINATE)
+```
 # Procedure
 ## 1.
 Create your custom settings for the model. It's like you will want something along the lines of:
