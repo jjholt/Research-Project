@@ -21,29 +21,15 @@ for i = 1:3:size(data,1)
     end
     collected_data{end+1} = particular_frequency;
 end
-clear all_three_of_same_freq one_frequency i j
+clear all_three_of_same_freq one_frequency particular_frequency i j
 
-frequencies = [1, 10, 20, 30, 40];
-frequencies = [frequencies 50:50:900];
-maxima_u1 = zeros(1,length(frequencies));
-maxima_u2 = zeros(1,length(frequencies));
-maxima_u3 = zeros(1,length(frequencies));
-maxima_u1_u2_u3 = zeros(1,length(frequencies));
-% collected_data = collected_data(2:end);
+mesh_sizes = [0.0]
 for i = 1:numel(collected_data)
     datum = collected_data{i};
     magnitude = sqrt(sum(datum(:, 2:4).^2, 2));
-    maxima_u1_u2_u3(i) = max(magnitude);
-    maxima_u1(i) = max(abs(datum(:,2)));
-    maxima_u2(i) = max(abs(datum(:,3)));
-    maxima_u3(i) = max(abs(datum(:,4)));
-
 end
 scatter(frequencies, maxima_u1_u2_u3)
 set(gca, 'yscale', 'log')
 xlabel("Frequency [Hz]"); ylabel("Maximum displacement [m]")
 title("Maximum total displacement")
 writematrix(horzcat(frequencies', maxima_u1_u2_u3'), "u1_u2_u3.csv");
-writematrix(horzcat(frequencies', maxima_u1'), "u1.csv");
-writematrix(horzcat(frequencies', maxima_u2'), "u2.csv");
-writematrix(horzcat(frequencies', maxima_u3'), "u3.csv");

@@ -2,7 +2,7 @@ Trial setup is a sine wave of \SI{1}{cm} amplitude, frequency F\SI{900}{Hz}.
 We are looking for when displacement converges to a value and have a reasonable CPU time because we're running several simulations.
 Each mesh is half of the previous one.
 
-\begin{table}
+\begin{table}[h] \centering
     \begin{tabular}{ccc}
         \textbf{Mesh size} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\micro\metre}]}\\
            0.01 & 14.4  & 16.13\\
@@ -12,3 +12,18 @@ Each mesh is half of the previous one.
     \end{tabular}
     \caption{note: what's happening with 0.005??}
 \end{table}
+
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 14cm, height = 8cm,
+            xlabel = {Mesh size [mm]}, ylabel = {Total displacement [nm]}, title = ,
+        ]
+            \addplot[only marks] table [col sep=comma]{Modelling/Mesh convergence/mesh_size.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Magnitude of maximum total displacement given a sinusoidal input of \SI{200}{\micro\metre}.}
+    \label{fig:}
+\end{figure}
+
+\clearpage
