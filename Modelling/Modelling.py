@@ -17,6 +17,7 @@ from connectorBehavior import *
 
 # Python-specific packages
 import math
+import numpy as np
 
 class Model:
     def __init__(self, model_name):
@@ -25,8 +26,8 @@ class Model:
         self.force_direction = (0.0, 0.0, -1.0)
         self.mesh_size = 0.01
         self._frequency = 2*math.pi*100
-        self.amplitude = 200e-6
-        self.curve_name = "Sinewave"
+        self.amplitude = 1e-2
+        self.curve_name = "Burst"
         self.stem_height = 0.12
         self.stem_radius = 0.006
         self.stem_tip_radius = 0.005
@@ -35,7 +36,7 @@ class Model:
         self.base_height = 0.045
         self.base_radius = 0.009
         self.stem_fillet = 0.0045
-        self.sensors = ['sensor_stem', 'sensor_collar']
+        self.sensors = ['sensor_stem', 'sensor_collar', 'sensor_base']
         mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     def __create_stem(self,name, height,radius,tip_radius, stem_fillet):
         # Create stem
@@ -114,7 +115,7 @@ class Model:
                 sectionPoints=DEFAULT, variables=('U', )
             )
             mdb.models[self.model_name].HistoryOutputRequest(
-                createStepName='Step-1', frequency = 1, name=sensor, rebar=EXCLUDE,
+                createStepName="Step-1", frequency = 1, name=sensor, rebar=EXCLUDE,
                 region= mdb.models[self.model_name].rootAssembly.sets[sensor],
                 sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3'),
             )
@@ -162,16 +163,20 @@ class Model:
             vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.005833, 0.071, 0.0), ), ((-0.005833, 0.071, 0.0), ), )
         )
         mdb.models[self.model_name].rootAssembly.Set(
+            name='sensor_stem',
+            vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.0, 0.166537, 0.005037), ))
+        )
+        mdb.models[self.model_name].rootAssembly.Set(
             name='force_point',
             vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, self.force_offset_from_base, self.base_radius), ))
         )
         mdb.models[self.model_name].rootAssembly.Set(
-            name='sensor_collar',
-            vertices=mdb.models[self.model_name].rootAssembly.instances['collar-1'].vertices.findAt(((0.0, self.base_height+self.collar_height, self.collar_radius), ))
+            name='sensor_base',
+            vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, 0.0, self.base_radius), ))
         )
         mdb.models[self.model_name].rootAssembly.Set(
-            name='sensor_stem',
-            vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.0, 0.166537, 0.005037), ))
+            name='sensor_collar',
+            vertices=mdb.models[self.model_name].rootAssembly.instances['collar-1'].vertices.findAt(((0.0, self.base_height+self.collar_height, self.collar_radius), ))
         )
     def __boundaries(self):
         mdb.models[self.model_name].EncastreBC(
@@ -179,7 +184,7 @@ class Model:
         )
     def __step(self):
         mdb.models[self.model_name].ImplicitDynamicsStep(
-            initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(4.0/self.frequency)
+            initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(40.0/self.frequency)
         )
     def __apply_force(self, force_direction):
         mdb.models[self.model_name].ConcentratedForce(
@@ -189,9 +194,25 @@ class Model:
             region= mdb.models[self.model_name].rootAssembly.sets['force_point']
         )
     def __create_curve(self):
+        # def HanningWind(freq, t_final, delta_t , amp):
+        #     t = np.arange(0, (t_final+delta_t), delta_t)
+        #     cosi = amp * np.cos(2 * np.pi * freq * t)
+        #     HannWind = np.hanning(len(t))
+        #     y = cosi * HannWind
+        #     ListOfTuples = []
+        #     for i in range(len(y)):
+        #         timestamp = [t[i], y[i]]
+        #         ListOfTuples.append(tuple(timestamp))
+        #     # ListOfTuples[-1][1]=0.0
+        #     return tuple(ListOfTuples)
+        # mdb.models[self.model_name].TabularAmplitude(
+        #     data=HanningWind(self.frequency,(3.0/self.frequency), 1e-4,self.amplitude),
+        #     name=self.curve_name, smooth=SOLVER_DEFAULT, timeSpan=STEP
+        # )
         mdb.models[self.model_name].PeriodicAmplitude(
-            a_0=0.0, data=((0.0, self.amplitude), ), frequency=self.frequency, name=self.curve_name, start=0.0, timeSpan=STEP
+            a_0=0.0, data=((self.amplitude, 0.0), ), frequency=self.frequency, name=self.curve_name, start=0.0, timeSpan=STEP
         )
+
 
     @property
     def frequency(self):
