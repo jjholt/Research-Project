@@ -10,7 +10,7 @@
                 title = Absolute displacement in y,
                 ymin = 10e-12, ymax = 10e-2,
             ]
-                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/u2.csv};
+                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u2.csv};
             \end{semilogyaxis}
         \end{tikzpicture}
         \caption{}
@@ -25,7 +25,7 @@
                 xlabel = {Frequency [Hz]},
                 title = Absolute displacement in z,
             ]
-                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/u3.csv};
+                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u3.csv};
             \end{semilogyaxis}
         \end{tikzpicture}
         \caption{}
@@ -36,12 +36,12 @@
 
 \begin{figure}[h]\centering
 \begin{tikzpicture}
-    \begin{semilogyaxis}[
+    \begin{loglogaxis}[
         width = 14cm, height = 8cm,
         xlabel = {Frequency [Hz]}, ylabel = {Total displacement [m]}, title = Maximum displacement,
     ]
-        \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/u1_u2_u3.csv};
-    \end{semilogyaxis}
+        \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u1_u2_u3.csv};
+    \end{loglogaxis}
 \end{tikzpicture}
 \caption{Magnitude of maximum total displacement given a sinusoidal input of \SI{200}{\micro\metre}.}
 \label{fig:}

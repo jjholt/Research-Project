@@ -1,4 +1,4 @@
-Trial setup is a sine wave of \SI{1}{cm} amplitude, frequency F\SI{900}{Hz}.
+Trial setup is a sine wave of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.
 We are looking for when displacement converges to a value and have a reasonable CPU time because we're running several simulations.
 Each mesh is half of the previous one.
 
@@ -41,13 +41,13 @@ Each mesh is half of the previous one.
 
 \begin{table}[h] \centering
     \begin{tabular}{ccc}
-        \textbf{Mesh size \si{\milli\metre}} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\nano\metre}]}\\
+        \textbf{Mesh size [\si{\milli\metre}]} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\nano\metre}]}\\ \hline
           10 & 14  & 68\\
            5 & 17  & 67\\
          2.5 & 47  & 63\\
         1.25 & 303 & 62
     \end{tabular}
-    \caption{Mesh convergence at \SI{100}{Hz}}
+    \caption{Mesh convergence at \SI{100}{Hz}, sinusoid of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.}
 \end{table}
 
 \clearpage
