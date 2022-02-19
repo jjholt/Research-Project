@@ -1,0 +1,12 @@
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 14cm, height = 6cm,
+            xlabel = {Offset from base [m]}, ylabel = {Maximum displacement [m]}, title = Position of load,
+        ]
+            \addplot[only marks] table [col sep=comma]{Modelling/Forces/offsets/offsets.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:}
+\end{figure}co

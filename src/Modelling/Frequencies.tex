@@ -1,0 +1,48 @@
+\begin{figure}[h]\centering
+    \pgfplotsset{
+        /pgfplots/minor x tick num = 4,
+    }
+    \begin{subfigure}{0.49\textwidth} \centering
+        \begin{tikzpicture}
+            \begin{semilogyaxis}[
+                % width = 14cm, height = 8cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Absolute displacement [m]},
+                title = Absolute displacement in y,
+                ymin = 10e-12, ymax = 10e-2,
+            ]
+                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u2.csv};
+            \end{semilogyaxis}
+        \end{tikzpicture}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}\centering
+        \begin{tikzpicture}
+            \begin{semilogyaxis}[
+                % width = 14cm, height = 8cm,
+                ymin = 10e-12, ymax = 10e-2,
+                ytick=\empty,
+                % minor y tick num=100,
+                xlabel = {Frequency [Hz]},
+                title = Absolute displacement in z,
+            ]
+                \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u3.csv};
+            \end{semilogyaxis}
+        \end{tikzpicture}
+        \caption{}
+    \end{subfigure}
+    \caption{Absolute displacement given the load is applied in z-direction. (a) shows the displacement in the y-axis, and (b) in the z-axis. There is no displacement in the x-axis because of the boundary conditions.}
+\end{figure}
+
+
+\begin{figure}[h]\centering
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        width = 14cm, height = 8cm,
+        xlabel = {Frequency [Hz]}, ylabel = {Total displacement [m]}, title = Maximum displacement,
+    ]
+        \addplot[only marks] table [col sep=comma]{Modelling/Frequencies/maxima_u1_u2_u3.csv};
+    \end{loglogaxis}
+\end{tikzpicture}
+\caption{Magnitude of maximum total displacement given a sinusoidal input of \SI{200}{\micro\metre}.}
+\label{fig:}
+\end{figure}

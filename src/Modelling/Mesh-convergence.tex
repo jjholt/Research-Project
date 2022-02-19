@@ -1,14 +1,53 @@
-Trial setup is a sine wave of \SI{1}{cm} amplitude, frequency F\SI{900}{Hz}.
+Trial setup is a sine wave of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.
 We are looking for when displacement converges to a value and have a reasonable CPU time because we're running several simulations.
 Each mesh is half of the previous one.
 
-\begin{table}
+% \begin{figure}[h]\centering
+%     \begin{tikzpicture}
+%         \begin{axis}[
+%             width = 14cm, height = 8cm,
+%             xlabel = {Mesh size [mm]}, ylabel = {Total displacement [nm]}, title = ,
+%         ]
+%             \addplot[only marks] table [col sep=comma]{Modelling/Mesh convergence/mesh_size.csv};
+%         \end{axis}
+%     \end{tikzpicture}
+%     \caption{Magnitude of maximum total displacement given a sinusoidal input of \SI{200}{\micro\metre}.}
+%     \label{fig:}
+% \end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.01-finished.png}
+    \caption{Mesh size: \SI{10}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.005-finished.png}
+    \caption{Mesh size: \SI{5}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.0025-finished.png}
+    \caption{Mesh size: \SI{2.5}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.00125-finished.png}
+    \caption{Mesh size: \SI{1.25}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+\end{subfigure}
+\caption{Mesh refinement from 10mm to 1.25mm}
+\label{fig:}
+\end{figure}
+
+\begin{table}[h] \centering
     \begin{tabular}{ccc}
-        \textbf{Mesh size} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\micro\metre}]}\\
-           0.01 & 14.4  & 16.13\\
-          0.005 & 17.8  & 18.67\\
-         0.0025 & 48.9  & 16.96\\
-        0.00125 & 280.9 & 16.25
+        \textbf{Mesh size [\si{\milli\metre}]} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\nano\metre}]}\\ \hline
+          10 & 14  & 68\\
+           5 & 17  & 67\\
+         2.5 & 47  & 63\\
+        1.25 & 303 & 62
     \end{tabular}
-    \caption{note: what's happening with 0.005??}
+    \caption{Mesh convergence at \SI{100}{Hz}, sinusoid of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.}
 \end{table}
+
+\clearpage

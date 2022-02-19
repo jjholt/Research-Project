@@ -13,7 +13,7 @@ for i, frequency in enumerate(frequencies):
     
     # Set the variables we're changing in this run
     model.frequency = frequency
-
+    
     # Generate the model
     model.new()
 
