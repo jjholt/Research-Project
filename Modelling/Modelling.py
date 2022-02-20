@@ -37,7 +37,7 @@ class Model:
         self.stem_fillet = 0.0045
         self.sensors = ['sensor_stem', 'sensor_collar']
         mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
-    def __create_stem(self,name, height,radius,tip_radius, stem_fillet):
+    def __create_stem__(self,name, height,radius,tip_radius, stem_fillet):
         # Create stem
         mdb.models[self.model_name].ConstrainedSketch(name='__profile__', sheetSize=0.4)
         mdb.models[self.model_name].sketches['__profile__'].ConstructionLine(point1=(0.0, -0.2), point2=(0.0, 0.2)) # Construction line
@@ -54,7 +54,7 @@ class Model:
         mdb.models[self.model_name].parts["stem"].BaseSolidRevolve(angle=360.0, flipRevolveDirection=OFF, sketch=mdb.models[self.model_name].sketches['__profile__'])
         del mdb.models[self.model_name].sketches['__profile__']
         return name
-    def __create_cylinder(self,name, radius,height):
+    def __create_cylinder__(self,name, radius,height):
         # Create collar
         mdb.models[self.model_name].ConstrainedSketch(name='__profile__', sheetSize=0.1)
         mdb.models[self.model_name].sketches['__profile__'].sketchOptions.setValues(decimalPlaces=3)
@@ -66,7 +66,7 @@ class Model:
         )
         del mdb.models[self.model_name].sketches['__profile__']
         return name
-    def __quarter(self, name):
+    def __quarter__(self, name):
         mdb.models[self.model_name].parts[name].DatumPlaneByPrincipalPlane(offset=0.0, principalPlane=YZPLANE)
         mdb.models[self.model_name].parts[name].DatumPlaneByPrincipalPlane(offset=0.0, principalPlane=XYPLANE)
         mdb.models[self.model_name].parts[name].PartitionCellByDatumPlane(
@@ -77,7 +77,7 @@ class Model:
             cells=mdb.models[self.model_name].parts[name].cells.getSequenceFromMask(('[#3 ]', ),),
             datumPlane=mdb.models[self.model_name].parts[name].datums[3]
             )
-    def __set_force_offset(self, force_offset):
+    def __set_force_offset__(self, force_offset):
         mdb.models[self.model_name].parts["base"].DatumPlaneByPrincipalPlane(
         offset=force_offset, principalPlane=XZPLANE
         )
@@ -85,19 +85,19 @@ class Model:
             cells= mdb.models[self.model_name].parts["base"].cells.getSequenceFromMask(('[#f ]', ), ),
             datumPlane=mdb.models[self.model_name].parts["base"].datums[6]
         )
-    def __horizontal_partition(self, name):
+    def __horizontal_partition__(self, name):
         mdb.models[self.model_name].parts[name].DatumPlaneByPrincipalPlane(offset=0.02, principalPlane=XZPLANE)
         mdb.models[self.model_name].parts[name].PartitionCellByDatumPlane(
             cells=mdb.models[self.model_name].parts[name].cells.getSequenceFromMask(('[#f ]', ), ),
             datumPlane=mdb.models[self.model_name].parts[name].datums[6]
         )
-    def __assign_material(self, name, range):
+    def __assign_material__(self, name, range):
         mdb.models[self.model_name].parts[name].SectionAssignment(
             offset=0.0, offsetField='', offsetType=MIDDLE_SURFACE,
             region=Region(cells=mdb.models[self.model_name].parts[name].cells.getSequenceFromMask(mask=(range, ), )),
             sectionName='Section-1', thicknessAssignment=FROM_SECTION
         )
-    def __mesh_part(self, name, size, region):
+    def __mesh_part__(self, name, size, region):
         mdb.models[self.model_name].parts[name].setMeshControls(
             algorithm=ADVANCING_FRONT, 
             elemShape=HEX_DOMINATED,
@@ -106,7 +106,7 @@ class Model:
         )
         mdb.models[self.model_name].parts[name].seedPart(deviationFactor=0.1, minSizeFactor=0.1, size=size)
         mdb.models[self.model_name].parts[name].generateMesh()
-    def __output_requests(self, sensors):
+    def __output_requests__(self, sensors):
         for sensor in sensors:
             mdb.models[self.model_name].FieldOutputRequest(
                 createStepName='Step-1', frequency=1, 
@@ -119,12 +119,12 @@ class Model:
                 sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3'),
             )
         del mdb.models[self.model_name].historyOutputRequests['H-Output-1']
-    def __create_titanium(self):
+    def __create_titanium__(self):
         mdb.models[self.model_name].Material(name="Titanium")
         mdb.models[self.model_name].materials["Titanium"].Density(table=((4430, ), ))
         mdb.models[self.model_name].materials["Titanium"].Elastic(table=((114e9, 0.33), ))
         mdb.models[self.model_name].HomogeneousSolidSection(material="Titanium", name='Section-1', thickness=None)
-    def __assemble(self):
+    def __assemble__(self):
         mdb.models[self.model_name].rootAssembly.DatumCsysByDefault(CARTESIAN)
         mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='base-1', part=mdb.models[self.model_name].parts["base"])
         mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='collar-1', part=mdb.models[self.model_name].parts["collar"])
@@ -132,7 +132,7 @@ class Model:
         ############################### Move pieces to right places ###############################
         mdb.models[self.model_name].rootAssembly.translate(instanceList=('collar-1', ), vector=(0.0, self.base_height, 0.0))
         mdb.models[self.model_name].rootAssembly.translate(instanceList=('stem-1', ), vector=(0.0, self.base_height+self.collar_height, 0.0))
-    def __tie(self):
+    def __tie__(self):
         ### Name the surfaces
         mdb.models[self.model_name].rootAssembly.Surface(
             name='base_top', side1Faces= mdb.models[self.model_name].rootAssembly.instances['base-1'].faces.findAt(
@@ -156,7 +156,7 @@ class Model:
             name='collar-base', positionToleranceMethod=COMPUTED, secondary= mdb.models[self.model_name].rootAssembly.surfaces['collar_bottom'],
             thickness=ON, tieRotations=ON
         )
-    def __points_of_interest(self):        
+    def __points_of_interest__(self):        
         mdb.models[self.model_name].rootAssembly.Set(
             name='vise_points',
             vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.005833, 0.071, 0.0), ), ((-0.005833, 0.071, 0.0), ), )
@@ -173,22 +173,22 @@ class Model:
             name='sensor_stem',
             vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.0, 0.166537, 0.005037), ))
         )
-    def __boundaries(self):
+    def __boundaries__(self):
         mdb.models[self.model_name].EncastreBC(
             createStepName='Initial', localCsys=None, name='BC-1', region=mdb.models[self.model_name].rootAssembly.sets['vise_points']
         )
-    def __step(self):
+    def __step__(self):
         mdb.models[self.model_name].ImplicitDynamicsStep(
             initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(4.0/self.frequency)
         )
-    def __apply_force(self, force_direction):
+    def __apply_force__(self, force_direction):
         mdb.models[self.model_name].ConcentratedForce(
             amplitude=self.curve_name,
             cf1=force_direction[0], cf2=force_direction[1], cf3=force_direction[2],
             createStepName='Step-1', distributionType=UNIFORM, field='', localCsys=None, name='Load-1',
             region= mdb.models[self.model_name].rootAssembly.sets['force_point']
         )
-    def __create_curve(self):
+    def __create_curve__(self):
         mdb.models[self.model_name].PeriodicAmplitude(
             a_0=0.0, data=((0.0, self.amplitude), ), frequency=self.frequency, name=self.curve_name, start=0.0, timeSpan=STEP
         )
@@ -210,42 +210,42 @@ class Model:
         )
         job_list.append(job_name)
     def new(self):
-        stem = self.__create_stem("stem", self.stem_height, self.stem_radius, self.stem_tip_radius, self.stem_fillet)
-        self.__quarter(stem)
-        self.__horizontal_partition(stem)
-        collar = self.__create_cylinder("collar", self.collar_radius, self.collar_height)
-        self.__quarter(collar)
-        base = self.__create_cylinder("base", self.base_radius, self.base_height)
-        self.__quarter(base)
-        self.__set_force_offset(self.force_offset_from_base)
+        stem = self.__create_stem__("stem", self.stem_height, self.stem_radius, self.stem_tip_radius, self.stem_fillet)
+        self.__quarter__(stem)
+        self.__horizontal_partition__(stem)
+        collar = self.__create_cylinder__("collar", self.collar_radius, self.collar_height)
+        self.__quarter__(collar)
+        base = self.__create_cylinder__("base", self.base_radius, self.base_height)
+        self.__quarter__(base)
+        self.__set_force_offset__(self.force_offset_from_base)
         ############################### Materials ###############################
-        self.__create_titanium()
+        self.__create_titanium__()
 
         ############################### Assign material ###############################
-        self.__assign_material(collar, '[#f ]')
-        self.__assign_material(base,'[#ff ]')
-        self.__assign_material(stem, "[#ff ]")
+        self.__assign_material__(collar, '[#f ]')
+        self.__assign_material__(base,'[#ff ]')
+        self.__assign_material__(stem, "[#ff ]")
 
         ############################### Assemble ###############################
-        self.__assemble()
-        self.__tie()
+        self.__assemble__()
+        self.__tie__()
 
         ############################### _mesh ###############################
-        self.__mesh_part(stem, self.mesh_size,"[#ff ]")
-        self.__mesh_part(collar, self.mesh_size,"[#f ]")
-        self.__mesh_part(base, self.mesh_size,"[#ff ]")
+        self.__mesh_part__(stem, self.mesh_size,"[#ff ]")
+        self.__mesh_part__(collar, self.mesh_size,"[#f ]")
+        self.__mesh_part__(base, self.mesh_size,"[#ff ]")
 
         ############################## Create points of interest ###############################
-        self.__points_of_interest()
-        self.__boundaries()
-        self.__step()
+        self.__points_of_interest__()
+        self.__boundaries__()
+        self.__step__()
 
         ############################### Request outputs ###############################
 
-        self.__output_requests(self.sensors)
+        self.__output_requests__(self.sensors)
         ############################### Apply periodic force ###############################
-        self.__create_curve()
-        self.__apply_force(self.force_direction)
+        self.__create_curve__()
+        self.__apply_force__(self.force_direction)
 
 jobs = []
 models = []
