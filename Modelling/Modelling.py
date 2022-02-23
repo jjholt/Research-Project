@@ -24,7 +24,7 @@ class Model:
         self.model_name = model_name
         self.force_offset_from_base = 0.001
         self.force_direction = (0.0, 0.0, -1.0)
-        self.mesh_size = 0.01
+        self.mesh_size = 0.0025
         self._frequency = 2*math.pi*100
         self.amplitude = 1e-2
         self.curve_name = "Burst"
