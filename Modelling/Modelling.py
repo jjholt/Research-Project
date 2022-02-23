@@ -193,7 +193,7 @@ class Model:
             createStepName='Step-1', distributionType=UNIFORM, field='', localCsys=None, name='Load-1',
             region= mdb.models[self.model_name].rootAssembly.sets['force_point']
         )
-    def __create_curve(self):
+    def __create_curve__(self):
         # def HanningWind(freq, t_final, delta_t , amp):
         #     t = np.arange(0, (t_final+delta_t), delta_t)
         #     cosi = amp * np.cos(2 * np.pi * freq * t)
