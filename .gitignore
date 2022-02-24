@@ -1,6 +1,17 @@
 ## Output pdf
 *.pdf
 
+## Abaqus job files
+*.msg
+*.odb
+*.inp
+*.com
+*.lck
+*.prt
+*.ipm
+/Modelling/*.dat
+*.pyc
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
