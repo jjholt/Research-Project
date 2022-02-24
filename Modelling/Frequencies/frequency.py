@@ -1,4 +1,5 @@
 from Modelling import *
+# from Modelling.Modelling import (Force, Model, Curve)
 
 frequencies = [1, 10, 20, 30, 40]
 for i in range(50,901, 50):

@@ -19,15 +19,28 @@ from connectorBehavior import *
 import math
 import numpy as np
 
+class Curve:
+    def __init__(self, a, b, name, frequency):
+        self.a = a
+        self.b = b
+        self.name = name
+        self.frequency = frequency
+class Force:
+    def __init__(self, curve_name, offset, direction):
+        self.curve_name = curve_name
+        self.offset_from_base = offset
+        self.direction = direction
+
 class Model:
     def __init__(self, model_name):
+        self.curves = [
+            Curve(200e-6, 0, "Cos", 2*math.pi*100)
+        ]
+        self.forces = [
+            Force(self.curves[0].name, 0.001, (0.0, 0.0, -1.0))
+        ]
         self.model_name = model_name
-        self.force_offset_from_base = 0.001
-        self.force_direction = (0.0, 0.0, -1.0)
         self.mesh_size = 0.0025
-        self._frequency = 2*math.pi*100
-        self.amplitude = 1e-2
-        self.curve_name = "Burst"
         self.stem_height = 0.12
         self.stem_radius = 0.006
         self.stem_tip_radius = 0.005
@@ -78,13 +91,13 @@ class Model:
             cells=mdb.models[self.model_name].parts[name].cells.getSequenceFromMask(('[#3 ]', ),),
             datumPlane=mdb.models[self.model_name].parts[name].datums[3]
             )
-    def __set_force_offset__(self, force_offset):
-        mdb.models[self.model_name].parts["base"].DatumPlaneByPrincipalPlane(
+    def __set_force_offset__(self, force_offset, part):
+        mdb.models[self.model_name].parts[part].DatumPlaneByPrincipalPlane(
         offset=force_offset, principalPlane=XZPLANE
         )
-        mdb.models[self.model_name].parts["base"].PartitionCellByDatumPlane(
-            cells= mdb.models[self.model_name].parts["base"].cells.getSequenceFromMask(('[#f ]', ), ),
-            datumPlane=mdb.models[self.model_name].parts["base"].datums[6]
+        mdb.models[self.model_name].parts[part].PartitionCellByDatumPlane(
+            cells= mdb.models[self.model_name].parts[part].cells.getSequenceFromMask(('[#f ]', ), ),
+            datumPlane=mdb.models[self.model_name].parts[part].datums[6]
         )
     def __horizontal_partition__(self, name):
         mdb.models[self.model_name].parts[name].DatumPlaneByPrincipalPlane(offset=0.02, principalPlane=XZPLANE)
@@ -157,7 +170,7 @@ class Model:
             name='collar-base', positionToleranceMethod=COMPUTED, secondary= mdb.models[self.model_name].rootAssembly.surfaces['collar_bottom'],
             thickness=ON, tieRotations=ON
         )
-    def __points_of_interest__(self):        
+    def __points_of_interest__(self):       
         mdb.models[self.model_name].rootAssembly.Set(
             name='vise_points',
             vertices= mdb.models[self.model_name].rootAssembly.instances['stem-1'].vertices.findAt(((0.005833, 0.071, 0.0), ), ((-0.005833, 0.071, 0.0), ), )
@@ -168,7 +181,7 @@ class Model:
         )
         mdb.models[self.model_name].rootAssembly.Set(
             name='force_point',
-            vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, self.force_offset_from_base, self.base_radius), ))
+            vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, self.forces[0].offset_from_base, self.base_radius), ))
         )
         mdb.models[self.model_name].rootAssembly.Set(
             name='sensor_base',
@@ -186,14 +199,14 @@ class Model:
         mdb.models[self.model_name].ImplicitDynamicsStep(
             initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(40.0/self.frequency)
         )
-    def __apply_force__(self, force_direction):
+    def __apply_force__(self, force, i):
         mdb.models[self.model_name].ConcentratedForce(
-            amplitude=self.curve_name,
-            cf1=force_direction[0], cf2=force_direction[1], cf3=force_direction[2],
-            createStepName='Step-1', distributionType=UNIFORM, field='', localCsys=None, name='Load-1',
+            amplitude=force.curve_name,
+            cf1=force.direction[0], cf2=force.direction[1], cf3=force.direction[2],
+            createStepName='Step-1', distributionType=UNIFORM, field='', localCsys=None, name='Load-'+str(i),
             region= mdb.models[self.model_name].rootAssembly.sets['force_point']
         )
-    def __create_curve__(self):
+    def __create_curve__(self, amp_a, amp_b, name, freq):
         # def HanningWind(freq, t_final, delta_t , amp):
         #     t = np.arange(0, (t_final+delta_t), delta_t)
         #     cosi = amp * np.cos(2 * np.pi * freq * t)
@@ -210,16 +223,15 @@ class Model:
         #     name=self.curve_name, smooth=SOLVER_DEFAULT, timeSpan=STEP
         # )
         mdb.models[self.model_name].PeriodicAmplitude(
-            a_0=0.0, data=((self.amplitude, 0.0), ), frequency=self.frequency, name=self.curve_name, start=0.0, timeSpan=STEP
+            a_0=0.0, data=((amp_a, amp_b), ), frequency=freq, name=name, start=0.0, timeSpan=STEP
         )
-
-
     @property
     def frequency(self):
-        return self._frequency
+        return self.curves[0].frequency
     @frequency.setter
-    def frequency(self, freq): # Linear frequency!!!!
-        self._frequency = 2*math.pi*freq
+    def frequency(self, freq):
+        self.curves[0].frequency = 2*math.pi*freq
+
     def job(self, job_name, job_list):
         mdb.Job(
             atTime=None, contactPrint=OFF, description='', echoPrint=OFF, explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, memory=90, memoryUnits=PERCENTAGE,
@@ -238,7 +250,7 @@ class Model:
         self.__quarter__(collar)
         base = self.__create_cylinder__("base", self.base_radius, self.base_height)
         self.__quarter__(base)
-        self.__set_force_offset__(self.force_offset_from_base)
+        self.__set_force_offset__(self.forces[0].offset_from_base, "base")
         ############################### Materials ###############################
         self.__create_titanium__()
 
@@ -265,8 +277,11 @@ class Model:
 
         self.__output_requests__(self.sensors)
         ############################### Apply periodic force ###############################
-        self.__create_curve__()
-        self.__apply_force__(self.force_direction)
+        
+        for curve in self.curves:
+            self.__create_curve__(curve.a, curve.b, curve.name, curve.frequency)
+        for i, force in enumerate(self.forces):
+            self.__apply_force__(force, i)
 
 jobs = []
 models = []
