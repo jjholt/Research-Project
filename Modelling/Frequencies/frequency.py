@@ -12,8 +12,8 @@ for i, frequency in enumerate(frequencies):
     model = Model(model_name) # Create new model
     
     # Set the variables we're changing in this run
-    model.frequency = frequency
-    
+    model.frequency = frequency*2*math.pi # Seems like sometimes there's a bug that makes this be not correctly multiply inside the Model class.
+    print("Angular frequency", model.frequency)
     # Generate the model
     model.new()
 
