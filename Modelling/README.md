@@ -1,3 +1,8 @@
+# Set Contour values to standard
+```Python
+session.viewports['Viewport: 1'].odbDisplay.contourOptions.setValues(maxValue=6.5e-9, minValue=0)
+```
+
 # Coordinates showing in abaqus
 ```Python
 session.journalOptions.setValues(replayGeometry=COORDINATE, recoverGeometry=COORDINATE)
