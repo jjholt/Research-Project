@@ -4,6 +4,11 @@ mdb.models[model_name].rootAssembly.Set(
     name='vise_points', vertices= mdb.models[model_name].rootAssembly.instances['stem-1'].vertices.getSequenceFromMask(('[#200 ]', ), )
 )
 ```
+# Set Contour values to standard
+```Python
+session.viewports['Viewport: 1'].odbDisplay.contourOptions.setValues(maxValue=6.5e-9, minValue=0)
+```
+
 # Coordinates showing in abaqus
 ```Python
 session.journalOptions.setValues(replayGeometry=COORDINATE, recoverGeometry=COORDINATE)
