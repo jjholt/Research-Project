@@ -3,19 +3,19 @@ from itertools import combinations
 # from Modelling.Modelling import *
 jobs = []
 
-pairs = [
+force_directions = [
     (1.0, 0.0, 0,0),
     (0.0, 1.0, 0.0),
     (0.0, 0.0, -1.0)
 ]
-force_directions = list(combinations(pairs,2))
+force_directions_pairs = list(combinations(force_directions,2))
+curves = [
+    Curve(200e-6, 0, "Cos", 2*math.pi*100),
+    Curve(0, 200e-6, "Sin", 2*math.pi*100),
+]
 
+for i, force_direction in enumerate(force_directions_pairs):
 
-for i, force_direction in enumerate(force_directions):
-    curves = [
-        Curve(200e-6, 0, "Cos", 2*math.pi*100),
-        Curve(0, 200e-6, "Sin", 2*math.pi*100),
-    ]
     forces = [
         Force(curves[0].name, 0.001, force_direction[0]),
         Force(curves[1].name, 0.001, force_direction[1])

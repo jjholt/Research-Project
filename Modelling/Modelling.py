@@ -17,7 +17,7 @@ from connectorBehavior import *
 
 # Python-specific packages
 import math
-import numpy as np
+# import numpy as np
 
 class Curve:
     def __init__(self, a, b, name, frequency):
@@ -196,8 +196,10 @@ class Model:
             createStepName='Initial', localCsys=None, name='BC-1', region=mdb.models[self.model_name].rootAssembly.sets['vise_points']
         )
     def __step__(self):
+        # period = 0.6 if 40.0/self.curves[0].frequency < 0.6 else 40.0/self.curves[0].frequency
+        period = 40.0/self.curves[0].frequency
         mdb.models[self.model_name].ImplicitDynamicsStep(
-            initialInc=1e-05, minInc=1e-06, maxNumInc=10000, name='Step-1', previous='Initial', timePeriod=float(40.0/self.frequency)
+            initialInc=1e-05, minInc=1e-10, maxNumInc=1000000, name='Step-1', previous='Initial', timePeriod=period
         )
     def __apply_force__(self, force, i):
         mdb.models[self.model_name].ConcentratedForce(
