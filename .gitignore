@@ -11,6 +11,7 @@
 *.ipm
 /Modelling/*.dat
 *.pyc
+*.cae
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
