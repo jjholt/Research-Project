@@ -1,3 +1,9 @@
+# Change vise to the tip of the stem
+```Python
+mdb.models[model_name].rootAssembly.Set(
+    name='vise_points', vertices= mdb.models[model_name].rootAssembly.instances['stem-1'].vertices.getSequenceFromMask(('[#200 ]', ), )
+)
+```
 # Coordinates showing in abaqus
 ```Python
 session.journalOptions.setValues(replayGeometry=COORDINATE, recoverGeometry=COORDINATE)
