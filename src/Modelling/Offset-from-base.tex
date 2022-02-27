@@ -1,12 +1,25 @@
 \begin{figure}[h]\centering
     \begin{tikzpicture}
-        \begin{axis}[
-            width = 14cm, height = 6cm,
-            xlabel = {Offset from base [m]}, ylabel = {Maximum displacement [m]}, title = Position of load,
+        \begin{semilogyaxis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Offset [mm]}, ylabel = {Maximum displacement [m]}
         ]
-            \addplot[only marks] table [col sep=comma]{Modelling/Forces/offsets/offsets.csv};
-        \end{axis}
+            \addplot+[
+                only marks
+            ] table [
+                col sep=comma, x index = 0, y index=1,
+                ] {Modelling/Forces/Offsets/base_maxima.csv};
+            \addlegendentry{Base}
+            \addplot+[
+                only marks
+            ] table [
+                col sep=comma, x index = 0, y index=1,
+                ] {Modelling/Forces/Offsets/stem_maxima.csv};
+            \addlegendentry{Stem}
+        \end{semilogyaxis}
     \end{tikzpicture}
+    \caption{1 Hz}
+
     \caption{}
     \label{fig:}
-\end{figure}co
+\end{figure}

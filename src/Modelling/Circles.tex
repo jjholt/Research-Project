@@ -1,0 +1,185 @@
+\subsection{x,y}
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
+                {Modelling/Forces/Axis/csv/Job-0_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-0_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-0_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in x}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2]
+                {Modelling/Forces/Axis/csv/Job-0_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-0_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-0_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in y}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3]
+                {Modelling/Forces/Axis/csv/Job-0_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-0_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-0_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in z}
+    \end{subfigure}
+    \caption{Input is cos + sin in the x and y directions respectively}
+\end{figure}
+
+\subsection{x,z}
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
+                {Modelling/Forces/Axis/csv/Job-1_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-1_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-1_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in x}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2]
+                {Modelling/Forces/Axis/csv/Job-1_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-1_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-1_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in y}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3]
+                {Modelling/Forces/Axis/csv/Job-1_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-1_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-1_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in z}
+    \end{subfigure}
+    \caption{Input is cos + sin in the x and z directions respectively}
+\end{figure}
+
+\subsection{y,z}
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
+                {Modelling/Forces/Axis/csv/Job-2_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-2_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Forces/Axis/csv/Job-2_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in x}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2]
+                {Modelling/Forces/Axis/csv/Job-2_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-2_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=2,]
+                {Modelling/Forces/Axis/csv/Job-2_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in y}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Absolute displacement [m]}
+            ]
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3]
+                {Modelling/Forces/Axis/csv/Job-2_Node BASE-1.8.csv};
+                \addlegendentry{Base}
+                \addplot+[ no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-2_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[no marks] table [col sep=comma, x index = 0, y index=3,]
+                {Modelling/Forces/Axis/csv/Job-2_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Displacements in z}
+    \end{subfigure}
+    \caption{Input is cos + sin in the x and z directions respectively}
+\end{figure}

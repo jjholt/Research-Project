@@ -1,0 +1,96 @@
+We check whether the maximum displacement varies linearly with the initial input. The sensor on the spigot is 1mm away from where the force is being applied  
+\begin{figure}[h] \centering
+    \begin{tikzpicture}[scale=0.95]
+        \begin{loglogaxis}[
+            % width = 8cm, height = 6cm,
+            xlabel = {Input amplitude [m]}, ylabel = {Maximum displacement [m]},
+            legend pos = north west,
+        ]
+            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
+            {Modelling/Forces/Amplitudes/base_100hz.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Forces/Amplitudes/stem_100hz.csv};
+            \addlegendentry{Stem}
+            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Forces/Amplitudes/collar_100hz.csv};
+            \addlegendentry{Collar}
+        \end{loglogaxis}
+    \end{tikzpicture}
+\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
+\label{fig:}
+\end{figure}
+
+
+\section{Displacements over time --- add reminder of orientation}
+
+The simulations are made to run for 40/frequency, which was expected to be enough time to observe the input propagating through the device.
+Figure \ref{fig:displacement-time-1v900} shows the z-axis displacement. We observe on that for 1 Hz (a), the difference in displacement between the sensors is time-invariant, whilst for 900 Hz (b) they begin out of phase and eventually seem to get in-phase.
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width = 8cm, height = 6cm,
+                xlabel = {Time [s]}, ylabel = {Magnitude displacement [m]}
+            ]
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    y expr={abs(\thisrowno{3})},
+                    ] {Modelling/Frequencies/csv/Job-00_1-Hz_Node BASE-1.8.csv};
+                \addlegendentry{Spigot}
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    % x expr={\thisrowno{0}*1000},
+                    ] {Modelling/Frequencies/csv/Job-00_1-Hz_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    % x expr={\thisrowno{0}*1000},
+                    ] {Modelling/Frequencies/csv/Job-00_1-Hz_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{1 Hz}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width = 8cm, height = 6cm,
+                xlabel = {Time [s]},
+                ylabel = {Absolute displacement [m]},
+                legend pos = north west,
+            ]
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    ] {Modelling/Frequencies/csv/Job-22_900-Hz_Node BASE-1.8.csv};
+                \addlegendentry{Spigot}
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    ] {Modelling/Frequencies/csv/Job-22_900-Hz_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[
+                    no marks
+                ] table [
+                    col sep=comma, x index = 0, y index=3,
+                    ] {Modelling/Frequencies/csv/Job-22_900-Hz_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{900Hz}
+    \end{subfigure}
+
+    \caption{Displacement in the z-axis besides the Spigot compared to at the stem}
+    \label{fig:displacement-time-1v900}
+\end{figure}
+
+We quantify the change in phase over time:
