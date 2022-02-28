@@ -1,43 +1,31 @@
 \documentclass{beamer}
 \input{settings.tex}
 
-\title{Introduction to the thing}
-\subtitle{Analysis}
+\title{Developing haptic feedback for Intraosseous Transcutaneous Amputation Prosthetics (ITAP)}
+\subtitle{Modelling vibrations}
 \author{Jonathan Holt}
-\institute{University of place}
+\institute[Biomedical Engineering]{Dept. of Medical Physics \& Biomedical Engineering}
 \date{\today}
-% \usetheme{Boadilla}
 
 \begin{document}
-	% \section{First section}
-	\begin{frame}
-		\titlepage
-	\end{frame}
-	\begin{frame}
-		\frametitle{Outline}
-		\tableofcontents
-	\end{frame}
-	\section{Test}
-	\begin{frame}
-		\frametitle{Selta}
-		\begin{itemize}
-			\item a
-			\item b
-			\item c
-		\end{itemize}
-	\end{frame}
-	\section{Test 2}
-	\begin{frame}
-		\frametitle{The fourth slide}
-	
-		Does this thing
-	
-	\end{frame}
-	% \section{}
-	% 	\subimport{src/}{1}
-	% \section{}
-	% 	\subimport{src/}{2}
-	
-	% \bibliography{bibliography}
+\begin{frame}
+	\titlepage
+\end{frame}
+\begin{frame}
+	\frametitle{Outline}
+	\tableofcontents
+\end{frame}
 
+\section{Introduction}
+	\subimport{src/Introduction/}{itap.tex}
+	\subimport{src/Introduction/}{feedback.tex}
+	\subimport{src/Introduction/}{aims.tex}
+
+\section{Methods}
+	\subimport{src/Methods/}{setup.tex}
+	\subimport{src/Methods/}{coding.tex}
+\section{Results}
+	\subimport{src/Results/}{results.tex}
+\begin{frame}
+\end{frame}
 \end{document}
