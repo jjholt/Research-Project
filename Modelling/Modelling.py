@@ -201,7 +201,7 @@ class Model:
         )
     def __step__(self):
         # period = 0.6 if 40.0/self.curves[0].frequency < 0.6 else 40.0/self.curves[0].frequency
-        period = 100.0/self.curves[0].frequency
+        period = 200.0/self.curves[0].frequency
         increment = 1/(self.curves[0].frequency*2.1)
         mdb.models[self.model_name].ImplicitDynamicsStep(
             initialInc=increment,  maxNumInc= int(1e7),
