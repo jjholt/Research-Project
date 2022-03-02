@@ -28,7 +28,7 @@ class Curve:
 class Force:
     def __init__(self, curve_name, offset, direction):
         self.curve_name = curve_name
-        self.offset_from_base = offset
+        self.offset_from_spigot = offset
         self.direction = direction
 
 class Model:
@@ -46,10 +46,10 @@ class Model:
         self.stem_tip_radius = 0.005
         self.collar_radius = 0.014
         self.collar_height = 0.006
-        self.base_height = 0.045
-        self.base_radius = 0.009
+        self.spigot_height = 0.045
+        self.spigot_radius = 0.009
         self.stem_fillet = 0.0045
-        self.sensors = ['sensor_stem', 'sensor_collar', 'sensor_base']
+        self.sensors = ['sensor_stem', 'sensor_collar', 'sensor_spigot']
         mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     def __create_stem__(self,name, height,radius,tip_radius, stem_fillet):
         # Create stem
@@ -133,6 +133,10 @@ class Model:
                 sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3'),
             )
         del mdb.models[self.model_name].historyOutputRequests['H-Output-1']
+        mdb.models[self.model_name].fieldOutputRequests['F-Output-1'].setValues(
+            frequency=1, 
+            variables=('U', )
+        )
     def __create_titanium__(self):
         mdb.models[self.model_name].Material(name="Titanium")
         mdb.models[self.model_name].materials["Titanium"].Density(table=((4430, ), ))
@@ -140,20 +144,20 @@ class Model:
         mdb.models[self.model_name].HomogeneousSolidSection(material="Titanium", name='Section-1', thickness=None)
     def __assemble__(self):
         mdb.models[self.model_name].rootAssembly.DatumCsysByDefault(CARTESIAN)
-        mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='base-1', part=mdb.models[self.model_name].parts["base"])
+        mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='spigot-1', part=mdb.models[self.model_name].parts["spigot"])
         mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='collar-1', part=mdb.models[self.model_name].parts["collar"])
         mdb.models[self.model_name].rootAssembly.Instance(dependent=ON, name='stem-1', part=mdb.models[self.model_name].parts["stem"])
         ############################### Move pieces to right places ###############################
-        mdb.models[self.model_name].rootAssembly.translate(instanceList=('collar-1', ), vector=(0.0, self.base_height, 0.0))
-        mdb.models[self.model_name].rootAssembly.translate(instanceList=('stem-1', ), vector=(0.0, self.base_height+self.collar_height, 0.0))
+        mdb.models[self.model_name].rootAssembly.translate(instanceList=('collar-1', ), vector=(0.0, self.spigot_height, 0.0))
+        mdb.models[self.model_name].rootAssembly.translate(instanceList=('stem-1', ), vector=(0.0, self.spigot_height+self.collar_height, 0.0))
     def __tie__(self):
         ### Name the surfaces
         mdb.models[self.model_name].rootAssembly.Surface(
-            name='base_top', side1Faces= mdb.models[self.model_name].rootAssembly.instances['base-1'].faces.findAt(
-                ((0.005898, self.base_height, 0.000776), ),
-                ((-0.005898, self.base_height, 0.000776), ), 
-                ((-0.005898, self.base_height, -0.000776), ), 
-                ((0.005898, self.base_height, -0.000776), ), 
+            name='spigot_top', side1Faces= mdb.models[self.model_name].rootAssembly.instances['spigot-1'].faces.findAt(
+                ((0.005898, self.spigot_height, 0.000776), ),
+                ((-0.005898, self.spigot_height, 0.000776), ), 
+                ((-0.005898, self.spigot_height, -0.000776), ), 
+                ((0.005898, self.spigot_height, -0.000776), ), 
             )
         )
         mdb.models[self.model_name].rootAssembly.Surface(name='collar_bottom', side1Faces=mdb.models[self.model_name].rootAssembly.instances['collar-1'].faces.getSequenceFromMask(('[#8214 ]', ), ))
@@ -166,8 +170,8 @@ class Model:
             thickness=ON, tieRotations=ON
         )
         mdb.models[self.model_name].Tie(
-            adjust=ON, main= mdb.models[self.model_name].rootAssembly.surfaces['base_top'],
-            name='collar-base', positionToleranceMethod=COMPUTED, secondary= mdb.models[self.model_name].rootAssembly.surfaces['collar_bottom'],
+            adjust=ON, main= mdb.models[self.model_name].rootAssembly.surfaces['spigot_top'],
+            name='collar-spigot', positionToleranceMethod=COMPUTED, secondary= mdb.models[self.model_name].rootAssembly.surfaces['collar_bottom'],
             thickness=ON, tieRotations=ON
         )
     def __points_of_interest__(self):       
@@ -181,15 +185,15 @@ class Model:
         )
         mdb.models[self.model_name].rootAssembly.Set(
             name='force_point',
-            vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, self.forces[0].offset_from_base, self.base_radius), ))
+            vertices= mdb.models[self.model_name].rootAssembly.instances['spigot-1'].vertices.findAt(((0.0, self.forces[0].offset_from_spigot, self.spigot_radius), ))
         )
         mdb.models[self.model_name].rootAssembly.Set(
-            name='sensor_base',
-            vertices= mdb.models[self.model_name].rootAssembly.instances['base-1'].vertices.findAt(((0.0, 0.0, self.base_radius), ))
+            name='sensor_spigot',
+            vertices= mdb.models[self.model_name].rootAssembly.instances['spigot-1'].vertices.findAt(((0.0, 0.0, self.spigot_radius), ))
         )
         mdb.models[self.model_name].rootAssembly.Set(
             name='sensor_collar',
-            vertices=mdb.models[self.model_name].rootAssembly.instances['collar-1'].vertices.findAt(((0.0, self.base_height+self.collar_height, self.collar_radius), ))
+            vertices=mdb.models[self.model_name].rootAssembly.instances['collar-1'].vertices.findAt(((0.0, self.spigot_height+self.collar_height, self.collar_radius), ))
         )
     def __boundaries__(self):
         mdb.models[self.model_name].EncastreBC(
@@ -197,9 +201,12 @@ class Model:
         )
     def __step__(self):
         # period = 0.6 if 40.0/self.curves[0].frequency < 0.6 else 40.0/self.curves[0].frequency
-        period = 40.0/self.curves[0].frequency
+        period = 100.0/self.curves[0].frequency
+        increment = 1/(self.curves[0].frequency*2.1)
         mdb.models[self.model_name].ImplicitDynamicsStep(
-            initialInc=1e-05, minInc=1e-10, maxNumInc=1000000, name='Step-1', previous='Initial', timePeriod=period
+            initialInc=increment,  maxNumInc= int(1e7),
+            name='Step-1', noStop=OFF, nohaf=OFF, previous='Initial', timeIncrementationMethod=FIXED, 
+            timePeriod=period
         )
     def __apply_force__(self, force, i):
         mdb.models[self.model_name].ConcentratedForce(
@@ -250,15 +257,15 @@ class Model:
         self.__horizontal_partition__(stem)
         collar = self.__create_cylinder__("collar", self.collar_radius, self.collar_height)
         self.__quarter__(collar)
-        base = self.__create_cylinder__("base", self.base_radius, self.base_height)
-        self.__quarter__(base)
-        self.__set_force_offset__(self.forces[0].offset_from_base, "base")
+        spigot = self.__create_cylinder__("spigot", self.spigot_radius, self.spigot_height)
+        self.__quarter__(spigot)
+        self.__set_force_offset__(self.forces[0].offset_from_spigot, "spigot")
         ############################### Materials ###############################
         self.__create_titanium__()
 
         ############################### Assign material ###############################
         self.__assign_material__(collar, '[#f ]')
-        self.__assign_material__(base,'[#ff ]')
+        self.__assign_material__(spigot,'[#ff ]')
         self.__assign_material__(stem, "[#ff ]")
 
         ############################### Assemble ###############################
@@ -268,7 +275,7 @@ class Model:
         ############################### _mesh ###############################
         self.__mesh_part__(stem, self.mesh_size,"[#ff ]")
         self.__mesh_part__(collar, self.mesh_size,"[#f ]")
-        self.__mesh_part__(base, self.mesh_size,"[#ff ]")
+        self.__mesh_part__(spigot, self.mesh_size,"[#ff ]")
 
         ############################## Create points of interest ###############################
         self.__points_of_interest__()
@@ -284,12 +291,13 @@ class Model:
             self.__create_curve__(curve.a, curve.b, curve.name, curve.frequency)
         for i, force in enumerate(self.forces):
             self.__apply_force__(force, i)
+        mdb.models[self.model_name].rootAssembly.regenerate()
 
 jobs = []
 models = []
 
 ############# Things you probably want to change ###########
-# force_offset_from_base = 0.001
+# force_offset_from_spigot = 0.001
 # force_direction = (0.0, 0.0, -1.0)
 # mesh_size = 0.01
 # frequency = 2*math.pi*900
@@ -299,8 +307,8 @@ models = []
 # stem_tip_radius = 0.005
 # collar_radius = 0.014
 # collar_height = 0.006
-# base_height = 0.045
-# base_radius = 0.009
+# spigot_height = 0.045
+# spigot_radius = 0.009
 # stem_fillet = 0.0045
 # sensors = [ # Requires a bit of setup to include more sensors.
 #     'sensor_stem', 'sensor_collar',
