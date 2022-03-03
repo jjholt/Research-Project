@@ -1,0 +1,42 @@
+Next we explore a long input period, that is t = 200/frequency.
+
+\begin{figure}[h] \centering
+    \begin{tikzpicture}[scale=1]
+        \begin{semilogyaxis}[
+            width = 14cm, height = 6cm,
+            xlabel = {Time [ms]}, ylabel = {Maximum displacement [m]},
+        ]
+            \addplot+[no marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
+            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node SPIGOT-1.8.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
+            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node STEM-1.17.csv};
+            \addlegendentry{Stem}
+            \addplot+[no marks] table [col sep=comma, y index=3, x expr = 1e3* \thisrowno{0}]
+            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node COLLAR-1.7.csv};
+            \addlegendentry{Collar}
+        \end{semilogyaxis}
+    \end{tikzpicture}
+\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
+\label{fig:}
+\end{figure}
+
+
+
+\begin{figure}[h] \centering
+    \begin{tikzpicture}[scale=1]
+        \begin{axis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [hz]}, ylabel = {Maximum displacement [m]},
+        ]
+            \addplot+[ no marks] table [col sep=comma]
+            {Modelling/Frequency-200-periods/stem_maxima_normalised_diff.csv};
+            \addlegendentry{Stem}
+            \addplot+[no marks] table [col sep=comma]
+            {Modelling/Frequency-200-periods/collar_maxima_normalised_diff.csv};
+            \addlegendentry{Collar}
+        \end{axis}
+    \end{tikzpicture}
+\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
+\label{fig:}
+\end{figure}

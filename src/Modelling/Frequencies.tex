@@ -1,22 +1,9 @@
-\begin{figure}[h] \centering
-    \begin{subfigure}{0.8\textwidth}
-        \includegraphics[width = \textwidth]{figures/55e7-20-300-900.png}
-        \caption{20hz, 300hz, 900hz}
-    \end{subfigure}
-    \begin{subfigure}[]{0.8\textwidth}
-        \includegraphics[width = \textwidth]{figures/8e8-50-300-900.png}
-        \caption{50hz, 300hz, 900hz}
-    \end{subfigure}
-\caption{Heatmap of maximum relative displacement.  This is intended to highlight the existence of a shift from a fulcrum effect at 1 Hz (a) to approaching resonance at 900 Hz (c). It demonstrates why we track both the spigot and the stem.}
-\label{fig:}
-\end{figure}
-
 \begin{figure}[h]\centering
-    \begin{subfigure}{0.49\textwidth}
-        \begin{tikzpicture}[scale=0.95]
+        \begin{tikzpicture}
             \begin{loglogaxis}[
-                % width = 14cm, height = 6cm,
-                xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]}
+                width = 14cm, height = 6cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+                title = {distorts perception of lines?}
             ]
                 \addplot+[only marks] table [ col sep=comma, x index = 0, y index=1,]
                     {Modelling/Frequencies/spigot_maxima.csv};
@@ -29,11 +16,32 @@
                 \addlegendentry{Collar}
             \end{loglogaxis}
         \end{tikzpicture}
-        \caption{}
-    \end{subfigure}
 
-    \caption{Maximum displacement as a function of frequency. (a) shows the logarithmic change. (b) shows the change normalised over the spigot displacement. The spigot sensor is located \SI{1}{mm} away from where the force is applied.}
+    \caption{Maximum displacement as a function of frequency}
     \label{fig:}
+\end{figure}
+
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{loglogaxis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+            title = {better?}
+        ]
+            \addplot+[only marks] table [ col sep=comma, x index = 0, y index=1,]
+                {Modelling/Frequencies/spigot_maxima.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ only marks ] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Frequencies/stem_maxima.csv};
+            \addlegendentry{Stem}
+            \addplot+[ only marks ] table [col sep=comma, x index = 0, y index=1,]
+                {Modelling/Frequencies/collar_maxima.csv};
+            \addlegendentry{Collar}
+        \end{loglogaxis}
+    \end{tikzpicture}
+
+\caption{Maximum displacement as a function of frequency}
+\label{fig:}
 \end{figure}
 
 \subsection{Normalisation }
@@ -41,7 +49,7 @@
 \begin{figure}[h]\centering
     \begin{subfigure}{0.49\textwidth}
         \begin{tikzpicture}[scale=0.95]
-            \begin{loglogaxis}[
+            \begin{semilogxaxis}[
                 % width = 14cm, height = 6cm,
                 xlabel = {Frequency [Hz]}, ylabel = {},
                 title = Displacement relative to spigot,
@@ -54,7 +62,7 @@
                 \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
                     {Modelling/Frequencies/collar_maxima_normalised_diff.csv};
                 \addlegendentry{Collar}
-            \end{loglogaxis}
+            \end{semilogxaxis}
         \end{tikzpicture}
         \caption{$ y = |\frac{d_{max,collar} - d_{max, spigot}}{d_{max, spigot}}| $}
     \end{subfigure}
@@ -102,7 +110,7 @@
     \end{subfigure}
     \begin{subfigure}{0.49\textwidth}
         \begin{tikzpicture}[scale=0.95]
-            \begin{axis}[
+            \begin{semilogyaxis}[
                 % width = 14cm, height = 6cm,
                 xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [$d_0$]},
                 title = Displacement relative to spigot,
@@ -115,7 +123,7 @@
                 \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
                     {Modelling/Frequencies/collar_maxima_diff.csv};
                 \addlegendentry{Collar}
-            \end{axis}
+            \end{semilogyaxis}
         \end{tikzpicture}
         \caption{$y = |d_{max,collar} - d_{max, spigot}|$}
     \end{subfigure}
@@ -125,7 +133,7 @@
 \begin{figure}[h] \centering
     \begin{subfigure}{0.49\textwidth}
         \begin{tikzpicture}[scale=0.95]
-            \begin{loglogaxis}[
+            \begin{semilogxaxis}[
                 % width = 14cm, height = 6cm,
                 xlabel = {Frequency [Hz]}, ylabel = {},
                 title = Displacement relative to spigot,
@@ -138,7 +146,7 @@
                 \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
                     {Modelling/Frequencies/collar_maxima_normalised.csv};
                 \addlegendentry{Collar}
-            \end{loglogaxis}
+            \end{semilogxaxis}
         \end{tikzpicture}
         \caption{$y = |d_{max,collar}/d_{max, spigot}|$}
     \end{subfigure}

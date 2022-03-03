@@ -3,7 +3,7 @@
 \usepackage{setspace}
 	\doublespacing
 \usepackage{titlesec}
-	\newcommand{\sectionbreak}{\clearpage}
+	% \newcommand{\sectionbreak}{\clearpage}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
@@ -67,3 +67,13 @@
 \usepackage{pmboxdraw}
 \usepackage{appendix}
 \usepackage{subcaption}
+
+\pgfplotsset{
+    every axis legend/.append style = {
+        legend columns = 3,
+        anchor = south east,
+    },
+	every axis title/.append style = {
+		above, yshift=6pt,
+	}
+}

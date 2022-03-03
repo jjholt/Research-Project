@@ -60,11 +60,3 @@ clear f Fs L P1 P2 T
 
 figure;
 spectrogram(stem_magnitude, 3, 2, 3, 2000, 'yaxis')
-% stem_s = spectrogram(stem_magnitude);
-% spigot_s = spectrogram(spigot_magnitude);
-% plot(abs(stem_s - spigot_s))
-
-% 
-% writematrix(horzcat(time, (spigot_magnitude./spigot_magnitude)), "spigot_900_norm.csv");
-% 
-% writematrix(horzcat(time, (stem_magnitude./spigot_magnitude)), "stem_900_norm.csv");

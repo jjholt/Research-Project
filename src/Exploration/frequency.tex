@@ -1,0 +1,169 @@
+\section{Fixed tip}
+\begin{figure}[h]\centering
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        % width = 14cm, height = 6cm,
+        xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+    ]
+        \addplot+[only marks] table [ col sep=comma, x index = 0, y index=1,]
+            {Modelling/Frequencies/Fixed-tip/spigot_maxima.csv};
+        \addlegendentry{Spigot}
+        \addplot+[ only marks ] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Frequencies/Fixed-tip/stem_maxima.csv};
+        \addlegendentry{Stem}
+        \addplot+[ only marks ] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Frequencies/Fixed-tip/collar_maxima.csv};
+        \addlegendentry{Collar}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\caption{Maximum displacement as a function of frequency}
+\label{fig:}
+\end{figure}
+
+\subsection{Normalisation }
+
+\begin{figure}[h]\centering
+\begin{subfigure}{0.49\textwidth}
+    \begin{tikzpicture}[scale=0.95]
+        \begin{semilogxaxis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {},
+            title = Displacement relative to spigot,
+        ]
+            \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+                {Modelling/Frequencies/Fixed-tip/stem_maxima_normalised_diff.csv};
+            \addlegendentry{Stem}
+            
+            \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+                {Modelling/Frequencies/Fixed-tip/collar_maxima_normalised_diff.csv};
+            \addlegendentry{Collar}
+        \end{semilogxaxis}
+    \end{tikzpicture}
+    \caption{$ y = |\frac{d_{max,collar} - d_{max, spigot}}{d_{max, spigot}}| $}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+    \begin{tikzpicture}[scale=0.95]
+        \begin{axis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {},
+            title = Displacement relative to spigot,
+        ]
+            \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+                {Modelling/Frequencies/Fixed-tip/stem_maxima_normalised_diff.csv};
+            \addlegendentry{Stem}
+            
+            \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+                {Modelling/Frequencies/Fixed-tip/collar_maxima_normalised_diff.csv};
+            \addlegendentry{Collar}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{$ y = |\frac{d_{max,collar} - d_{max, spigot}}{d_{max, spigot}}| $}
+\end{subfigure}
+
+\end{figure}
+
+% \begin{figure}[h] \centering
+% \begin{subfigure}{0.49\textwidth}
+%     \begin{tikzpicture}[scale=0.95]
+%         \begin{loglogaxis}[
+%             % width = 14cm, height = 6cm,
+%             xlabel = {Frequency [Hz]}, ylabel = {},
+%             title = Displacement relative to spigot,
+%             legend pos = north east,
+%         ]
+%             \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1,y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/stem_maxima_diff.csv};
+%             \addlegendentry{Stem}
+            
+%             \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/collar_maxima_diff.csv};
+%             \addlegendentry{Collar}
+%         \end{loglogaxis}
+%     \end{tikzpicture}
+%     \caption{$y = |d_{max,collar} - d_{max, spigot}|$}
+% \end{subfigure}
+% \begin{subfigure}{0.49\textwidth}
+%     \begin{tikzpicture}[scale=0.95]
+%         \begin{semilogyaxis}[
+%             % width = 14cm, height = 6cm,
+%             xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [$d_0$]},
+%             title = Displacement relative to spigot,
+%             legend pos = north east,
+%         ]
+%             \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1,y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/stem_maxima_diff.csv};
+%             \addlegendentry{Stem}
+            
+%             \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/collar_maxima_diff.csv};
+%             \addlegendentry{Collar}
+%         \end{semilogyaxis}
+%     \end{tikzpicture}
+%     \caption{$y = |d_{max,collar} - d_{max, spigot}|$}
+% \end{subfigure}
+% \end{figure}
+
+
+% \begin{figure}[h] \centering
+% \begin{subfigure}{0.49\textwidth}
+%     \begin{tikzpicture}[scale=0.95]
+%         \begin{semilogxaxis}[
+%             % width = 14cm, height = 6cm,
+%             xlabel = {Frequency [Hz]}, ylabel = {},
+%             title = Displacement relative to spigot,
+%             legend pos = north west,
+%         ]
+%             \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1,y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/stem_maxima_normalised.csv};
+%             \addlegendentry{Stem}
+            
+%             \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/collar_maxima_normalised.csv};
+%             \addlegendentry{Collar}
+%         \end{semilogxaxis}
+%     \end{tikzpicture}
+%     \caption{$y = |d_{max,collar}/d_{max, spigot}|$}
+% \end{subfigure}
+% \begin{subfigure}{0.49\textwidth}
+%     \begin{tikzpicture}[scale=0.95]
+%         \begin{axis}[
+%             % width = 14cm, height = 6cm,
+%             xlabel = {Frequency [Hz]}, ylabel = {},
+%             title = Displacement relative to spigot,
+%             legend pos = north west,
+%         ]
+%             \addplot[mark= square*, red, only marks, ] table [col sep=comma, x index = 0, y index=1,y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/stem_maxima_normalised.csv};
+%             \addlegendentry{Stem}
+            
+%             \addplot[ only marks, fill=brown,] table [col sep=comma, x index = 0, y index=1, y expr = abs(\thisrowno{1})]
+%                 {Modelling/Frequencies/Fixed-tip/collar_maxima_normalised.csv};
+%             \addlegendentry{Collar}
+%         \end{axis}
+%     \end{tikzpicture}
+%     \caption{$y = |d_{max,collar}/d_{max, spigot}|$}
+% \end{subfigure}
+% \end{figure}
+
+\section{FFT}
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel = {Frequency [Hz]}, ylabel = {Amplitude },
+            width = 14cm, height=8cm,
+        ]
+            \addplot+[ no marks] table [col sep=comma]
+                {Modelling/Frequencies/Fixed-tip/fft_spigot_900Hz.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma]
+                {Modelling/Frequencies/Fixed-tip/fft_stem_900Hz.csv};
+            \addlegendentry{Stem}
+            \addplot+[ no marks] table [col sep=comma]
+            {Modelling/Frequencies/Fixed-tip/fft_collar_900Hz.csv};
+            \addlegendentry{Collar}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{FFT given sinusoidal input at 900hz}
+    \label{fig:}
+\end{figure}
