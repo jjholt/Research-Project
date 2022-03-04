@@ -23,46 +23,26 @@ writematrix(horzcat(frequencies', spigot_max_magnitude'), "spigot_maxima.csv");
 writematrix(horzcat(frequencies', stem_max_magnitude'), "stem_maxima.csv");
 writematrix(horzcat(frequencies', collar_max_magnitude'), "collar_maxima.csv");
 
-% Change relative to spigot
-writematrix(horzcat(frequencies', (stem_max_magnitude - spigot_max_magnitude)'), "stem_maxima_diff.csv");
-writematrix(horzcat(frequencies', (collar_max_magnitude - spigot_max_magnitude)'), "collar_maxima_diff.csv");
+% % Change relative to spigot
+% writematrix(horzcat(frequencies', (stem_max_magnitude - spigot_max_magnitude)'), "stem_maxima_diff.csv");
+% writematrix(horzcat(frequencies', (collar_max_magnitude - spigot_max_magnitude)'), "collar_maxima_diff.csv");
+% 
+% writematrix(horzcat(frequencies', ((stem_max_magnitude - spigot_max_magnitude)./spigot_max_magnitude)'), "stem_maxima_normalised_diff.csv");
+% writematrix(horzcat(frequencies', ((collar_max_magnitude - spigot_max_magnitude)./spigot_max_magnitude)'), "collar_maxima_normalised_diff.csv");
+% 
+% writematrix(horzcat(frequencies', (stem_max_magnitude./spigot_max_magnitude)'), "stem_maxima_normalised.csv");
+% writematrix(horzcat(frequencies', (collar_max_magnitude./spigot_max_magnitude)'), "collar_maxima_normalised.csv");
 
-writematrix(horzcat(frequencies', ((stem_max_magnitude - spigot_max_magnitude)./spigot_max_magnitude)'), "stem_maxima_normalised_diff.csv");
-writematrix(horzcat(frequencies', ((collar_max_magnitude - spigot_max_magnitude)./spigot_max_magnitude)'), "collar_maxima_normalised_diff.csv");
+% % Normalise by dividing spigot vs dividing by rms
 
-writematrix(horzcat(frequencies', (stem_max_magnitude./spigot_max_magnitude)'), "stem_maxima_normalised.csv");
-writematrix(horzcat(frequencies', (collar_max_magnitude./spigot_max_magnitude)'), "collar_maxima_normalised.csv");
-
-
-
-% FFT
-names = ["stem" "collar" "spigot"];
-for freq_pos = 23
-    part = [ sqrt(sum(stem{freq_pos}(:,2:4).^2, 2)) sqrt(sum(collar{freq_pos}(:,2:4).^2, 2)) sqrt(sum(spigot{freq_pos}(:,2:4).^2, 2))];
-    for n = 1:size(part,2)
-        L = length(part(:,n));
-        Fs = 2000;
-        T = 1/Fs;
-        time = stem{end}(:,1);
-        
-        P2 = abs(part(:,n)/L);
-        P1 = P2(1:L/2+1);
-        P1(2:end-1) = 2*P1(2:end-1);
-        f = Fs*(0:(L/2))/L;
-        writematrix(horzcat(f', P1), strcat("fft_", names(n),"_", int2str(frequencies(freq_pos)) , "Hz", ".csv"));
-        figure
-        plot(f, P1)
-        xlabel("frequency [Hz]")
-        title(names(n))
-    end
-end
-clear f Fs L P1 P2 T
-
-figure;
-spectrogram(stem_magnitude, 3, 2, 3, 2000, 'yaxis')
+time = stem{end}(:,1);
+figure; hold on;
+plot(time, stem{end}(:,2))
+plot(time, stem{end}(:,3))
+plot(time, stem{end}(:,4))
+legend("u1","u2", "u3")
 % stem_s = spectrogram(stem_magnitude);
 % spigot_s = spectrogram(spigot_magnitude);
-% plot(abs(stem_s - spigot_s))
 
 % 
 % writematrix(horzcat(time, (spigot_magnitude./spigot_magnitude)), "spigot_900_norm.csv");
