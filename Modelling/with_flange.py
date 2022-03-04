@@ -14,14 +14,14 @@ from visualization import *
 from connectorBehavior import *
 
 import math
-# frequencies = [1, 10, 20, 30, 40]
-# for i in range(50,901, 50):
-#     frequencies.append(i)
+frequencies = [1, 10, 20, 30, 40]
+for i in range(50,901, 50):
+    frequencies.append(i)
 jobs = []
-frequencies = [100]
+# frequencies = [100]
 for i, frequency in enumerate(frequencies):
     period = 40.0/frequency
-    increment = 1/(frequency*2.0*20)
+    increment = 1/(frequency*2.5)
     prefix = "" if i >= 10 else "0" 
     job_name = "Job-" + prefix + "%d_%d-Hz"%(i, frequency)
     model_name = "Model-%d"%(i)
@@ -327,18 +327,6 @@ for i, frequency in enumerate(frequencies):
     mdb.models[model_name].sketches['__profile__'].FixedConstraint(entity=
         mdb.models[model_name].sketches['__profile__'].geometry[2])
     mdb.models[model_name].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
-        0.0, 0.009))
-    mdb.models[model_name].sketches['__profile__'].VerticalConstraint(addUndoState=
-        False, entity=mdb.models[model_name].sketches['__profile__'].geometry[3])
-    mdb.models[model_name].sketches['__profile__'].ParallelConstraint(addUndoState=
-        False, entity1=mdb.models[model_name].sketches['__profile__'].geometry[2], 
-        entity2=mdb.models[model_name].sketches['__profile__'].geometry[3])
-    mdb.models[model_name].sketches['__profile__'].CoincidentConstraint(
-        addUndoState=False, entity1=
-        mdb.models[model_name].sketches['__profile__'].vertices[0], entity2=
-        mdb.models[model_name].sketches['__profile__'].geometry[2])
-    mdb.models[model_name].sketches['__profile__'].undo()
-    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
         0.009, 0.0))
     mdb.models[model_name].sketches['__profile__'].HorizontalConstraint(
         addUndoState=False, entity=
@@ -352,40 +340,15 @@ for i, frequency in enumerate(frequencies):
         mdb.models[model_name].sketches['__profile__'].vertices[0], entity2=
         mdb.models[model_name].sketches['__profile__'].geometry[2])
     mdb.models[model_name].sketches['__profile__'].Line(point1=(0.009, 0.0), point2=
-        (0.009, 0.009))
+        (0.009, 0.013))
     mdb.models[model_name].sketches['__profile__'].VerticalConstraint(addUndoState=
         False, entity=mdb.models[model_name].sketches['__profile__'].geometry[4])
     mdb.models[model_name].sketches['__profile__'].PerpendicularConstraint(
         addUndoState=False, entity1=
         mdb.models[model_name].sketches['__profile__'].geometry[3], entity2=
         mdb.models[model_name].sketches['__profile__'].geometry[4])
-    mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
-        mdb.models[model_name].sketches['__profile__'].geometry[3], ))
-    mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
-        mdb.models[model_name].sketches['__profile__'].geometry[4], ))
-    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.009, 0.0), point2=
-        (0.0, 0.0))
-    mdb.models[model_name].sketches['__profile__'].HorizontalConstraint(
-        addUndoState=False, entity=
-        mdb.models[model_name].sketches['__profile__'].geometry[5])
-    mdb.models[model_name].sketches['__profile__'].ParallelConstraint(addUndoState=
-        False, entity1=mdb.models[model_name].sketches['__profile__'].geometry[3], 
-        entity2=mdb.models[model_name].sketches['__profile__'].geometry[5])
-    mdb.models[model_name].sketches['__profile__'].undo()
-    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.009, 0.0), point2=
-        (0.018, 0.0))
-    mdb.models[model_name].sketches['__profile__'].HorizontalConstraint(
-        addUndoState=False, entity=
-        mdb.models[model_name].sketches['__profile__'].geometry[5])
-    mdb.models[model_name].sketches['__profile__'].ParallelConstraint(addUndoState=
-        False, entity1=mdb.models[model_name].sketches['__profile__'].geometry[3], 
-        entity2=mdb.models[model_name].sketches['__profile__'].geometry[5])
-    mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
-        mdb.models[model_name].sketches['__profile__'].geometry[5], ))
-    mdb.models[model_name].sketches['__profile__'].undo()
-    mdb.models[model_name].sketches['__profile__'].undo()
-    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.009, 0.009), 
-        point2=(0.0179999999618158, 0.009))
+    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.009, 0.013), 
+        point2=(0.022, 0.013))
     mdb.models[model_name].sketches['__profile__'].HorizontalConstraint(
         addUndoState=False, entity=
         mdb.models[model_name].sketches['__profile__'].geometry[5])
@@ -394,15 +357,18 @@ for i, frequency in enumerate(frequencies):
         mdb.models[model_name].sketches['__profile__'].geometry[4], entity2=
         mdb.models[model_name].sketches['__profile__'].geometry[5])
     mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
+        mdb.models[model_name].sketches['__profile__'].geometry[3], ))
+    mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
+        mdb.models[model_name].sketches['__profile__'].geometry[4], ))
+    mdb.models[model_name].sketches['__profile__'].setAsConstruction(objectList=(
         mdb.models[model_name].sketches['__profile__'].geometry[5], ))
     mdb.models[model_name].sketches['__profile__'].ArcByCenterEnds(center=(0.009, 
-        0.009), direction=COUNTERCLOCKWISE, point1=(0.009, 0.0), point2=(
-        0.0179999999618158, 0.009))
+        0.013), direction=CLOCKWISE, point1=(0.022, 0.013), point2=(0.009, 0.0))
     mdb.models[model_name].sketches['__profile__'].offset(distance=0.001, 
         objectList=(mdb.models[model_name].sketches['__profile__'].geometry[6], ), 
-        side=LEFT)
-    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.017, 0.009), 
-        point2=(0.018, 0.009))
+        side=RIGHT)
+    mdb.models[model_name].sketches['__profile__'].Line(point1=(0.021, 0.013), 
+        point2=(0.022, 0.013))
     mdb.models[model_name].sketches['__profile__'].HorizontalConstraint(
         addUndoState=False, entity=
         mdb.models[model_name].sketches['__profile__'].geometry[8])
@@ -428,10 +394,11 @@ for i, frequency in enumerate(frequencies):
         flipRevolveDirection=OFF, sketch=
         mdb.models[model_name].sketches['__profile__'])
     del mdb.models[model_name].sketches['__profile__']
+    
 
-    mdb.models['Model-0'].parts['flange'].SectionAssignment(offset=0.0, 
+    mdb.models[model_name].parts['flange'].SectionAssignment(offset=0.0, 
         offsetField='', offsetType=MIDDLE_SURFACE, region=Region(
-        cells=mdb.models['Model-0'].parts['flange'].cells.getSequenceFromMask(
+        cells=mdb.models[model_name].parts['flange'].cells.getSequenceFromMask(
         mask=('[#1 ]', ), )), sectionName='Section-1', thicknessAssignment=
         FROM_SECTION)
     mdb.models[model_name].rootAssembly.Instance(dependent=ON, name='flange-1', 
@@ -439,11 +406,11 @@ for i, frequency in enumerate(frequencies):
     mdb.models[model_name].rootAssembly.translate(instanceList=('flange-1', ), 
         vector=(0.0, 0.04, 0.0))
     mdb.models[model_name].Tie(adjust=ON, main=Region(
-        side1Faces=mdb.models[model_name].rootAssembly.instances['flange-1'].faces.getSequenceFromMask(
-        mask=('[#8 ]', ), )), name='Constraint-3', positionToleranceMethod=COMPUTED
-        , secondary=Region(
+        edges=mdb.models[model_name].rootAssembly.instances['flange-1'].edges.getSequenceFromMask(
+        mask=('[#12 ]', ), )), name='Constraint-3', positionToleranceMethod=
+        COMPUTED, secondary=Region(
         side1Faces=mdb.models[model_name].rootAssembly.instances['base-1'].faces.getSequenceFromMask(
-        mask=('[#8014057 ]', ), )), thickness=ON, tieRotations=ON)
+        mask=('[#8014040 ]', ), )), thickness=ON, tieRotations=ON)
     mdb.models[model_name].parts['flange'].seedPart(deviationFactor=0.1, 
     minSizeFactor=0.1, size=0.0025)
     mdb.models[model_name].parts['flange'].setMeshControls(elemShape=TET, regions=
