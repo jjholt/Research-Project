@@ -1,20 +1,20 @@
 from Modelling import *
 jobs = []
-base_height = 0.045
-offsets = range(1, int(base_height*1000), 5) #From 1 to 45 mm, this is converted to SI inside the loop.
+
+max_height = 0.040
+offsets = range(1, int(max_height*1000), 2) #From 1 to 35 mm, this is converted to SI inside the loop.
 
 ############################### Main loop ###############################
-i = 0
-for i, force_offset_from_base in enumerate(offsets):
+for i, offset_from_spigot in enumerate(offsets):
     model_name = 'Model-%d'%i
-    job_name = 'Job-%d_offset-%d-mm'%(i,force_offset_from_base)
-    jobs.append(job_name)
+    prefix = "0" if i < 10 else ""
 
-    force_offset_from_base = force_offset_from_base/1000.0
+    job_name = "Job-" + prefix + "%d_offset-%d-mm"%(i,offset_from_spigot)
+
+    offset_from_spigot = offset_from_spigot/1000.0
     model = Model(model_name)
-    model.base_height = base_height # Just to guarantee it doesn't change anything if I change default values
-    model.force_offset_from_base = force_offset_from_base
-
+    model.forces[0].offset_from_spigot = offset_from_spigot
+    
     model.new()
     model.job(job_name, jobs)
     
