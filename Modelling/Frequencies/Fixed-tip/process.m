@@ -37,26 +37,35 @@ writematrix(horzcat(frequencies', (collar_max_magnitude./spigot_max_magnitude)')
 
 % FFT
 names = ["stem" "collar" "spigot"];
-for freq_pos = 23
-    part = [ sqrt(sum(stem{freq_pos}(:,2:4).^2, 2)) sqrt(sum(collar{freq_pos}(:,2:4).^2, 2)) sqrt(sum(spigot{freq_pos}(:,2:4).^2, 2))];
+for freq_pos = 4 %1 to 23
+%     part = [ sqrt(sum(stem{freq_pos}(:,4).^2, 2)) sqrt(sum(collar{freq_pos}(:,4).^2, 2)) sqrt(sum(spigot{freq_pos}(:,4).^2, 2))];
+    part = [ stem{freq_pos}(:,4) collar{freq_pos}(:,4) spigot{freq_pos}(:,4)];
     for n = 1:size(part,2)
-        L = length(part(:,n));
         Fs = 2000;
-        T = 1/Fs;
-        time = stem{end}(:,1);
-        
-        P2 = abs(part(:,n)/L);
+%         T = 1/Fs;
+        time = stem{freq_pos}(:,1);
+        L = length(time);
+        Y = fft(part(:,n));
+        P2 = abs(Y/L);
         P1 = P2(1:L/2+1);
         P1(2:end-1) = 2*P1(2:end-1);
         f = Fs*(0:(L/2))/L;
         writematrix(horzcat(f', P1), strcat("fft_", names(n),"_", int2str(frequencies(freq_pos)) , "Hz", ".csv"));
+        
         figure
+        subplot(2,1,1)
+        plot(time, part(:,n))
+        title([strcat(names(n)," ", int2str(frequencies(freq_pos)), "Hz") "Time domain"])
+        xlabel("Time [s]")
+
+        subplot(2,1,2)
         plot(f, P1)
+        title([strcat(names(n)," ", int2str(frequencies(freq_pos)), "Hz") "Frequency domain"])
         xlabel("frequency [Hz]")
-        title(names(n))
     end
 end
-clear f Fs L P1 P2 T
+% clear f Fs L P1 P2 T y n 
 
 figure;
-spectrogram(stem_magnitude, 3, 2, 3, 2000, 'yaxis')
+spectrogram(stem{freq_pos}(:,4), 3, 2, 3, 2000, 'yaxis')
+colormap plasma
