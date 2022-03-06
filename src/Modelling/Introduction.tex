@@ -1,4 +1,31 @@
+
+
+\begin{figure}[h]
+\centering
+    \includegraphics[width=\textwidth]{figures/experimental-setup.png}
+\caption{}
+\label{fig:}
+\end{figure}
+
 \subsection{ITAP dimensions}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{cc}
+        \textbf{Stem} & Dimension \\ \hline
+        diameter & 12 mm \\
+        length & 120 mm \\
+        &\\
+        \textbf{Collar} & Dimensions\\ \hline
+        height & 6 mm \\
+        diameter & 28 mm \\
+        & \\
+        \textbf{Spigot} & Dimensions\\ \hline
+        diameter & 18 mm \\
+        length & 45 mm
+    \end{tabular}
+    \caption{Probably replace with technical drawing + description in prose}
+    \label{tb:}
+\end{table}
 % Dimensions extracted from Kirstin's thesis
 
 % Cemented for > 15mm and/or implant fixed above the isthmus of the diaphysis. Stem diameter such that there is 2mm of cement.
@@ -47,39 +74,23 @@
 % Graph showing input displacement and the displacement at the points of interest
 
 
+\subsection{Motivation for how this is being tackled}
+
+\paragraph{Replication of physical model}
+
+\paragraph{Assumptions and short-comings}
+
+
+\paragraph{Sensor positioning}
+Figure \ref{fig:10-300-900-max-displacements} shows the large variety of motion the model undergoes, hence the sensors at each position.
+
+Link to reality in application: the displacement experienced on the soft tissue attached to the flange is likely the same as that experienced on the collar.
 
 \begin{figure}[h] \centering
-    \begin{subfigure}{\textwidth}
-        \includegraphics[width = 0.8\textwidth]{figures/55e7-20-300-900.png}
-        \caption{20hz, 300hz, 900hz}
-    \end{subfigure}
-    \begin{subfigure}[]{\textwidth}
-        \includegraphics[width = 0.33\textwidth]{figures/Free/10hz.PNG}
-        \includegraphics[width = 0.33\textwidth]{figures/Free/300hz.PNG}
-        \includegraphics[width = 0.33\textwidth]{figures/Free/900hz.PNG}
-        \caption{10hz, 300hz, 900hz}
-    \end{subfigure}
-\caption{Maximum displacement.  Intended to highlight why we track spigot, collar and stem.}
-\label{fig:}
+    \includegraphics[width = 0.30\textwidth]{figures/Free/10hz.PNG}
+    \includegraphics[width = 0.30\textwidth]{figures/Free/300hz.PNG}
+    \includegraphics[width = 0.30\textwidth]{figures/Free/900hz.PNG}
+\caption{Magnitude of displacement observed for 10hz, 300hz, 900hz, respectively. Intended to highlight why we place sensors on spigot, collar and stem. Not displayed is the scaling of the deflection}
+\label{fig:10-300-900-max-displacements}
 \end{figure}
-
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{cc}
-        \textbf{Stem} & Dimension \\ \hline
-        diameter & 12 mm \\
-        length & 120 mm \\
-        &\\
-        \textbf{Collar} & Dimensions\\ \hline
-        height & 6 mm \\
-        diameter & 28 mm \\
-        & \\
-        \textbf{Spigot} & Dimensions\\ \hline
-        diameter & 18 mm \\
-        length & 45 mm
-    \end{tabular}
-    \caption{}
-    \label{tb:}
-\end{table}
 \clearpage

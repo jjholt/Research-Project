@@ -2,22 +2,22 @@ Next we explore a long input period, that is t = 200/frequency.
 
 \begin{figure}[h] \centering
     \begin{tikzpicture}[scale=1]
-        \begin{semilogyaxis}[
+        \begin{axis}[
             width = 14cm, height = 6cm,
-            xlabel = {Time [ms]}, ylabel = {Maximum displacement [m]},
+            xlabel = {Time [ms]}, ylabel = {Displacement [m]},
         ]
+            % \addplot+[only marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
+            % {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node SPIGOT-1.8.csv};
+            % \addlegendentry{Spigot}
             \addplot+[no marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
-            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node SPIGOT-1.8.csv};
-            \addlegendentry{Spigot}
-            \addplot+[ no marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
             {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node STEM-1.17.csv};
             \addlegendentry{Stem}
-            \addplot+[no marks] table [col sep=comma, y index=3, x expr = 1e3* \thisrowno{0}]
-            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node COLLAR-1.7.csv};
-            \addlegendentry{Collar}
-        \end{semilogyaxis}
+            % \addplot+[only marks] table [col sep=comma, y index=3, x expr = 1e3* \thisrowno{0}]
+            % {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node COLLAR-1.7.csv};
+            % \addlegendentry{Collar}
+        \end{axis}
     \end{tikzpicture}
-\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
+\caption{Displacement as a function of time for sinusoidal input at \SI{900}{Hz}.}
 \label{fig:}
 \end{figure}
 

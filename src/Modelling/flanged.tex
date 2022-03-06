@@ -1,0 +1,25 @@
+\begin{figure}[h]
+\centering
+    \includegraphics[width=0.5\textwidth]{figures/placeholder.png}
+\caption{Model with flange and flat surface on spigot}
+\label{fig:}
+\end{figure}
+
+Figure \ref{fig:flanged-vs-simplified-displacement-100hz} compares the displacements at the stem sensor of the complete, ``flanged'' model and the simplification.  
+\begin{figure}[h]\centering
+    \begin{tikzpicture}[scale=0.95]
+        \begin{axis}[
+            xlabel = {Time [s]}, ylabel = {Displacement [m]},
+        ]
+            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{1}, ]
+                {Modelling/Flanged/csv/mod-Job-00_100-Hz_Node STEM-1.17.csv};
+            \addlegendentry{Flanged}
+            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}, ]
+                {Modelling/Frequencies-more-data/csv/Job-06_100-Hz_Node STEM-1.17.csv};
+            \addlegendentry{Simplified}
+        \end{axis}
+    \end{tikzpicture}
+
+    \caption{Stem displacement }
+    \label{fig:flanged-vs-simplified-displacement-100hz}
+\end{figure}

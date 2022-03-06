@@ -37,6 +37,13 @@ Each mesh is half of the previous one.
 \label{fig:}
 \end{figure}
 
+\paragraph{Conclusions}
+Comparison shown in Table \ref{tb:mesh-convergence}.
+\begin{itemize}
+    \item All values within about 10\% of each other. Reasonable enough given the model
+    \item It is reasonable to use the larger mesh sizes, but I choose \SI{2.5}{mm} because computational time is still OK given the simulations I'm running --- both the ones with 150 steps and 1600 steps.
+\end{itemize}
+
 \begin{table}[h] \centering
     \begin{tabular}{ccc}
         \textbf{Mesh size [\si{\milli\metre}]} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\nano\metre}]}\\ \hline
@@ -46,6 +53,5 @@ Each mesh is half of the previous one.
         1.25 & 303 & 62
     \end{tabular}
     \caption{Mesh convergence at \SI{100}{Hz}, sinusoid of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.}
+    \label{tb:mesh-convergence}
 \end{table}
-
-\clearpage

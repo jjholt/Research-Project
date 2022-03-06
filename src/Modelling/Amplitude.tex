@@ -27,6 +27,25 @@ The simulations are made to run for 40/frequency, which was expected to be enoug
 Figure \ref{fig:displacement-time-1v900} shows displacement of the same 1 hz compared to 900hz. Point is to highlight that at 1hz it's time-invariant, and 900hz begins with a phase-shift and over time they become in phase.
 We attempt to quantify this shifting phase with a spectrogram and in later sections discuss simulations that run for 200/frequency.
 
+\begin{figure}[h]
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel = {Time [s]}, ylabel = {Displacement [m]},
+            ]
+            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}]
+            {Modelling/Frequencies/csv/Job-00_1-Hz_Node SPIGOT-1.8.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}]
+            {Modelling/Frequencies/csv/Job-00_1-Hz_Node STEM-1.17.csv};
+            \addlegendentry{Stem}
+            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}]
+            {Modelling/Frequencies/csv/Job-00_1-Hz_Node COLLAR-1.7.csv};
+            \addlegendentry{Collar}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Probably not show this and just explain in text.}
+\end{figure}
+    
 \begin{figure}[h]\centering
     \begin{subfigure}{0.49\textwidth}
         \begin{tikzpicture}[scale=0.95]
@@ -34,7 +53,7 @@ We attempt to quantify this shifting phase with a spectrogram and in later secti
                 xlabel = {Time [s]}, ylabel = {Displacement [m]},
             ]
                 \addplot+[ no marks] table [col sep=comma, y expr = -\thisrowno{3}]
-                    {Modelling/Frequencies/csv/Job-00_1-Hz_Node BASE-1.8.csv};
+                    {Modelling/Frequencies/csv/Job-00_1-Hz_Node SPIGOT-1.8.csv};
                 \addlegendentry{Spigot}
                 \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}]
                     {Modelling/Frequencies/csv/Job-00_1-Hz_Node STEM-1.17.csv};
@@ -52,7 +71,7 @@ We attempt to quantify this shifting phase with a spectrogram and in later secti
                 xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
             ]
                 \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                    {Modelling/Frequencies/csv/Job-22_900-Hz_Node BASE-1.8.csv};
+                    {Modelling/Frequencies/csv/Job-22_900-Hz_Node SPIGOT-1.8.csv};
                 \addlegendentry{Spigot}
                 \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
                     {Modelling/Frequencies/csv/Job-22_900-Hz_Node STEM-1.17.csv};
@@ -69,25 +88,6 @@ We attempt to quantify this shifting phase with a spectrogram and in later secti
     \label{fig:displacement-time-1v900}
 \end{figure}
 
-Taking this same 900 Hz signal, we can look at the FFT of the signal:
-\begin{figure}[h]\centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            xlabel = {Frequency [Hz]}, ylabel = {Amplitude },
-            width = 14cm, height=8cm,
-        ]
-            \addplot+[ no marks] table [col sep=comma]
-                {Modelling/Frequencies/fft_spigot_900Hz.csv};
-            \addlegendentry{Spigot}
-            \addplot+[ no marks] table [col sep=comma]
-                {Modelling/Frequencies/fft_stem_900Hz.csv};
-            \addlegendentry{Stem}
-            \addplot+[ no marks] table [col sep=comma]
-            {Modelling/Frequencies/fft_collar_900Hz.csv};
-            \addlegendentry{Collar}
-        \end{axis}
-    \end{tikzpicture}
-    \caption{FFT given sinusoidal input at 900hz}
-    \label{fig:}
-\end{figure}
-We quantify the change in phase over time:
+Attempts to quantify the initial frequency change using a spectrogram were largely unsuccessful.
+This change is most pronounced for higher frequencies, far above a reasonable operational range.
+For that reason, no further considerations are made regarding frequency changes for one input.

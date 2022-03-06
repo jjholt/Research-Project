@@ -1,25 +1,25 @@
+\paragraph{Description}
+Refer back to experimental design
+\paragraph{Conclusion}
+Expect to be linear, see that it's linear. 
 \begin{figure}[h]\centering
     \begin{tikzpicture}
-        \begin{semilogyaxis}[
+        \begin{axis}[
             % width = 14cm, height = 6cm,
             xlabel = {Offset [mm]}, ylabel = {Maximum displacement [m]}
         ]
-            \addplot+[
-                only marks
-            ] table [
-                col sep=comma, x index = 0, y index=1,
-                ] {Modelling/Forces/Offsets/base_maxima.csv};
-            \addlegendentry{Base}
-            \addplot+[
-                only marks
-            ] table [
-                col sep=comma, x index = 0, y index=1,
-                ] {Modelling/Forces/Offsets/stem_maxima.csv};
+            \addplot+[ only marks] table [ col sep=comma]
+                {Modelling/Forces/Offsets/spigot_maxima.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ only marks] table [ col sep=comma]
+                {Modelling/Forces/Offsets/stem_maxima.csv};
             \addlegendentry{Stem}
-        \end{semilogyaxis}
+            \addplot+[ only marks] table [ col sep=comma]
+            {Modelling/Forces/Offsets/collar_maxima.csv};
+        \addlegendentry{Stem}
+        \end{axis}
     \end{tikzpicture}
     \caption{1 Hz}
 
-    \caption{}
-    \label{fig:}
+    \label{fig:offset-from-base}
 \end{figure}
