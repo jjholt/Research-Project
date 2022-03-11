@@ -6,15 +6,15 @@ frequencies = [1, 10, 20, 30, 40]
 for i in range(50,901, 50):
     frequencies.append(i)
 
-# jobs = []
+jobs = []
 for i, frequency in enumerate(frequencies):
-    model_name = 'Model-%d'%(i+len(frequencies))
-    prefix = "0" if i+len(frequencies) < 10 else ""
-    job_name = 'Job-' + prefix + '%d_%d-Hz-100-periods' %(i+len(frequencies), frequency)
+    model_name = 'Model-%d'%(i)
+    prefix = "0" if i < 10 else ""
+    job_name = 'Job-' + prefix + '%d_%d-Hz-500-periods' %(i, frequency)
     
     model = Model(model_name) # Create new model
 
-    model.period =100.0/(frequency)
+    model.period =500.0/(frequency)
     model.increment = 1/(frequency*10.0)
     
     
