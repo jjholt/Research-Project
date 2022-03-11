@@ -2,24 +2,30 @@
 \centering
     \includegraphics[width=0.5\textwidth]{figures/placeholder.png}
 \caption{Model with flange and flat surface on spigot}
-\label{fig:}
+\label{fig:model-with-flange}
 \end{figure}
 
-Figure \ref{fig:flanged-vs-simplified-displacement-100hz} compares the displacements at the stem sensor of the complete, ``flanged'' model and the simplification.  
+Figure \ref{fig:error-compared-to-flanged} compares the maximum displacements at the stem sensor of the complete, ``flanged'' model (F) and the simplification (S).
+This flanged model is far from ideal, but the comparison presented in figure \ref{fig:error-compared-to-flanged} provides some insight into where we can expect the largest changes as we produce more complex models, namely the collar.
+It is worth highlighting that the displacements observed at the collar are consistently much smaller than everywhere else, and that the flange is positioned around the collar, so it is unsurprising that the relative error at the collar is so much larger than elsewhere.
 \begin{figure}[h]\centering
     \begin{tikzpicture}[scale=0.95]
         \begin{axis}[
-            xlabel = {Time [s]}, ylabel = {Displacement [m]},
+            width = 12cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {$\frac{F-S}{F}$},
+            ylabel style={rotate=-90}
         ]
-            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{1}, ]
-                {Modelling/Flanged/csv/mod-Job-00_100-Hz_Node STEM-1.17.csv};
-            \addlegendentry{Flanged}
-            \addplot+[ no marks] table [col sep=comma, y expr = \thisrowno{3}, ]
-                {Modelling/Frequencies-more-data/csv/Job-06_100-Hz_Node STEM-1.17.csv};
-            \addlegendentry{Simplified}
+            \addplot+[ no marks] table [col sep=comma, y index = 1, ]
+                {Modelling/error_flanged-simplified.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma, y index = 3, ]
+                {Modelling/error_flanged-simplified.csv};
+            \addlegendentry{Stem}
+            \addplot+[ no marks] table [col sep=comma, y index = 2, ]
+                {Modelling/error_flanged-simplified.csv};
+            \addlegendentry{Collar}
         \end{axis}
     \end{tikzpicture}
-
     \caption{Stem displacement }
-    \label{fig:flanged-vs-simplified-displacement-100hz}
+    \label{fig:error-compared-to-flanged}
 \end{figure}

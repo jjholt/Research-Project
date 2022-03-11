@@ -1,42 +1,150 @@
-Next we explore a long input period, that is t = 200/frequency.
+Now we move from only 6 periods to 100 and 500 periods to determine where inertia is no longer dominant, and we just have the effect of the periodic input.
+In order to keep computational times reasonable, the step-size is decreased from period/30 to period/10, i.e. the sinusoid input is divided into 30 and 10 segments, respectively.
+
+Similar to before, figure \ref{fig:max-displacement-100} shows the maximum displacement over 100 periods.
+In this format it is indistinguishable from figure \ref{fig:max-displacement-6} showing 6 periods, with the exception of around 900 Hz, as it approaches resonant frequency.
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{loglogaxis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+            title = {},
+        ]
+            \addplot+[only marks] table [ col sep=comma,]
+                {Modelling/Frequencies-100-periods/spigot_maxima.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ only marks ] table [col sep=comma,]
+                {Modelling/Frequencies-100-periods/stem_maxima.csv};
+            \addlegendentry{Stem}
+            \addplot+[ only marks ] table [col sep=comma, ]
+                {Modelling/Frequencies-100-periods/collar_maxima.csv};
+            \addlegendentry{Collar}
+        \end{loglogaxis}
+    \end{tikzpicture}
+
+\caption{Maximum displacement as a function of frequency over 100 periods}
+\label{fig:max-displacement-100}
+\end{figure}
+
+Figure \ref{fig:long-term-displacement} (a) shows the first 500 periods of the stem for an input at 750 Hz.
+(b) zooms into the first 100 periods to provide a better visualisation of what is happening.
+We can clearly observe the damping over time, but it is hard to establish when the ripples are no longer significant.
+So instead of counting starting from the first periods, we count starting from the last, i.e. the ones that have the least amount of ripples.
+There is no particular reason to especifically counts in multiples of periods, therefore we count in percentage of the total time beginning from the end and moving backwards, which we are calling ``Tail-end percentage''.
+E.g. 10\% tail-end represents the last 10\% of time.
+
+\begin{figure}[h] \centering
+    \begin{subfigure}{\textwidth}
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                width = 14cm, height = 6cm,
+                xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+            ]
+                \addplot+[no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+                {Modelling/Frequencies-500-periods/csv/Job-19_750-Hz-500-periods_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \draw[red] (axis cs:600,-0.8) rectangle (axis cs:680,1.2);
+                \addplot+[no marks] coordinates {(600,0)};
+                \addlegendentry{Tail-end 10\%}
+            \end{axis}
+        \end{tikzpicture}
+    \caption{First 500 periods, and highlighted }
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                    width = 14cm, height = 6cm,
+                    xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+                    ]
+                    \addplot+[no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+                    {Modelling/Frequencies-100-periods/csv/Job-42_750-Hz-100-periods_Node STEM-1.17.csv};
+                    \addlegendentry{Stem}
+                \end{axis}
+            \end{tikzpicture}
+            \caption{First 100 periods}
+        \end{subfigure}
+\caption{Displacement as a function of time for sinusoidal input at \SI{750}{Hz}. These images highlight damping over the time, though determining when they become insignificant is challenging.}
+\label{fig:long-term-displacement}
+\end{figure}
+
+% Figure \ref{fig:max-displacement-500} shows, for select frequencies, the ratio between maximum displacement for any particular tail-end percentage and the global maximum across all 500 periods, i.e. at 100\% tail-end.
+% For the time-invariant frequencies (those below \SI{750}{Hz}) we expect, and indeed observe, values of 1, that is, there is no change in displacement over time.
+% For \SI{900}{Hz} we are also stricly at 1 because the device is really close to resonant --- counting from the tail-end means the maximum is always the same. 
+
+
+% \begin{figure}[h]\centering
+%     \begin{tikzpicture}
+%         \begin{axis}[
+%             % width = 14cm, height = 6cm,
+%             xlabel = {Tail-end percentage}, ylabel = {Displacement ratio to global maximum},
+%             title = {Relative maximum displacement of Stem},
+%             ymin = 0,
+%         ]
+%             \addplot+[only marks] table [col sep=comma, x expr = 100*\thisrowno{0}]
+%                 {Modelling/Error/stem-10Hz.csv};
+%             \addlegendentry{10 Hz}
+%             \addplot+[ only marks ] table [col sep=comma,x expr = 100*\thisrowno{0}]
+%             {Modelling/Error/collar-750Hz.csv};
+%             \addlegendentry{450 Hz}
+%             \addplot+[ only marks ] table [col sep=comma,x expr = 100*\thisrowno{0}]
+%                 {Modelling/Error/collar-750Hz.csv};
+%             \addlegendentry{750 Hz}
+%             \addplot+[ only marks ] table [col sep=comma, x expr = 100*\thisrowno{0}]
+%                 {Modelling/Error/spigot-900Hz.csv};
+%             \addlegendentry{900 Hz}
+%         \end{axis}
+%     \end{tikzpicture}
+% \caption{Maximum displacement as a function of frequency}
+% \label{fig:max-displacement-500}
+% \end{figure}
+
+
+By finding the maxima at each tail-end percentage for all frequencies, we can quantify the change, i.e. the largest and smallest maxima at each frequency.
+Figure \ref{fig:long-term-rel-diff} shows precisely this, with one peculiarity: Because we are approaching resonance at \SI{900}{Hz}, the maxima from tail-end is always the global maximum.
+Absolute difference suggests much larger changes, therefore it shows the relative displacement difference across all tail-end percentages. 
+
+% \begin{figure}[h] \centering
+%         \begin{tikzpicture}[scale=1]
+%             \begin{axis}[
+%                 width = 14cm, height = 6cm,
+%                 xlabel = {Frequency [Hz]}, ylabel = {Displacement difference [nm]},
+%                 ymax = 1,
+%             ]
+%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
+%                 {Modelling/Error/spigot_abs_diff.csv};
+%             \addlegendentry{Spigot}
+%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
+%                 {Modelling/Error/stem_abs_diff.csv};
+%             \addlegendentry{Stem}
+%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
+%                 {Modelling/Error/collar_abs_diff.csv};
+%             \addlegendentry{Collar}
+%             \end{axis}
+%         \end{tikzpicture}
+%     \caption{Absolute difference between largest and smallest maxima observed across all tail-end partitions of 500-periods}
+% \label{fig:long-term-abs-diff}
+% \end{figure}
 
 \begin{figure}[h] \centering
     \begin{tikzpicture}[scale=1]
         \begin{axis}[
             width = 14cm, height = 6cm,
-            xlabel = {Time [ms]}, ylabel = {Displacement [m]},
+            xlabel = {Frequency [Hz]}, ylabel = {Relative displacement difference},
+            ymax = 1,
+            ytick = {0, 0.2,...,1},
+            % grid = both, minor tick num = 5,
         ]
-            % \addplot+[only marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
-            % {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node SPIGOT-1.8.csv};
-            % \addlegendentry{Spigot}
-            \addplot+[no marks] table [col sep=comma, y index=3,x expr = 1e3* \thisrowno{0}]
-            {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node STEM-1.17.csv};
-            \addlegendentry{Stem}
-            % \addplot+[only marks] table [col sep=comma, y index=3, x expr = 1e3* \thisrowno{0}]
-            % {Modelling/Frequency-200-periods/csv/Job-22_900-Hz_Node COLLAR-1.7.csv};
-            % \addlegendentry{Collar}
+        \addplot+[no marks] table [col sep=comma]
+            {Modelling/Error/spigot_rel_diff.csv};
+        \addlegendentry{Spigot}
+        \addplot+[no marks] table [col sep=comma]
+            {Modelling/Error/stem_rel_diff.csv};
+        \addlegendentry{Stem}
+        \addplot+[no marks] table [col sep=comma]
+            {Modelling/Error/collar_rel_diff.csv};
+        \addlegendentry{Collar}
         \end{axis}
     \end{tikzpicture}
-\caption{Displacement as a function of time for sinusoidal input at \SI{900}{Hz}.}
-\label{fig:}
-\end{figure}
-
-
-
-\begin{figure}[h] \centering
-    \begin{tikzpicture}[scale=1]
-        \begin{axis}[
-            % width = 14cm, height = 6cm,
-            xlabel = {Frequency [hz]}, ylabel = {Maximum displacement [m]},
-        ]
-            \addplot+[ no marks] table [col sep=comma]
-            {Modelling/Frequency-200-periods/stem_maxima_normalised_diff.csv};
-            \addlegendentry{Stem}
-            \addplot+[no marks] table [col sep=comma]
-            {Modelling/Frequency-200-periods/collar_maxima_normalised_diff.csv};
-            \addlegendentry{Collar}
-        \end{axis}
-    \end{tikzpicture}
-\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
-\label{fig:}
+\caption{Relative difference between largest and smallest maxima observed across all tail-end partitions of 500-periods}
+\label{fig:long-term-rel-diff}
 \end{figure}

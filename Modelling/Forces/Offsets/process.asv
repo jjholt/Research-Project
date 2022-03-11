@@ -31,9 +31,8 @@ hold on;
 plot(offsets, spigot_max_magnitude, "DisplayName", "Spigot")
 plot(offsets, stem_max_magnitude, "DisplayName", "Stem")
 plot(offsets, collar_max_magnitude, "DisplayName", "Collar")
-legend;
 
-x = (1:200);
+x = (1:);
 y_spig = polyval(p_spigot, x);
 y_coll = polyval(p_collar, x);
 y_stem = polyval(p_stem, x);

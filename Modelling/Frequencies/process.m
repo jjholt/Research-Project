@@ -31,7 +31,7 @@ writematrix(horzcat(frequencies', (stem_max_magnitude./spigot_max_magnitude)'), 
 writematrix(horzcat(frequencies', (collar_max_magnitude./spigot_max_magnitude)'), "collar_maxima_normalised.csv");
 writematrix(horzcat(frequencies', (spigot_max_magnitude./spigot_max_magnitude)'), "spigot_maxima_normalised.csv");
 
-
+save("maxima-and-tail", "collar_max_magnitude", "spigot_max_magnitude", "stem_max_magnitude");
 % FFT
 % names = ["stem" "collar" "spigot"];
 % for freq_pos = 23

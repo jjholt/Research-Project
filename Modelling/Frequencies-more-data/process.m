@@ -41,7 +41,7 @@ writematrix(horzcat(frequencies', (spigot_max_magnitude./spigot_max_magnitude)')
 %         T = 1/Fs;
 %         time = stem{end}(:,1);
 %         
-%         P2 = abs(part(:,n)/L);
+%         P2 = abs(fft(part(:,n))/L);
 %         P1 = P2(1:L/2+1);
 %         P1(2:end-1) = 2*P1(2:end-1);
 %         f = Fs*(0:(L/2))/L;
