@@ -50,6 +50,8 @@ class Model:
         self.spigot_radius = 0.009
         self.stem_fillet = 0.0045
         self.sensors = ['sensor_stem', 'sensor_collar', 'sensor_spigot']
+        self.period = 2*math.pi*6.0/(self.curves[0].frequency)
+        self.increment = 2*math.pi*1/(self.curves[0].frequency*4.0)
         mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     def __create_stem__(self,name, height,radius,tip_radius, stem_fillet):
         # Create stem
@@ -201,12 +203,10 @@ class Model:
         )
     def __step__(self):
         # period = 0.6 if 40.0/self.curves[0].frequency < 0.6 else 40.0/self.curves[0].frequency
-        period = 2*math.pi*40.0/(self.curves[0].frequency)
-        increment = 2*math.pi*1/(self.curves[0].frequency*4.0)
         mdb.models[self.model_name].ImplicitDynamicsStep(
-            initialInc=increment,  maxNumInc= int(1e7),
+            initialInc=self.increment,  maxNumInc= int(1e7),
             name='Step-1', noStop=OFF, nohaf=OFF, previous='Initial', timeIncrementationMethod=FIXED, 
-            timePeriod=period
+            timePeriod=self.period
         )
     def __apply_force__(self, force, i):
         mdb.models[self.model_name].ConcentratedForce(

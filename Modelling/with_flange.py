@@ -17,13 +17,13 @@ import math
 frequencies = [1, 10, 20, 30, 40]
 for i in range(50,901, 50):
     frequencies.append(i)
-jobs = []
+# jobs = []
 # frequencies = [100]
 for i, frequency in enumerate(frequencies):
-    period = 40.0/frequency
-    increment = 1/(frequency*2.5)
+    period = 100.0/frequency
+    increment = 1/(frequency*10.0)
     prefix = "" if i >= 10 else "0" 
-    job_name = "Job-" + prefix + "%d_%d-Hz"%(i, frequency)
+    job_name = "Job-" + prefix + "%d_%d-Hz-flanged"%(i, frequency)
     model_name = "Model-%d"%(i)
 
     mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
@@ -422,7 +422,7 @@ for i, frequency in enumerate(frequencies):
         regions=(mdb.models[model_name].parts['flange'].cells.getSequenceFromMask((
         '[#1 ]', ), ), ))
     mdb.models[model_name].parts['flange'].generateMesh()
-
+    mdb.models[model_name].rootAssembly.regenerate()
     mdb.Job(
         atTime=None, contactPrint=OFF, description='', echoPrint=OFF, explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, memory=90, memoryUnits=PERCENTAGE,
         model=model_name,
