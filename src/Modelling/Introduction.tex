@@ -93,4 +93,15 @@ Link to reality in application: the displacement experienced on the soft tissue 
 \caption{Magnitude of displacement observed for 10hz, 300hz, 900hz, respectively. Intended to highlight why we place sensors on spigot, collar and stem. Not displayed is the scaling of the deflection}
 \label{fig:10-300-900-max-displacements}
 \end{figure}
-\clearpage
+
+\subsection{Modal analysis}
+We know the range we want to operate, and we want to make sure there are no resonant frequencies within them.
+So we do an analysis for the first ten modal frequencies.
+Most importantly, the lowest is at 934 Hz, so we limit our simulations to between 1 Hz and 900 Hz.
+Figure \ref{fig:modal-frequencies} shows what some of modes look like in simulation
+\begin{figure}[h] \centering
+    \includegraphics[width = 0.45\textwidth]{figures/934.png}
+    \includegraphics[width = 0.45\textwidth]{figures/3933.PNG}
+\caption{Some of the modal frequencies observed for our model. Depicted are 934 Hz (left) and 3933 Hz (right). This informs the decision of keeping frequencies below the first mode.}
+\label{fig:modal-frequencies}
+\end{figure}
