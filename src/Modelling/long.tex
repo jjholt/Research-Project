@@ -29,9 +29,9 @@ In this format it is indistinguishable from figure \ref{fig:max-displacement-6} 
 Figure \ref{fig:long-term-displacement} (a) shows the first 500 periods of the stem for an input at 750 Hz.
 (b) zooms into the first 100 periods to provide a better visualisation of what is happening.
 We can clearly observe the damping over time, but it is hard to establish when the ripples are no longer significant.
-So instead of counting starting from the first periods, we count starting from the last, i.e. the ones that have the least amount of ripples.
-There is no particular reason to especifically counts in multiples of periods, therefore we count in percentage of the total time beginning from the end and moving backwards, which we are calling ``Tail-end percentage''.
-E.g. 10\% tail-end represents the last 10\% of time.
+In order to write software that quantifies the change over time, time is split into percentages beginning from the end and moving backwards, which is being called ``Tail-end percentage''.
+E.g. The 10\% tail-end is the last 10\% of time, i.e. what happens between 90\% and 100\%.
+
 
 \begin{figure}[h] \centering
     \begin{subfigure}{\textwidth}
@@ -67,84 +67,99 @@ E.g. 10\% tail-end represents the last 10\% of time.
 \label{fig:long-term-displacement}
 \end{figure}
 
-% Figure \ref{fig:max-displacement-500} shows, for select frequencies, the ratio between maximum displacement for any particular tail-end percentage and the global maximum across all 500 periods, i.e. at 100\% tail-end.
-% For the time-invariant frequencies (those below \SI{750}{Hz}) we expect, and indeed observe, values of 1, that is, there is no change in displacement over time.
-% For \SI{900}{Hz} we are also stricly at 1 because the device is really close to resonant --- counting from the tail-end means the maximum is always the same. 
 
-
-% \begin{figure}[h]\centering
-%     \begin{tikzpicture}
-%         \begin{axis}[
-%             % width = 14cm, height = 6cm,
-%             xlabel = {Tail-end percentage}, ylabel = {Displacement ratio to global maximum},
-%             title = {Relative maximum displacement of Stem},
-%             ymin = 0,
-%         ]
-%             \addplot+[only marks] table [col sep=comma, x expr = 100*\thisrowno{0}]
-%                 {Modelling/Error/stem-10Hz.csv};
-%             \addlegendentry{10 Hz}
-%             \addplot+[ only marks ] table [col sep=comma,x expr = 100*\thisrowno{0}]
-%             {Modelling/Error/collar-750Hz.csv};
-%             \addlegendentry{450 Hz}
-%             \addplot+[ only marks ] table [col sep=comma,x expr = 100*\thisrowno{0}]
-%                 {Modelling/Error/collar-750Hz.csv};
-%             \addlegendentry{750 Hz}
-%             \addplot+[ only marks ] table [col sep=comma, x expr = 100*\thisrowno{0}]
-%                 {Modelling/Error/spigot-900Hz.csv};
-%             \addlegendentry{900 Hz}
-%         \end{axis}
-%     \end{tikzpicture}
-% \caption{Maximum displacement as a function of frequency}
-% \label{fig:max-displacement-500}
-% \end{figure}
-
-
-By finding the maxima at each tail-end percentage for all frequencies, we can quantify the change, i.e. the largest and smallest maxima at each frequency.
+Finding the maxima across all intervals allow us to ascertain 1) the largest and smallest maxima at each frequency, and 2) determine the time-invariant frequencies.
 Figure \ref{fig:long-term-rel-diff} shows precisely this, with one peculiarity: Because we are approaching resonance at \SI{900}{Hz}, the maxima from tail-end is always the global maximum.
-Absolute difference suggests much larger changes, therefore it shows the relative displacement difference across all tail-end percentages. 
+This is shown in the graph as 0\% change at \SI{900}{Hz}, but it is time-variant at that frequency.
+In any case, we do not want an ITAP vibrating close to resonance, so we can focus on quantifying the change over time for the well behaved time-variant frequencies.
 
-% \begin{figure}[h] \centering
-%         \begin{tikzpicture}[scale=1]
-%             \begin{axis}[
-%                 width = 14cm, height = 6cm,
-%                 xlabel = {Frequency [Hz]}, ylabel = {Displacement difference [nm]},
-%                 ymax = 1,
-%             ]
-%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
-%                 {Modelling/Error/spigot_abs_diff.csv};
-%             \addlegendentry{Spigot}
-%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
-%                 {Modelling/Error/stem_abs_diff.csv};
-%             \addlegendentry{Stem}
-%             \addplot+[no marks] table [col sep=comma, y expr = 1e9 * \thisrowno{1}]
-%                 {Modelling/Error/collar_abs_diff.csv};
-%             \addlegendentry{Collar}
-%             \end{axis}
-%         \end{tikzpicture}
-%     \caption{Absolute difference between largest and smallest maxima observed across all tail-end partitions of 500-periods}
-% \label{fig:long-term-abs-diff}
-% \end{figure}
+Knowing the time-variant frequencies, we can use the tail-end subdivisions to find the maximum displacements for all intervals, which we compare to the amplitude at the final periods where there are no ripples.
+The result of this is quantifying the relative loss of amplitude over time, which is seen in Figure \ref{fig:long-term-abs-diff}.
+While the time-variant frequencies are perhaps outside the frequencies of clinical use, this characterisation combined with the frequency response gives great information about the amplitude change over time.
+To the point that it might be worth exploring higher frequencies if more granular control of the amplitude becomes necessary in the future. 
 
 \begin{figure}[h] \centering
     \begin{tikzpicture}[scale=1]
         \begin{axis}[
             width = 14cm, height = 6cm,
-            xlabel = {Frequency [Hz]}, ylabel = {Relative displacement difference},
-            ymax = 1,
-            ytick = {0, 0.2,...,1},
+            % title = {Relative difference in maximum displacement before and after damping},
+            xlabel = {Frequency [Hz]}, ylabel = {Relative amplitude decrease [\%]},
+            ymax = 100,
+            ytick = {0, 20,...,100},
             % grid = both, minor tick num = 5,
         ]
-        \addplot+[no marks] table [col sep=comma]
+        \addplot+[no marks] table [col sep=comma, y expr = 100*\thisrowno{1}]
             {Modelling/Error/spigot_rel_diff.csv};
         \addlegendentry{Spigot}
-        \addplot+[no marks] table [col sep=comma]
+        \addplot+[no marks] table [col sep=comma, y expr = 100*\thisrowno{1}]
             {Modelling/Error/stem_rel_diff.csv};
         \addlegendentry{Stem}
-        \addplot+[no marks] table [col sep=comma]
+        \addplot+[no marks] table [col sep=comma, y expr = 100*\thisrowno{1}]
             {Modelling/Error/collar_rel_diff.csv};
         \addlegendentry{Collar}
         \end{axis}
     \end{tikzpicture}
-\caption{Relative difference between largest and smallest maxima observed across all tail-end partitions of 500-periods}
+\caption{Difference between largest and smallest maxima observed throughout 500-periods. The simulation is partitioned by percentage of time elapsed (starting from the end) }
 \label{fig:long-term-rel-diff}
+\end{figure}
+
+\begin{figure}[h] \centering
+    \begin{subfigure}{0.32\textwidth}
+        \begin{tikzpicture}[scale=0.65]
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Percentage of time elapsed}, ylabel = {Relative amplitude loss },
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                ymax = 35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/spigot-\freq.csv};
+                % \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Spigot}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\textwidth}
+        \begin{tikzpicture}[scale=0.65]
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                yticklabels = \empty,
+                xlabel = {Percentage of time elapsed}, %ylabel = {Relative amplitude loss },
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                ymax = 35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/stem-\freq.csv};
+                % \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Stem}
+    \end{subfigure}%
+    \begin{subfigure}{0.37\textwidth}
+        \begin{tikzpicture}[scale=0.65]
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                yticklabels = \empty,
+                xlabel = {Percentage of time elapsed}, %ylabel = {Relative amplitude loss },
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                ymax = 35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/collar-\freq.csv};
+                \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Collar}
+    \end{subfigure}
+    \caption{Amplitude decline over time for time-variant frequencies. By picking a particular frequency, we can compare (a), (b) and (c) to }
+\label{fig:long-term-abs-diff}
 \end{figure}
