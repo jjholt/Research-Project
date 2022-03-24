@@ -28,6 +28,13 @@ writematrix(horzcat(high.frequencies', stem_rel_diff), "Error/stem_rel_diff.csv"
 writematrix(horzcat(high.frequencies', spigot_rel_diff), "Error/spigot_rel_diff.csv")
 writematrix(horzcat(high.frequencies', collar_rel_diff), "Error/collar_rel_diff.csv")
 
+% Absolute error by frequency
+for freq = 1:length(high.frequencies)
+    writematrix(horzcat(high.tail_end', abs(err_collar(freq,:) - err_collar(freq,end))'), strcat("Error/collar-", num2str(high.frequencies(freq)), ".csv"));
+    writematrix(horzcat(high.tail_end', abs(err_spigot(freq,:) - err_spigot(freq,end))'), strcat("Error/spigot-", num2str(high.frequencies(freq)), ".csv"));
+    writematrix(horzcat(high.tail_end', abs(err_stem(freq,:) - err_stem(freq,end))'), strcat("Error/stem-", num2str(high.frequencies(freq)), ".csv"));
+end
+
 % diff_diff = max(high.stem_max_magnitude,[], 2) - low.stem_max_magnitude';
 
 % for freq = 1:length(high.frequencies)

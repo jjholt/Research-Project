@@ -1,0 +1,93 @@
+\begin{frame}
+    \frametitle{Frequency response}
+    \includegraphics[width=0.45\textwidth]{figures/frequency-response.png}
+    \includegraphics[width=0.45\textwidth]{figures/frequency-response-relative.png}
+    
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Time-variance}
+
+    \begin{itemize}
+        \item Displacement in the direction of the load:
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/displacement-over-time.png}
+    \end{center}
+    \begin{itemize}
+        \item At low frequencies: Time-invariant
+        \item At high frequencies: Time-variant
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quantifying change over time}
+    \begin{itemize}
+        \item Run simulations for 500 periods
+        \item First 100 periods for \SI{750}{Hz}:
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{figures/750hz-100-periods-time.png}
+    \end{center}
+    \begin{itemize}
+        \item Hard to quantify when initial inertia is no longer dominant
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Quantifying change over time}
+    \begin{itemize}
+        \item Determine time-invariant frequencies
+        \item Comparison of largest and smallest maximum displacement over 500 periods: 
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{figures/relative-amp-decrease.png}
+    \end{center}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Quantifying change over time}
+    \begin{itemize}
+        \item For time-variant frequencies, quantify amplitude decline over time:
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{figures/relative-amplitude-loss.png}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{What does this information tell us?}
+    \begin{itemize}
+        \item Quantified how vibrations propagate through ITAP
+        \item Control amplitude of vibrations using combination of: \begin{itemize}
+            \item Frequency
+            \item Position of actuator
+            \item Amplitude of impulse
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{How good is our model?}
+
+    \begin{center}
+        \alt<1>{
+            \begin{itemize}
+                \item F: ``Flanged'', more complete model
+                \item S: Simplified model used in these simulations
+            \end{itemize}
+            \includegraphics[width=0.8\textwidth]{figures/placeholder.jpeg}
+
+            ITAP model with flange, so you know what it means.
+        }{}
+        \alt<2>{
+            \begin{itemize}
+                \item F: ``Flanged'', more complete model
+                \item S: Simplified model used in these simulations
+                \item Error of 0 is ideal.
+            \end{itemize}
+            \includegraphics[width=0.9\textwidth]{figures/error.png}
+        }{}
+    \end{center}
+\end{frame}

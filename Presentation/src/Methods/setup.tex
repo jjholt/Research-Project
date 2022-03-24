@@ -16,6 +16,67 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Replicate a lab experiment}
-    \includegraphics[width=0.7\textwidth]{../figures/experimental-setup.png}
+    \frametitle{Modelling}
+    \begin{itemize}
+        \item Key points
+        \begin{itemize}
+            \alt<1> {
+                \item Replicate what will be tested in the lab
+            }{}
+            \alt<2> {
+                \item Replicate what will be tested in the lab
+                \item Simplify \& quantify accuracy of simplification 
+            }{}
+        \end{itemize}
+    \end{itemize}
+
+    \alt<1>{\vfill
+        \includegraphics[width=0.8\textwidth]{../figures/experimental-setup.png}
+    }{}
+    \alt<2>{
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{figures/placeholder.jpeg}
+    
+            Simplified model used in the simulations
+            
+        \end{center}
+    }{}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modal analysis}
+
+    \begin{itemize}
+        \item Ensure ITAP is well-behaved in the clinically important frequency range
+        \item Lowest resonant frequency: \SI{934}{Hz}
+    \end{itemize}
+    \begin{columns}
+        \begin{column}{0.5\textwidth} \centering
+            \includegraphics[height=4cm]{../figures/934.png}
+
+            934 Hz
+        \end{column}
+        \begin{column}{0.5\textwidth} \centering
+            \includegraphics[height=4cm]{../figures/3933.png}
+
+            3933 Hz
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation setup}
+    Change one variable at a time
+    \begin{itemize}
+        \item Load: $ A \cos \left( 2\pi f t \right) $
+        \begin{itemize}
+            \item A: \SI{200}{\micro\meter}
+            \item f: \SI{100}{Hz}
+        \end{itemize}
+        \item Period: $ 6/f $ seconds. e.g., \SI{60}{\milli\second} for \SI{100}{Hz}
+        \item Time-increment: $ 1/(30f) $ seconds. e.g., \SI{0.3}{\milli\second} for \SI{100}{Hz}
+        \item Position of load: \SI{1}{mm} from base of spigot.
+    \end{itemize}
+    
 \end{frame}
