@@ -50,8 +50,8 @@ class Model:
         self.spigot_radius = 0.009
         self.stem_fillet = 0.0045
         self.sensors = ['sensor_stem', 'sensor_collar', 'sensor_spigot']
-        self.period = 2*math.pi*6.0/(self.curves[0].frequency)
-        self.increment = 2*math.pi*1/(self.curves[0].frequency*4.0)
+        self.period = 2*math.pi*100.0/(self.curves[0].frequency)
+        self.increment = 2*math.pi*1/(self.curves[0].frequency*30.0)
         mdb.Model(modelType=STANDARD_EXPLICIT, name=model_name)
     def __create_stem__(self,name, height,radius,tip_radius, stem_fillet):
         # Create stem
