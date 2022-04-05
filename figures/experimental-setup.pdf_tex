@@ -50,23 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.60115427)%
+  \begin{picture}(1,0.63680704)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{experimental-setup.pdf}}%
     \put(0.83181232,0.28536801){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{experimental-setup.pdf}}%
-    \put(0.30938352,0.52949774){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0.30780369,0.56901287){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{experimental-setup.pdf}}%
-    \put(0.41554122,0.47088477){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Vise (X)\end{tabular}}}}%
+    \put(0.43477979,0.51464643){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Vise (X)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{experimental-setup.pdf}}%
-    \put(0.07913583,0.58741309){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
+    \put(0.02805906,0.56480778){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{experimental-setup.pdf}}%
-    \put(0.14092119,0.56740677){\rotatebox{-22.780387}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Load\\Offset\end{tabular}}}}}%
-    \put(0.1726213,0.59278714){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Load (Z)\end{tabular}}}}%
+    \put(0.13487218,0.59745922){\rotatebox{-22.780387}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Load\\Offset\end{tabular}}}}}%
+    \put(0.17247625,0.62843991){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Load (Z)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{experimental-setup.pdf}}%
     \put(0.13644367,0.24458428){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Y\end{tabular}}}}%
-    \put(0.07369505,0.22104595){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
+    \put(0.0600798,0.19895128){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
     \put(0.10308911,0.28104302){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Z\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{experimental-setup.pdf}}%
   \end{picture}%

@@ -1,6 +1,6 @@
-%% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'experimental-setup.PNG.pdf' (pdf, eps, ps)
+%% Accompanies image file 'ITAP-scheme.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1271.25bp}%
+    \setlength{\unitlength}{289.05926986bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,14 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.60058997)%
+  \begin{picture}(1,1.45147061)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{experimental-setup.PNG.pdf}}%
-    \put(0.82869549,0.31048365){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{experimental-setup.PNG.pdf}}%
-    \put(0.3106975,0.54681395){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{experimental-setup.PNG.pdf}}%
-    \put(0.05925342,0.40034006){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Wave\\Generator\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{ITAP-scheme.pdf}}%
+    \put(0.28405018,0.29871713){\rotatebox{-1.2540375}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Artificial\\Limb\end{tabular}}}}}%
+    \put(0.08100679,1.30617084){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{ITAP-scheme.pdf}}%
+    \put(0.03923839,0.83880184){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Soft tissue\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{ITAP-scheme.pdf}}%
+    \put(0.88556477,0.54999242){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Flange\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{ITAP-scheme.pdf}}%
+    \put(-0.0033945,1.10933074){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone cement\end{tabular}}}}}%
+    \put(0.87685385,1.02247968){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stem\end{tabular}}}}}%
+    \put(0.73434373,0.19777202){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Spigot\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{ITAP-scheme.pdf}}%
+    \put(0.90655363,0.80164163){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Collar\end{tabular}}}}}%
   \end{picture}%
 \endgroup%
