@@ -1,7 +1,7 @@
 \begin{frame}
     \frametitle{Mesh convergence}
     \begin{itemize}
-        \item Balance between precision and computational time
+        \item Balance between precision and computational (CPU) time
     \end{itemize}
     \begin{table}[scale=0.4]
     \begin{tabular}{ccc}
@@ -12,8 +12,16 @@
         1.25 & 303 & 62
     \end{tabular}
     \end{table}
-    \includegraphics[width=0.24\textwidth]{../Modelling/Mesh convergence/0.01-tip.png}
-    \includegraphics[width=0.24\textwidth]{../Modelling/Mesh convergence/0.005-tip.png}
-    \includegraphics[width=0.24\textwidth]{../Modelling/Mesh convergence/0.0025-tip.png}
-    \includegraphics[width=0.24\textwidth]{../Modelling/Mesh convergence/0.00125-tip.png}
+    \includegraphics[width=0.22\textwidth]{../Modelling/Mesh convergence/0.01-tip.png}
+    \includegraphics[width=0.22\textwidth]{../Modelling/Mesh convergence/0.005-tip.png}
+    \alt<2>{
+        \fcolorbox{red}{white}{
+            \includegraphics[width=0.22\textwidth]{../Modelling/Mesh convergence/0.0025-tip.png}
+        }
+    }{
+        \fcolorbox{white}{white}{
+            \includegraphics[width=0.22\textwidth]{../Modelling/Mesh convergence/0.0025-tip.png}
+        }
+    }
+    \includegraphics[width=0.22\textwidth]{../Modelling/Mesh convergence/0.00125-tip.png}
 \end{frame}

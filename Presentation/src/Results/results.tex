@@ -1,5 +1,9 @@
 \begin{frame}
     \frametitle{Frequency response}
+    \begin{itemize}
+        \item Input frequency from \SIrange{1}{900}{Hz}
+        \item Compare using maximum displacement
+    \end{itemize}
     \includegraphics[width=0.45\textwidth]{figures/frequency-response.png}
     \includegraphics[width=0.45\textwidth]{figures/frequency-response-relative.png}
     
@@ -31,27 +35,18 @@
         \includegraphics[width=0.9\textwidth]{figures/750hz-100-periods-time.png}
     \end{center}
     \begin{itemize}
-        \item Hard to quantify when initial inertia is no longer dominant
+        \item Hard to quantify when it stops changing with time
     \end{itemize}
 \end{frame}
-\begin{frame}
-    \frametitle{Quantifying change over time}
-    \begin{itemize}
-        \item Determine time-invariant frequencies
-        \item Comparison of largest and smallest maximum displacement over 500 periods: 
-    \end{itemize}
-    \begin{center}
-        \includegraphics[width=0.9\textwidth]{figures/relative-amp-decrease.png}
-    \end{center}
 
-\end{frame}
 \begin{frame}
     \frametitle{Quantifying change over time}
     \begin{itemize}
-        \item For time-variant frequencies, quantify amplitude decline over time:
+        \item Compare local maxima with global maximum
+        \item Spigot and collar have amplitude loss:
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{figures/relative-amplitude-loss.png}
+        \includegraphics[width=0.9\textwidth]{figures/relative-amplitude-decrease.png}
     \end{center}
 
 \end{frame}
@@ -59,12 +54,12 @@
 \begin{frame}
     \frametitle{What does this information tell us?}
     \begin{itemize}
-        \item Quantified how vibrations propagate through ITAP
         \item Control amplitude of vibrations using combination of: \begin{itemize}
             \item Frequency
             \item Position of actuator
             \item Amplitude of impulse
         \end{itemize}
+        \item Quantified how vibrations propagate through ITAP
     \end{itemize}
 \end{frame}
 
@@ -73,13 +68,24 @@
 
     \begin{center}
         \alt<1>{
-            \begin{itemize}
-                \item F: ``Flanged'', more complete model
-                \item S: Simplified model used in these simulations
-            \end{itemize}
-            \includegraphics[width=0.8\textwidth]{figures/placeholder.jpeg}
-
-            ITAP model with flange, so you know what it means.
+            \begin{columns}
+                \begin{column}{0.5\textwidth}
+                    \begin{itemize}
+                        \item F: ``Flanged'', more complete model
+                    \end{itemize}
+                    \begin{center}
+                        \includegraphics[height = 5cm]{figures/itap-complex.png}
+                    \end{center}
+                \end{column}
+                \begin{column}{0.5\textwidth}
+                    \begin{itemize}
+                        \item S: Simplified model used in these simulations
+                    \end{itemize}
+                    \begin{center}
+                        \includegraphics[height = 5cm]{figures/itap-simplified.png}
+                    \end{center}
+                \end{column}
+            \end{columns}
         }{}
         \alt<2>{
             \begin{itemize}

@@ -1,5 +1,5 @@
-\documentclass{beamer}
-% \hypersetup{pdfpagemode=FullScreen}
+\documentclass[final]{beamer}
+\hypersetup{pdfpagemode=FullScreen}
 \input{settings.tex}
 
 \title{Developing haptic feedback for Intraosseous Transcutaneous Amputation Prostheses (ITAP)}
@@ -8,21 +8,22 @@
 \institute[Biomedical Engineering]{Dept. of Medical Physics \& Biomedical Engineering}
 \date{\today}
 
+\addbibresource{bibliography.bib}
+\setbeamerfont{footnote}{size=\tiny} %reduce the size of the footnote citation
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
 \begin{document}
 \begin{frame}
 	\titlepage
 \end{frame}
-\begin{frame}
-	\frametitle{Outline}
-	\tableofcontents
-\end{frame}
 
-\section{Introduction}
+\section{ITAP}
 	\subimport{src/Introduction/}{itap.tex}
+\section{Vibrotactile Feedback}
 	\subimport{src/Introduction/}{feedback.tex}
 	\subimport{src/Introduction/}{aims.tex}
 
-\section{Methods}
+\section{Approach to modelling}
 	\subimport{src/Methods/}{intro.tex}
 	\subimport{src/Methods/}{setup.tex}
 \section{Results}

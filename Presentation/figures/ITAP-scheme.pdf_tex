@@ -1,0 +1,70 @@
+%% Creator: Inkscape 1.1.2 (0a00cf5339, 2022-02-04), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'ITAP-scheme.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{289.05926986bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.45147061)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{ITAP-scheme.pdf}}%
+    \put(0.28405018,0.29871713){\rotatebox{-1.2540375}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Artificial\\Limb\end{tabular}}}}}%
+    \put(0.08100679,1.30617084){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{ITAP-scheme.pdf}}%
+    \put(0.03923839,0.83880184){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Soft tissue\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{ITAP-scheme.pdf}}%
+    \put(0.88556477,0.54999242){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Flange\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{ITAP-scheme.pdf}}%
+    \put(-0.0033945,1.10933074){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bone cement\end{tabular}}}}}%
+    \put(0.87685385,1.02247968){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Stem\end{tabular}}}}}%
+    \put(0.73434373,0.19777202){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Spigot\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{ITAP-scheme.pdf}}%
+    \put(0.90655363,0.80164163){\rotatebox{-1.2540375}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Collar\end{tabular}}}}}%
+  \end{picture}%
+\endgroup%
