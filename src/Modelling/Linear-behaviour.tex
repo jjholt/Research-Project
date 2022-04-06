@@ -1,10 +1,44 @@
+\paragraph{Description}
+Refer back to experimental design
+\paragraph{Conclusion}
+Expect to be linear, see that it's linear. 
+
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.45\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                ymin = 0,xmin=0,
+                xlabel = {Offset [mm]}, ylabel = {Maximum displacement [nm]}
+            ]
+                \addplot+[ only marks] table [ col sep=comma, y expr = 1e9*\thisrowno{1}]
+                    {Modelling/Forces/Offsets/spigot_maxima.csv};
+                \addlegendentry{Spigot}
+                \addplot+[ only marks] table [ col sep=comma, y expr = 1e9*\thisrowno{1}]
+                    {Modelling/Forces/Offsets/stem_maxima.csv};
+                \addlegendentry{Stem}
+                \addplot+[ only marks] table [ col sep=comma, y expr = 1e9*\thisrowno{1}]
+                {Modelling/Forces/Offsets/collar_maxima.csv};
+            \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Maximum displacement.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=1\textwidth]{figures/load-position.png}
+        \caption{Offset from the base of the spigot. Starting at about 1mm on the left.}
+    \end{subfigure}
+    \caption{ (a) shows maximum displacement for the same stimulus applied at increasing offset from base of spigot. (b) is a visual aid to understand of what is meant by increasing the offset from the base of the spigot.}
+    \label{fig:offset-from-base}
+\end{figure}
+
 We check whether the maximum displacement varies linearly with the initial input. The sensor on the spigot is 1mm away from where the force is being applied  
 \begin{figure}[h] \centering
     \begin{tikzpicture}[scale=0.95]
         \begin{loglogaxis}[
             % width = 8cm, height = 6cm,
             xlabel = {Input amplitude [m]}, ylabel = {Maximum displacement [m]},
-            legend pos = north west,
+            % legend pos = north west,
         ]
             \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
             {Modelling/Forces/Amplitudes/base_100hz.csv};
@@ -24,7 +58,7 @@ We check whether the maximum displacement varies linearly with the initial input
 \section{Displacements over time}
 The simulations are made to run for 40/frequency, which was expected to be enough time to observe the input propagating through the device.
 
-Figure \ref{fig:displacement-time-1v900} shows displacement of the same 1 hz compared to 900hz. Point is to highlight that at 1hz it's time-invariant, and 900hz begins with a phase-shift and over time they become in phase.
+Figure \ref{fig:displacement-time-1v900} shows displacement of the same 1 hz compared to 750 hz. Point is to highlight that at 1hz it's time-invariant, and 900hz begins with a phase-shift and over time they become in phase.
 We attempt to quantify this shifting phase with a spectrogram and in later sections discuss simulations that run for 200/frequency.
     
 \begin{figure}[h]\centering
@@ -52,17 +86,17 @@ We attempt to quantify this shifting phase with a spectrogram and in later secti
                 xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
             ]
                 \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                    {Modelling/Frequencies/csv/Job-22_900-Hz-6-periods_Node SPIGOT-1.8.csv};
+                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node SPIGOT-1.8.csv};
                 \addlegendentry{Spigot}
                 \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                    {Modelling/Frequencies/csv/Job-22_900-Hz-6-periods_Node STEM-1.17.csv};
+                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node STEM-1.17.csv};
                 \addlegendentry{Stem}
                 \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                {Modelling/Frequencies/csv/Job-22_900-Hz-6-periods_Node COLLAR-1.7.csv};
+                {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node COLLAR-1.7.csv};
                 \addlegendentry{Collar}
             \end{axis}
         \end{tikzpicture}
-        \caption{900 Hz}
+        \caption{750 Hz}
     \end{subfigure}
 
     \caption{Displacement in the z-axis. in (a) we take the opposite value for the predominantly negative curves, i.e. spigot and collar for easier comparison. }
