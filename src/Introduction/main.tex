@@ -5,7 +5,7 @@ Traditionally, these contain a socket wherein the residual limb (stump) is place
 The reduced loads experienced by the skeleton lead to loss of bone density; and, particularly for leg prostheses, friction against the socket, uneven loads on the soft tissue, and other abuses cause severe and sometimes chronic skin problems \citep{levy_skin_1980} --- to the point that some may refuse to wear their prosthetics.
 
 \paragraph{ITAP}
-Intraosseous transcutaneous amputation prostheses (ITAP) \cite{kang_osseocutaneous_2010} are bone-anchored, skin-crossing devices which provide amputees an alternative attachment of artificial limbs, bypassing the role of the residual limb's soft tissue (See Figure \ref{fig:ITAP}).
+Intraosseous transcutaneous amputation prostheses (ITAP) \cite{kang_osseocutaneous_2010} are bone-anchored, skin-crossing devices which provide amputees an alternative attachment of artificial limbs, bypassing the role of the residual limb's soft tissue (See figure \ref{fig:ITAP}).
 The purpose of ITAP is to transfer the loads from the skeleton directly to the artificial limb, while simultaneously achieving cutaneous integration, i.e. avoiding infection and other problems associated with breaking the skin barrier.
 
 \begin{figure}\centering
@@ -17,7 +17,7 @@ The purpose of ITAP is to transfer the loads from the skeleton directly to the a
         {\small \incfig[0.67]{ITAP-scheme}}
         \caption{}
     \end{subfigure}
-    \caption{X-ray of ITAP inserted into femur (a) and ITAP anatomy (b). Note how ITAP bypasses the load-bearing role of traditional stump prostheses, allowing loads to be transferred from the skeleton through the ITAP onto the artificial limb,}
+    \caption[X-ray of ITAP inserted into femur and ITAP anatomy]{X-ray of ITAP inserted into femur (a) and ITAP anatomy (b). Note how ITAP bypasses the load-bearing role of traditional stump prostheses, allowing loads to be transferred from the skeleton through the ITAP onto the artificial limb,}
     \label{fig:ITAP}
 \end{figure}
 
@@ -28,17 +28,18 @@ Sensory feedback, particularly through the use of vibrations (i.e. vibrotactile)
 For stump prostheses, sensory feedback must be achieved through electrical stimulation of soft tissue.
 We hypothesise that bones' ability to perceive vibrations in so-called osseoperception \cite{OrgelMarcus2021Oito}, combined with ITAP, can be the vehicle for haptic feedback.
 
+\paragraph{Clinically relevant frequencies}
 In order to overcome both limitations of vibration motors and a patient's ability to resolve discrete frequencies, there is motivation to use both frequency and particular vibration patterns, e.g. ascending amplitudes, pauses between vibrations, etc.   
 We see reasonable success in people's ability to distinguish vibration patterns \cite{ChaubeyPravin2014Cvhf}, and even bypass some of the traditional challenges of mounting vibration motors on skin by placing them on the ITAP. 
-For low-frequency stimulations on soft tissue, patients are able to distinguish between 1 Hz and 2 Hz with an accuracy of 71\% \cite{ChaubeyPravin2014Cvhf}, while in the range of \SIrange{60}{360}{Hz} patients have been shown to be able to distinguish 6 levels of vibration \cite{rosenbaum-chou_development_2016}.
-Because we ultimately focus on osseoperception, the frequency range of about \SIrange{1}{350}{Hz} will simply serve as guidance as to what is clinically relevant.
+For soft tissue low-frequency stimulations, patients are able to distinguish between 1 Hz and 2 Hz with an accuracy of 71\% \cite{ChaubeyPravin2014Cvhf}, while in the range of \SIrange{60}{360}{Hz} patients have been shown to be able to distinguish 6 levels of vibration \cite{rosenbaum-chou_development_2016}.
+It is unclear whether osseoperception allows for similar resolution, but there are some studies suggesting the use of frequencies in the range of \SIrange{1}{250}{Hz} \cite{jacobs_evaluation_2000}.
 
 \section{Project goals}
 Depending on the bone quality of the residuum, ITAP may be press-fitted or cemented into the remaining bone in the amputated limb.
 It is unclear what effect this has on vibrations propagating through ITAP that are transmitted to the bone and surrounding soft tissue.
 This projects creates the foundations to answer this question, and it aims to \textbf{characterise vibrations propagating through ITAP}.
 Ultimately we are trying to understand \begin{enumerate}
-    \item How vibrations propagate through ITAP
+    \item How do vibrations propagate through ITAP?
     \item How can we control the amplitude of vibrations?
 \end{enumerate}
 
@@ -46,22 +47,22 @@ These results feed into a larger research project that, in the short tern, ensur
 
 \section{Methods}
 This project investigates the propagation of vibrations along an ITAP device by generating a computer aided design (CAD) model (Abaqus, Dassault Systemes).
-It uses a modal analysis to help inform the appropriate frequency range, then applies a concentrated point-force on the spigot prescribing a linear displacement according to equation \ref{eq:sin-eq}, where $\textbf{s}$ is displacement in mm, $t$ is time, $f$ is linear frequency, $z$ is a Cartesian axis.
-It explores the effects of each of the following parameters as they pertain to the periodic force input: frequency, amplitude, duration and position.
+It uses a modal analysis to help inform the appropriate frequency range, then applies a concentrated point-force on the spigot prescribing a linear displacement according to equation \ref{eq:sin-eq}, where $\textbf{s}$ is displacement, $ A $ is amplitude, $t$ is time, $f$ is linear frequency, $z$ is a Cartesian axis.
 Both modal analysis and prescribed linear displacement are carried out using Abaqus/Standard.
 
-
 \begin{equation} \label{eq:sin-eq}
-    \textbf{s}_z(t) = 0.2\cos(2\pi f t)
+    \textbf{s}_z(t) = A\cos(2\pi f t)
 \end{equation}
 
+\paragraph{Variables}
+We explore the effects of each of the following independent variables as they pertain to the periodic force input: frequency, amplitude, duration and position.
 
 \subsection{CAD Model}
-A model ITAP is designed with stem length of \SI{120}{mm} and a proximal stem radius of \SI{6}{mm}, narrowing to \SI{4.5}{mm} distally.
-The collar has a height of \SI{6}{mm} mm and radius of \SI{14}{mm}.
-The spigot has a height of \SI{45}{mm} and radius of \SI{9}{mm}.
+A model ITAP was designed with intermedullary stem length of \SI{120}{mm}, proximal stem radius \SI{6}{mm}, tapering to \SI{4.5}{mm} distally.
+A \SI{6}{mm} high, \SI{14}{mm} radius collar sits on the distal bone cortex.
+An external spigot has a height of \SI{45}{mm} and radius of \SI{9}{mm}.
 
-The CAD model has a \SI{2.5}{mm}, hexahedral-dominated mesh (element types C3D8R and C3D6) with 4300 elements and properties that of Titanium 6--4, i.e., elastic material of density \SI{4430}{\kilo\gram\per\metre\cubed}, Young's modulus \SI{114}{\giga\pascal} and Poisson's ratio 0.33.
+The CAD model has a hexahedral-dominated \SI{2.5}{mm} mesh (element types C3D8R and C3D6) with 4300 elements and properties that of Titanium 6--4, i.e., elastic material of density \SI{4430}{\kilo\gram\per\metre\cubed}, Young's modulus \SI{114}{\giga\pascal} and Poisson's ratio 0.33.
 
 % phase aims to determine the effect on vibrations of each of the following: the presence of the flange, different stem diameters, and the presence of bone cement.
 % It begins with a simple metal rod and builds up to an ITAP such that it is possible to parametise both its characteristics and the interface with bone.

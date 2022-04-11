@@ -1,48 +1,10 @@
-Trial setup is a sine wave of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.
-We are looking for when displacement converges to a value and have a reasonable CPU time because we're running several simulations.
-Each mesh is half of the previous one.
+To find an appropriate balance between computational (CPU) time and accuracy of the solution, we perform a so-called mesh convergence.
+We compare the same simulation using an increasingly finer mesh, which can be observed in figure \ref{fig:mesh-convergence}.
 
-% \begin{figure}[h]\centering
-%     \begin{tikzpicture}
-%         \begin{axis}[
-%             width = 14cm, height = 8cm,
-%             xlabel = {Mesh size [mm]}, ylabel = {Total displacement [nm]}, title = ,
-%         ]
-%             \addplot[only marks] table [col sep=comma]{Modelling/Mesh convergence/mesh_size.csv};
-%         \end{axis}
-%     \end{tikzpicture}
-%     \caption{Magnitude of maximum total displacement given a sinusoidal input of \SI{200}{\micro\metre}.}
-%     \label{fig:}
-% \end{figure}
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}{0.40\textwidth}
-    \includegraphics[width=\textwidth]{figures/0.01-finished.png}
-    \caption{Mesh size: \SI{10}{\milli\metre}}
-\end{subfigure}
-\begin{subfigure}{0.40\textwidth}
-    \includegraphics[width=\textwidth]{figures/0.005-finished.png}
-    \caption{Mesh size: \SI{5}{\milli\metre}}
-\end{subfigure}
-\begin{subfigure}{0.40\textwidth}
-    \includegraphics[width=\textwidth]{figures/0.0025-finished.png}
-    \caption{Mesh size: \SI{2.5}{\milli\metre}}
-\end{subfigure}
-\begin{subfigure}{0.40\textwidth}
-    \includegraphics[width=\textwidth]{figures/0.00125-finished.png}
-    \caption{Mesh size: \SI{1.25}{\milli\metre}}
-\end{subfigure}
-\caption{Mesh refinement from 10mm to 1.25mm}
-\label{fig:}
-\end{figure}
-
-\paragraph{Conclusions}
-Comparison shown in Table \ref{tb:mesh-convergence}.
-\begin{itemize}
-    \item All values within about 10\% of each other. Reasonable enough given the model
-    \item It is reasonable to use the larger mesh sizes, but I choose \SI{2.5}{mm} because computational time is still OK given the simulations I'm running --- both the ones with 150 steps and 1600 steps.
-\end{itemize}
+The results are tabulated in Table \ref{tb:mesh-convergence}.
+Most importantly, the total displacements for the coarsest and finest mesh are within 10\% of each other, but the increase in computational time is considerable.
+Bear in mind these are relative numbers, so towards the final simulations of this project we are looking at multiple hours per simulation if we were to use the finest mesh.
+It is perfectly reasonable to use the larger (coarser) mesh sizes given the scope of this study, but we were happy with computational times for \SI{2.5}{mm}.
 
 \begin{table}[h] \centering
     \begin{tabular}{ccc}
@@ -52,6 +14,28 @@ Comparison shown in Table \ref{tb:mesh-convergence}.
          2.5 & 47  & 63\\
         1.25 & 303 & 62
     \end{tabular}
-    \caption{Mesh convergence at \SI{100}{Hz}, sinusoid of \SI{200}{\micro\metre} amplitude, frequency \SI{100}{Hz} for a total time of \SI{0.04}{\second}.}
+    \caption[Mesh convergence]{Mesh convergence. Given the massive increase in computational }
     \label{tb:mesh-convergence}
 \end{table}
+
+
+\begin{figure} \centering
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.01-finished.png}
+    \caption{\SI{10}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.005-finished.png}
+    \caption{\SI{5}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.0025-finished.png}
+    \caption{\SI{2.5}{\milli\metre}}
+\end{subfigure}
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/0.00125-finished.png}
+    \caption{\SI{1.25}{\milli\metre}}
+\end{subfigure}
+\caption{Mesh refinement from 10mm to 1.25mm}
+\label{fig:mesh-convergence}
+\end{figure}

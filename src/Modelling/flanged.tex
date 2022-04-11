@@ -1,14 +1,12 @@
-\begin{figure}[h]
-\centering
-    \includegraphics[width=0.5\textwidth]{figures/placeholder.png}
-\caption{Model with flange and flat surface on spigot}
-\label{fig:model-with-flange}
-\end{figure}
-
-Figure \ref{fig:error-compared-to-flanged} compares the maximum displacements of a more complete, ``flanged'', model (F) and the simplification (S) used so far.
-This flanged model is far from ideal, but the comparison presented in figure \ref{fig:error-compared-to-flanged} provides some insight into where we can expect the largest changes as we produce more complex models, namely at the collar.
+Figure \ref{fig:error-compared-to-flanged} shows the relative error between a more complete, ``flanged'', model (F) and the simplification (S) used so far.
+This flanged model is far from ideal, but the comparison presented in figure \ref{fig:error-compared-to-flanged} provides some insight into where we can expect the largest changes as we produce more complex models --- namely at the collar.
+The metric used is maximum displacement, and for the stem we see an error of between 5\% and 10\%, with the other sections having considerably worse errors.
 It is worth highlighting that the displacements observed at the collar are consistently much smaller than everywhere else, and that the flange is positioned around the collar, so it is unsurprising that the relative error at the collar is so much larger than elsewhere.
-\begin{figure}[h]\centering
+
+Although values are displayed for \SI{900}{Hz}, it is very close to a resonant frequency and is better off disregarded.
+The way we chose to perform the calculation shows it reasonably well behaved, but that is not representative. 
+
+\begin{figure}\centering
     \begin{tikzpicture}[scale=0.95]
         \begin{axis}[
             width = 12cm, height = 6cm,
@@ -26,6 +24,6 @@ It is worth highlighting that the displacements observed at the collar are consi
             \addlegendentry{Collar}
         \end{axis}
     \end{tikzpicture}
-    \caption{Stem displacement }
+    \caption[Relative error between complete and simplified ITAP model]{Relative error between the simplified model (S) and a complete, ``flanged'' model (F).}
     \label{fig:error-compared-to-flanged}
 \end{figure}

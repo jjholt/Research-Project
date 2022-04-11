@@ -1,0 +1,63 @@
+Based on the modal analysis we run simulations for frequencies from \SIrange{1}{900}{Hz} and track the maximum displacement, as can be seen in figure \ref{fig:max-displacement-6}.
+At low frequencies, up to about \SI{400}{Hz}, we observe a linear decline of about 2 decade/decade, or -\SI{60}{\deci\bel\per decade} across the entire device.
+As frequency increases to \SI{850}{Hz} we see the non-linear behaviour, wherein the relative difference between each sensor increases.
+The relative movement between each part may be a tool for assuring the displacements are safe, therefore we explore it in further detail.
+
+\begin{figure}[h]\centering
+    \begin{tikzpicture}
+        \begin{loglogaxis}[
+            % width = 14cm, height = 6cm,
+            xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+            title = {},
+        ]
+            \addplot+[only marks] table [ col sep=comma,]
+                {Modelling/Frequencies/spigot_maxima.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ only marks ] table [col sep=comma,]
+                {Modelling/Frequencies/stem_maxima.csv};
+            \addlegendentry{Stem}
+            \addplot+[ only marks ] table [col sep=comma, ]
+                {Modelling/Frequencies/collar_maxima.csv};
+            \addlegendentry{Collar}
+        \end{loglogaxis}
+    \end{tikzpicture}
+
+\caption{Maximum displacement as a function of frequency for 6 periods.}
+\label{fig:max-displacement-6}
+\end{figure}
+
+The spacing between frequencies is fairly uneven at low values, and perhaps could have been for example 10 or 20 divisions per decade.
+This is only possible because the creation of the simulations and the data processing were completely automated with a Python script.
+Ultimately it is not an issue because of the linear behaviour observed, but it should have been a design consideration.
+
+\paragraph{Relative displacements}
+Figure \ref{fig:normalisation} characterises the maximum displacement for all parts relative to the maximum displacement of the spigot.
+For the clinically relevant frequencies, the displacement of the stem hovers nicely around 4 times that of the spigot. 
+
+\begin{figure}[h] \centering
+\begin{tikzpicture}[scale=0.95]
+    \begin{axis}[
+        % width = 14cm, height = 6cm,
+        xlabel = {Frequency [Hz]}, ylabel = {Displacement relative to spigot},
+        % legend pos = north west,
+        ymin=-1,
+        extra y ticks = {1},
+    ]
+        \addplot+ [only marks] table [col sep=comma]
+            {Modelling/Frequencies/spigot_maxima_normalised.csv};
+        \addlegendentry{Spigot}
+        \addplot+[only marks, ] table [col sep=comma,]
+            {Modelling/Frequencies/stem_maxima_normalised.csv};
+        \addlegendentry{Stem}
+        \addplot+[ only marks,] table [col sep=comma,]
+            {Modelling/Frequencies/collar_maxima_normalised.csv};
+        \addlegendentry{Collar}
+    \end{axis}
+\end{tikzpicture}
+\caption{Maximum displacement relative to spigot as a function of frequency.}
+\label{fig:normalisation}
+\end{figure}
+
+At this point it is hard to say whether the large relative displacement observed around \SI{700}{Hz} is useful.
+We may well want to take advantage of the large relative displacement if it translates to larger forces in our subsequent studies, though it likely comes with a loss in resolution.
+For this reason we continue to characterise vibrations beyond what is clinically relevant.

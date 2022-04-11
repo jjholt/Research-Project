@@ -1,0 +1,124 @@
+\paragraph{Initial approach}
+The simulations run for 6 periods largely because we don't know how long it takes for the vibrations to propagate.
+Figure \ref{fig:displacement-time-1v900} shows displacement over time for \SI{1}{Hz} and \SI{750}{Hz} to exemplify the observed results.
+The displacements are time-invariant for frequencies below \SI{400}{Hz}.
+For higher frequencies, they are time-variant and it becomes clear that 6 periods is simply not enough time to make any good observations.
+    
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                xlabel = {Time [s]}, ylabel = {Displacement [mm]},
+            ]
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
+                    {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node SPIGOT-1.8.csv};
+                \addlegendentry{Spigot}
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
+                    {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
+                {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{1 Hz}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \begin{tikzpicture}[scale=0.95]
+            \begin{axis}[
+                xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+            ]
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
+                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node SPIGOT-1.8.csv};
+                \addlegendentry{Spigot}
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
+                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node STEM-1.17.csv};
+                \addlegendentry{Stem}
+                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
+                {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node COLLAR-1.7.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{750 Hz}
+    \end{subfigure}
+
+    \caption[Displacement over time]{Displacement over time in the direction the load is applied.}
+    \label{fig:displacement-time-1v900}
+\end{figure}
+
+Attempts to quantify the frequency (or possibly phase) change using a spectrogram were largely unsuccessful.
+Therefore we focus on characterising the loss in amplitude over time.
+
+\paragraph{Extending the duration of simulations}
+To understand the amplitude loss over time, the simulations are run for 500 periods.
+In order to keep computational times reasonable, we decrease the number of subdivisions of the input force from 30 to 10, that is, the sinusoid input is divided into 30 and 10 segments, respectively.
+The sampling rate is still large enough that the only effect this has is changing the exact data points collected.
+
+Visually, the graph for 500 periods is too dense to observe anything meaningful, therefore figure \ref{fig:long-term-displacement} displays the first 100 periods of the stem displacement for an input at 750 Hz.
+We can clearly observe an amplitude loss over time, but it is hard to establish when the ripples are no longer significant.
+
+
+\begin{figure}[h] \centering
+    % \begin{subfigure}{\textwidth}
+    %     \begin{tikzpicture}[scale=1]
+    %         \begin{axis}[
+    %             width = 14cm, height = 6cm,
+    %             xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+    %         ]
+    %             \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+    %             {Modelling/Frequencies-500-periods/csv/Job-19_750-Hz-500-periods_Node STEM-1.17.csv};
+    %             \addlegendentry{Stem}
+    %         \end{axis}
+    %     \end{tikzpicture}
+    % \caption{First 500 periods, and highlighted }
+    % \end{subfigure}
+    % \begin{subfigure}{\textwidth}
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                    width = 14cm, height = 6cm,
+                    xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+                    ]
+                    \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+                    {Modelling/Frequencies-100-periods/csv/Job-42_750-Hz-100-periods_Node STEM-1.17.csv};
+                    \addlegendentry{Stem}
+                \end{axis}
+            \end{tikzpicture}
+        %     \caption{First 100 periods}
+        % \end{subfigure}
+\caption[Displacement as a function of time for sinusoidal input at \SI{750}{Hz}]{Displacement as a function of time for sinusoidal input at \SI{750}{Hz}. These images highlight amplitude loss over the time, though determining when they become insignificant is challenging.}
+\label{fig:long-term-displacement}
+\end{figure}
+
+\paragraph{Quantifying amplitude loss}
+In order to write software that quantifies the change over time, time is split into percentages beginning from the end and moving backwards, e.g., the last 10\% refer to the the time between 90\% and 100\%.
+Then we find the local maxima inside each of these intervals and compare them to the global maximum. 
+This allows us to ascertain 1) the amplitude decline for each frequency.
+The code can be seen in Appendix -- A, section \ref{sec:amplitude-loss}.
+
+Only the time-variant frequencies are shown in figure \ref{fig:long-term-abs-diff}, which displays the relative amplitude loss for the stem.
+We observe that starting from \SI{450}{Hz}, increasing the frequency results in both a larger and faster decline in relative amplitude, with the maximum loss being around 30\% at \SI{850}{Hz}.
+The collar and spigot display very similar losses, and can be seen in Appendix -- B.
+
+\begin{figure}[h] 
+    \begin{tikzpicture}
+        \begin{axis}[
+            width = 12cm, height = 6cm,
+            xlabel = {Relative time elapsed (\%)}, ylabel = {Relative amplitude loss (\%) },
+            title = Stem,
+            legend columns = 1,
+            legend cell align = left,
+            legend pos = outer north east,
+            % ymax = 1,
+            ymin = -35,
+        ]
+        \foreach \freq in {450,500,...,850} {
+            \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/stem-\freq.csv};
+            \expandafter\addlegendentry\expandafter{\freq Hz}
+        };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Amplitude decline over time for time-variant frequencies.}
+    \label{fig:long-term-abs-diff}
+\end{figure}
+
+

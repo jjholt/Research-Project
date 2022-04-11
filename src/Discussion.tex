@@ -1,0 +1,19 @@
+\paragraph{Future}
+The original plan for this project encompassed a much larger scope, including analysing the effect of stem length and the method of attachment to bone, applying circular forces and modelling different attachment points.
+Some of this work was to some extent carried out, but ultimately it became clear that a much larger focus on the basic characterisation would lead to a more reflective project and a better understanding for when these other studies are carried out.
+
+In parallel to more complex models, there is a need for better understanding of the resolution of osseoperception to vibrotactile feedback.
+
+\paragraph{Model limitations}
+This fulcrum-based model was appropriate insofar as it could easily have been tested in the laboratory and it provided a straightforward approach.
+The vise points in the CAD model were boundary conditions that did not allow rotation or displacement, but the reality is that an ITAP inserted into bone is not bound, it simply has its movement limited, which in Abaqus would be called an ``interaction''.
+Modelling an interaction required making specific decisions about the bone model, which meant we would no longer be characterising the ITAP alone.
+Ultimately it was a reasonable compromise, and it had the benefit of creating data that will allow for a quantification of every simplification made.
+
+Throughout the project there is a large focus on characterising the device even outside of clinically relevant frequencies.
+Because natural frequencies are dependent on the geometry, and ITAP have a large variety of stem lengths, it became necessary to do this process.
+That is, for the particular length we worked with, the device displays linear behaviour across all metrics, but by increasing the stem length to \SI{16}{cm} we saw a resonant frequency at \SI{670}{Hz}, suggesting this exact process will be necessary when we characterise the other lengths.
+
+One particularly interesting piece of data we did not successfuly produce was an analysis on the phase and/or frequency shift that seems to occur in the first couple of oscillations for the time-variant frequencies.
+These first few oscillations are also the largest, so there was a concern about an amplitude and frequency combination that in later studies we might find are more likely to cause aseptic loosening.
+In terms of feedback, the frequency is too high and the duration too low for it to practically matter.

@@ -1,0 +1,19 @@
+This project sought to create a computational model that characterised vibrations propagating through an intraosseous transcutaneous amputation prosthesis (ITAP).
+It aimed to set the path for further studies, wherein we could model bone-anchoring, whether the device was press-fit or cemented, etc.
+It did so by creating a computational model using Abaqus, and carrying out both modal analysis and the application of a concentranted point-force.
+Sensors were placed along the device, and their displacements were monitored.
+
+\paragraph{Modal analysis}
+For the particular configuration of ITAP used, we observed natural frequencies of vibration at about \SI{930}{Hz} and \SI{3930}{Hz}, informing the maximum range of frequencies to be explored in our study, and confirming that it is well-behaved in the clinically relevant frequencies.
+
+\paragraph{Direct control of amplitude}
+Given the nature of our model, we could directly control the amplitude of vibrations by a) controlling the amplitude of the input and b) shifting the position of the input.
+As the input position approaches the fulcrum point, we saw a decline in the maximum amplitude across all three sensors in the device.
+Interestingly, each sensor had a different decreasing rate, which suggested we could directly control the relative displacement between each part by changing the position of the actuator. 
+
+\paragraph{Frequency analysis}
+We observed a linear response up to about \SI{700}{Hz} with a decline in the maximum displacement of \SI{60}{\deci\bel\per decade}. Particularly above \SI{400}{Hz} we also observe a frequency-dependent increase in the relative displacement of the stem with respect to the spigot.
+
+\paragraph{Time analysis}
+For frequencies at and below \SI{400}{Hz} we observe a time-invariant behaviour.
+Beyond it, we see a frequency-dependent amplitude loss over time, which becomes both larger and faster with a frequency increase --- culminating at 30\% for \SI{850}{Hz}.

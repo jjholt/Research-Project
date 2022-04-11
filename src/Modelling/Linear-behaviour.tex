@@ -1,7 +1,39 @@
-\paragraph{Description}
-Refer back to experimental design
-\paragraph{Conclusion}
-Expect to be linear, see that it's linear. 
+The experimental setup is essentially a fulcrum, therefore there are two ways we expect directly and linearly control the amplitude of vibrations: By changing the amplitude of the input, and by changing the position where the load is applied.
+
+\paragraph{Amplitude of input}
+By linearly increasing the amplitude of the input, we see the maximum displacements across all three sensors linearly increase with the same slope.
+This is shown in Figure \ref{fig:max_displacement-input_amplitude}.
+It confirms expectations, but it is not particularly insightful information.
+
+\begin{figure}[h] \centering
+    \begin{tikzpicture}[scale=0.95]
+        \begin{loglogaxis}[
+            % width = 8cm, height = 6cm,
+            xlabel = {Input amplitude [m]}, ylabel = {Maximum displacement [m]},
+            % legend pos = north west,
+        ]
+            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
+            {Modelling/Forces/Amplitudes/base_100hz.csv};
+            \addlegendentry{Spigot}
+            \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Forces/Amplitudes/stem_100hz.csv};
+            \addlegendentry{Stem}
+            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
+            {Modelling/Forces/Amplitudes/collar_100hz.csv};
+            \addlegendentry{Collar}
+        \end{loglogaxis}
+    \end{tikzpicture}
+\caption[Maximum displacement as a function of input amplitude]{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
+\label{fig:max_displacement-input_amplitude}
+\end{figure}
+
+\paragraph{Position of load}
+We measure position of the load starting at the base of the spigot and move towards the fulcrum, which is being called ``Offset'', i.e. offset from the base of the spigot (See figure \ref{fig:offset-from-base} (b)).
+On a physical model this refers to the position of the actuator and to some degree helps inform the size of the device we might want to use.
+
+As expected we observe a linear decline in the maximum displacement with an increase in offset.
+The rate of change for each sensor is different, telling us we can have finer control over the relative amplitude between each part of the device by moving the vibration motor.
+This is shown in figure \ref{fig:offset-from-base} (a). 
 
 \begin{figure}[h]\centering
     \begin{subfigure}{0.45\textwidth}
@@ -28,81 +60,6 @@ Expect to be linear, see that it's linear.
         \includegraphics[width=1\textwidth]{figures/load-position.png}
         \caption{Offset from the base of the spigot. Starting at about 1mm on the left.}
     \end{subfigure}
-    \caption{ (a) shows maximum displacement for the same stimulus applied at increasing offset from base of spigot. (b) is a visual aid to understand of what is meant by increasing the offset from the base of the spigot.}
+    \caption[Maximum displacement as a function of increasing offset from base of spigot]{Maximum displacement as a function of increasing offset from base of spigot (a), and visualisation of what is meant by increasing the offset from the base of the spigot (b).}
     \label{fig:offset-from-base}
 \end{figure}
-
-We check whether the maximum displacement varies linearly with the initial input. The sensor on the spigot is 1mm away from where the force is being applied  
-\begin{figure}[h] \centering
-    \begin{tikzpicture}[scale=0.95]
-        \begin{loglogaxis}[
-            % width = 8cm, height = 6cm,
-            xlabel = {Input amplitude [m]}, ylabel = {Maximum displacement [m]},
-            % legend pos = north west,
-        ]
-            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1]
-            {Modelling/Forces/Amplitudes/base_100hz.csv};
-            \addlegendentry{Spigot}
-            \addplot+[ no marks] table [col sep=comma, x index = 0, y index=1,]
-            {Modelling/Forces/Amplitudes/stem_100hz.csv};
-            \addlegendentry{Stem}
-            \addplot+[no marks] table [col sep=comma, x index = 0, y index=1,]
-            {Modelling/Forces/Amplitudes/collar_100hz.csv};
-            \addlegendentry{Collar}
-        \end{loglogaxis}
-    \end{tikzpicture}
-\caption{Maximum displacement as a function of input amplitude at \SI{100}{Hz}.}
-\label{fig:}
-\end{figure}
-
-\section{Displacements over time}
-The simulations are made to run for 40/frequency, which was expected to be enough time to observe the input propagating through the device.
-
-Figure \ref{fig:displacement-time-1v900} shows displacement of the same 1 hz compared to 750 hz. Point is to highlight that at 1hz it's time-invariant, and 900hz begins with a phase-shift and over time they become in phase.
-We attempt to quantify this shifting phase with a spectrogram and in later sections discuss simulations that run for 200/frequency.
-    
-\begin{figure}[h]\centering
-    \begin{subfigure}{0.49\textwidth}
-        \begin{tikzpicture}[scale=0.95]
-            \begin{axis}[
-                xlabel = {Time [s]}, ylabel = {Displacement [mm]},
-            ]
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
-                    {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node SPIGOT-1.8.csv};
-                \addlegendentry{Spigot}
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
-                    {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node STEM-1.17.csv};
-                \addlegendentry{Stem}
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e3*\thisrowno{3}]
-                {Modelling/Frequencies/csv/Job-00_1-Hz-6-periods_Node COLLAR-1.7.csv};
-                \addlegendentry{Collar}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{1 Hz}
-    \end{subfigure}
-    \begin{subfigure}{0.49\textwidth}
-        \begin{tikzpicture}[scale=0.95]
-            \begin{axis}[
-                xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
-            ]
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node SPIGOT-1.8.csv};
-                \addlegendentry{Spigot}
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                    {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node STEM-1.17.csv};
-                \addlegendentry{Stem}
-                \addplot+[ no marks] table [col sep=comma, y expr = 1e9*\thisrowno{3}, x expr = 1e3*\thisrowno{0}]
-                {Modelling/Frequencies/csv/Job-19_750-Hz-6-periods_Node COLLAR-1.7.csv};
-                \addlegendentry{Collar}
-            \end{axis}
-        \end{tikzpicture}
-        \caption{750 Hz}
-    \end{subfigure}
-
-    \caption{Displacement in the z-axis. in (a) we take the opposite value for the predominantly negative curves, i.e. spigot and collar for easier comparison. }
-    \label{fig:displacement-time-1v900}
-\end{figure}
-
-Attempts to quantify the initial frequency change using a spectrogram were largely unsuccessful.
-This change is most pronounced for higher frequencies, far above a reasonable operational range.
-For that reason, no further considerations are made regarding frequency changes for one input.

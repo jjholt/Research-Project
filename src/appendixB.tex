@@ -1,0 +1,64 @@
+\section{Relative amplitude loss}
+\begin{figure}[h] \centering
+    \begin{subfigure}{0.55\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Relative time elapsed (\%)}, ylabel = {Relative amplitude loss (\%)},
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                % ymax = 1,
+                ymin = -35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/spigot-\freq.csv};
+                % \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Spigot}
+    \end{subfigure}%
+    \begin{subfigure}{0.43\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                yticklabels = \empty,
+                xlabel = {Relative time elapsed (\%)}, %ylabel = {Relative amplitude loss },
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                % ymax = 1,
+                ymin = -35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/stem-\freq.csv};
+                % \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Stem}
+    \end{subfigure}
+
+    \begin{subfigure}{0.6\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                % yticklabels = \empty,
+                xlabel = {Relative time elapsed (\%)}, ylabel = {Relative amplitude loss (\%) },
+                legend columns = 1,
+                legend cell align = left,
+                legend pos = outer north east,
+                % ymax = 1,
+                ymin = -35,
+            ]
+            \foreach \freq in {450,500,...,850} {
+                \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{1}] {Modelling/Error/collar-\freq.csv};
+                \expandafter\addlegendentry\expandafter{\freq Hz}
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Collar}
+    \end{subfigure}
+    \caption{Relative amplitude loss over time for (a) spigot, (b) stem and (c) collar over 500 periods.}
+\end{figure}

@@ -12,46 +12,9 @@ for i = 1:length(high.tail_end)
     err_stem(:, i)   = high.stem_max_magnitude(:,end)./high.stem_max_magnitude(:,i);
 end
 
-stem_abs_diff = max(high.stem_max_magnitude,[], 2) - min(high.stem_max_magnitude,[], 2);
-spigot_abs_diff = max(high.spigot_max_magnitude,[], 2) - min(high.spigot_max_magnitude,[], 2);
-collar_abs_diff = max(high.collar_max_magnitude,[], 2) - min(high.collar_max_magnitude,[], 2);
-writematrix(horzcat(high.frequencies', stem_abs_diff), "Error/stem_abs_diff.csv")
-writematrix(horzcat(high.frequencies', spigot_abs_diff), "Error/spigot_abs_diff.csv")
-writematrix(horzcat(high.frequencies', collar_abs_diff), "Error/collar_abs_diff.csv")
-
-
-
-stem_rel_diff = (max(high.stem_max_magnitude,[], 2) - min(high.stem_max_magnitude,[], 2))./max(high.stem_max_magnitude,[], 2);
-spigot_rel_diff = (max(high.spigot_max_magnitude,[], 2) - min(high.spigot_max_magnitude,[], 2))./max(high.spigot_max_magnitude,[], 2);
-collar_rel_diff = (max(high.collar_max_magnitude,[], 2) - min(high.collar_max_magnitude,[], 2))./max(high.collar_max_magnitude,[], 2);
-% writematrix(horzcat(high.frequencies', stem_rel_diff), "Error/stem_rel_diff.csv")
-% writematrix(horzcat(high.frequencies', spigot_rel_diff), "Error/spigot_rel_diff.csv")
-% writematrix(horzcat(high.frequencies', collar_rel_diff), "Error/collar_rel_diff.csv")
-
 % Absolute error by frequency
 for freq = 1:length(high.frequencies)
     writematrix(horzcat(high.tail_end', (err_collar(freq,:) - err_collar(freq,end))'), strcat("Error/collar-", num2str(high.frequencies(freq)), ".csv"));
     writematrix(horzcat(high.tail_end', (err_spigot(freq,:) - err_spigot(freq,end))'), strcat("Error/spigot-", num2str(high.frequencies(freq)), ".csv"));
     writematrix(horzcat(high.tail_end', (err_stem(freq,:) - err_stem(freq,end))'), strcat("Error/stem-", num2str(high.frequencies(freq)), ".csv"));
 end
-
-% diff_diff = max(high.stem_max_magnitude,[], 2) - low.stem_max_magnitude';
-
-% for freq = 1:length(high.frequencies)
-%     writematrix(horzcat(high.tail_end', err_collar(freq, :)'), strcat("Error/collar-", int2str(high.frequencies(freq)), "Hz.csv"));
-%     writematrix(horzcat(high.tail_end', err_spigot(freq, :)'), strcat("Error/spigot-", int2str(high.frequencies(freq)), "Hz.csv"));
-%     writematrix(horzcat(high.tail_end', err_stem(freq, :)'), strcat("Error/stem-", int2str(high.frequencies(freq)), "Hz.csv"))
-% end
-
-
-% figure; hold on;
-% for freq = 1:4:length(high.frequencies)
-%     plot( ...
-%         high.tail_end*100, err_collar(freq,:) ...
-%         , DisplayName=strcat( int2str(high.frequencies(freq)), " Hz"  )...
-%     );
-% end
-% set(gca, "Xdir", "reverse")
-% legend;
-% xlabel("Percentage of tail-end")
-% ylabel("Relative error")
