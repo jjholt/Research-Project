@@ -1,12 +1,13 @@
-To find an appropriate balance between computational (CPU) time and accuracy of the solution, we perform a so-called mesh convergence.
-We compare the same simulation using an increasingly finer mesh, which can be observed in figure \ref{fig:mesh-convergence}.
+To find an appropriate balance between computational (CPU) time and accuracy of the solution, we performed a mesh convergence.
+We compared the same simulation using an increasingly finer mesh, which is presented in figure \ref{fig:mesh-convergence}.
 
-The results are tabulated in Table \ref{tb:mesh-convergence}.
-Most importantly, the total displacements for the coarsest and finest mesh are within 10\% of each other, but the increase in computational time is considerable.
-Bear in mind these are relative numbers, so towards the final simulations of this project we are looking at multiple hours per simulation if we were to use the finest mesh.
-It is perfectly reasonable to use the larger (coarser) mesh sizes given the scope of this study, but we were happy with computational times for \SI{2.5}{mm}.
+The results are tabulated in table \ref{tb:mesh-convergence}.
+The total displacements for the coarsest and finest mesh were within 10\% of each other, but the increase in computational time was considerable.
+These are relative numbers, and were we to have used the finest mesh size (\SI{1.25}{mm}) in our modelling, extensive computational time would have compromised the amount of data we could obtain.
+Between the mesh sizes of \SI{2.5}{mm} and \SI{1.25}{mm}, the difference in displacement was negligible, despite the significant increase in computational time.
+We decided to use the \SI{2.5}{mm} mesh, which resulted in a model with 4300 elements.
 
-\begin{table}[h] \centering
+\begin{table} \centering
     \begin{tabular}{ccc}
         \textbf{Mesh size [\si{\milli\metre}]} & \textbf{Total CPU time [\si{\second}]} & \textbf{Displacement, magnitude [\si{\nano\metre}]}\\ \hline
           10 & 14  & 68\\
@@ -14,7 +15,7 @@ It is perfectly reasonable to use the larger (coarser) mesh sizes given the scop
          2.5 & 47  & 63\\
         1.25 & 303 & 62
     \end{tabular}
-    \caption[Mesh convergence]{Mesh convergence. Given the massive increase in computational }
+    \caption[Mesh convergence]{A comparison between computational time and accuracy that informed how a mesh size was chosen.}
     \label{tb:mesh-convergence}
 \end{table}
 

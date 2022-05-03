@@ -1,9 +1,9 @@
-\paragraph{Initial approach}
-The simulations run for 6 periods largely because we don't know how long it takes for the vibrations to propagate.
+\subsection{Initial approach}
+The simulations ran for 6 periods to establish a baseline of how the vibrations propagate.
 Figure \ref{fig:displacement-time-1v900} shows displacement over time for \SI{1}{Hz} and \SI{750}{Hz} to exemplify the observed results.
-The displacements are time-invariant for frequencies below \SI{400}{Hz}.
-For higher frequencies, they are time-variant and it becomes clear that 6 periods is simply not enough time to make any good observations.
-    
+The displacements were time-invariant for frequencies below \SI{400}{Hz}.
+As exemplified by figure \ref{fig:displacement-time-1v900} (b), the time-variant behaviour of higher frequencies suggested the need for longer simulations.
+% \clearpage
 \begin{figure}[h]\centering
     \begin{subfigure}{0.49\textwidth}
         \begin{tikzpicture}[scale=0.95]
@@ -42,67 +42,50 @@ For higher frequencies, they are time-variant and it becomes clear that 6 period
         \caption{750 Hz}
     \end{subfigure}
 
-    \caption[Displacement over time]{Displacement over time in the direction the load is applied.}
+    \caption[Displacement over time]{Displacement over time in the direction the load was applied.}
     \label{fig:displacement-time-1v900}
 \end{figure}
+Attempts to quantify the frequency or phase change using a spectrogram were largely unsuccessful.
+Therefore we focused on characterising the loss in amplitude over time.
+% \clearpage
 
-Attempts to quantify the frequency (or possibly phase) change using a spectrogram were largely unsuccessful.
-Therefore we focus on characterising the loss in amplitude over time.
+\subsection{Extending the duration of simulations}
+The simulations ran for 500 periods to understand the amplitude loss over time.
+In order to keep computational times reasonable, we decreased the number of subdivisions of the input force from 30 to 10, that is, the sinusoidal input being divided into 30 and 10 segments, respectively.
+The sampling rate was still large enough that the only effect this had was changing the exact data points collected.
 
-\paragraph{Extending the duration of simulations}
-To understand the amplitude loss over time, the simulations are run for 500 periods.
-In order to keep computational times reasonable, we decrease the number of subdivisions of the input force from 30 to 10, that is, the sinusoid input is divided into 30 and 10 segments, respectively.
-The sampling rate is still large enough that the only effect this has is changing the exact data points collected.
-
-Visually, the graph for 500 periods is too dense to observe anything meaningful, therefore figure \ref{fig:long-term-displacement} displays the first 100 periods of the stem displacement for an input at 750 Hz.
-We can clearly observe an amplitude loss over time, but it is hard to establish when the ripples are no longer significant.
-
+A graph for 500 periods was too dense for meaningful observation, therefore figure \ref{fig:long-term-displacement} displays the first 100 periods of the stem displacement for an input at \SI{750}{Hz}.
+It shows a clear amplitude loss over time, but it is hard to establish when the ripples are no longer significant.
 
 \begin{figure}[h] \centering
-    % \begin{subfigure}{\textwidth}
-    %     \begin{tikzpicture}[scale=1]
-    %         \begin{axis}[
-    %             width = 14cm, height = 6cm,
-    %             xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
-    %         ]
-    %             \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
-    %             {Modelling/Frequencies-500-periods/csv/Job-19_750-Hz-500-periods_Node STEM-1.17.csv};
-    %             \addlegendentry{Stem}
-    %         \end{axis}
-    %     \end{tikzpicture}
-    % \caption{First 500 periods, and highlighted }
-    % \end{subfigure}
-    % \begin{subfigure}{\textwidth}
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                    width = 14cm, height = 6cm,
-                    xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
-                    ]
-                    \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
-                    {Modelling/Frequencies-100-periods/csv/Job-42_750-Hz-100-periods_Node STEM-1.17.csv};
-                    \addlegendentry{Stem}
-                \end{axis}
-            \end{tikzpicture}
-        %     \caption{First 100 periods}
-        % \end{subfigure}
-\caption[Displacement as a function of time for sinusoidal input at \SI{750}{Hz}]{Displacement as a function of time for sinusoidal input at \SI{750}{Hz}. These images highlight amplitude loss over the time, though determining when they become insignificant is challenging.}
+    \begin{tikzpicture}[scale=1]
+        \begin{axis}[
+            width = 14cm, height = 5cm,
+            xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+            ]
+            \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+            {Modelling/Frequencies-100-periods/csv/Job-42_750-Hz-100-periods_Node STEM-1.17.csv};
+            \addlegendentry{Stem}
+        \end{axis}
+    \end{tikzpicture}
+\caption[Displacement as a function of time for sinusoidal input at \SI{750}{Hz}]{Displacement as a function of time for sinusoidal input at \SI{750}{Hz}.}
 \label{fig:long-term-displacement}
 \end{figure}
 
-\paragraph{Quantifying amplitude loss}
-In order to write software that quantifies the change over time, time is split into percentages beginning from the end and moving backwards, e.g., the last 10\% refer to the the time between 90\% and 100\%.
-Then we find the local maxima inside each of these intervals and compare them to the global maximum. 
-This allows us to ascertain 1) the amplitude decline for each frequency.
+\subsection{Quantifying amplitude loss}
+To write software that quantified the change over time, time was split into percentages beginning from the end and moving backwards, e.g., the last 10\% refer to the the time between 90\% and 100\%.
+Then we found the local maxima inside each of these intervals and compared them to the global maximum, allowing us to ascertain the amplitude decline for each frequency.
+This particular approach meant that \SI{900}{Hz} appeared well-behaved, and therefore was excluded from figure \ref{fig:long-term-abs-diff}.  
 The code can be seen in Appendix -- A, section \ref{sec:amplitude-loss}.
 
-Only the time-variant frequencies are shown in figure \ref{fig:long-term-abs-diff}, which displays the relative amplitude loss for the stem.
-We observe that starting from \SI{450}{Hz}, increasing the frequency results in both a larger and faster decline in relative amplitude, with the maximum loss being around 30\% at \SI{850}{Hz}.
-The collar and spigot display very similar losses, and can be seen in Appendix -- B.
-
+Figure \ref{fig:long-term-abs-diff} shows the relative amplitude loss for the stem with the time-variant frequencies. 
+Increasing the frequency above \SI{450}{Hz} resulted in both a larger and faster decline in relative amplitude, with the maximum loss being around 30\% at \SI{850}{Hz}.
+The collar and spigot displayed very similar losses, and can be seen in Appendix -- B.
+% \clearpage
 \begin{figure}[h] 
     \begin{tikzpicture}
         \begin{axis}[
-            width = 12cm, height = 6cm,
+            width = 12cm, height = 5.645cm,
             xlabel = {Relative time elapsed (\%)}, ylabel = {Relative amplitude loss (\%) },
             title = Stem,
             legend columns = 1,

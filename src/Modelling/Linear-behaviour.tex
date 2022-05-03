@@ -1,9 +1,8 @@
-The experimental setup is essentially a fulcrum, therefore there are two ways we expect directly and linearly control the amplitude of vibrations: By changing the amplitude of the input, and by changing the position where the load is applied.
+The experimental setup was essentially a fulcrum, therefore there were two ways of directly and linearly controlling the amplitude of vibrations: By changing the amplitude of the input, and by changing the position where the load is applied.
 
-\paragraph{Amplitude of input}
-By linearly increasing the amplitude of the input, we see the maximum displacements across all three sensors linearly increase with the same slope.
+\subsection{Amplitude of input}
+By increasing the amplitude of the input linearly, we saw the maximum displacements across all three sensors linearly increase with the same slope of approximately $ 10^{-4} $.
 This is shown in Figure \ref{fig:max_displacement-input_amplitude}.
-It confirms expectations, but it is not particularly insightful information.
 
 \begin{figure}[h] \centering
     \begin{tikzpicture}[scale=0.95]
@@ -27,19 +26,20 @@ It confirms expectations, but it is not particularly insightful information.
 \label{fig:max_displacement-input_amplitude}
 \end{figure}
 
-\paragraph{Position of load}
-We measure position of the load starting at the base of the spigot and move towards the fulcrum, which is being called ``Offset'', i.e. offset from the base of the spigot (See figure \ref{fig:offset-from-base} (b)).
-On a physical model this refers to the position of the actuator and to some degree helps inform the size of the device we might want to use.
+\subsection{Position of load}
+We measured the position of the load starting at the base of the spigot and moved towards the fulcrum, which we called ``offset'', i.e. offset from the base of the spigot (See figure \ref{fig:offset-from-base} (b)).
+On a physical model this referred to the position of the actuator and helped inform the size of the actuators we might use.
 
-As expected we observe a linear decline in the maximum displacement with an increase in offset.
-The rate of change for each sensor is different, telling us we can have finer control over the relative amplitude between each part of the device by moving the vibration motor.
-This is shown in figure \ref{fig:offset-from-base} (a). 
+We observed a linear decline in the maximum displacement with an increase in offset.
+The rate of change for each sensor was different, suggesting we may move the vibration motor for finer control over the relative amplitude of each part of the device.
+This is shown in figure \ref{fig:offset-from-base} (a).
 
+\clearpage
 \begin{figure}[h]\centering
-    \begin{subfigure}{0.45\textwidth}
+    \begin{subfigure}{0.50\textwidth}
         \begin{tikzpicture}
             \begin{axis}[
-                % width = 14cm, height = 6cm,
+                width = 8cm, height = 6cm,
                 ymin = 0,xmin=0,
                 xlabel = {Offset [mm]}, ylabel = {Maximum displacement [nm]}
             ]
@@ -54,12 +54,12 @@ This is shown in figure \ref{fig:offset-from-base} (a).
             \addlegendentry{Collar}
             \end{axis}
         \end{tikzpicture}
-        \caption{Maximum displacement.}
+        \caption{}
     \end{subfigure}\hfill
     \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=1\textwidth]{figures/load-position.png}
-        \caption{Offset from the base of the spigot. Starting at about 1mm on the left.}
+        \includegraphics[width=0.8\textwidth]{figures/load-position.png}
+        \caption{}
     \end{subfigure}
-    \caption[Maximum displacement as a function of increasing offset from base of spigot]{Maximum displacement as a function of increasing offset from base of spigot (a), and visualisation of what is meant by increasing the offset from the base of the spigot (b).}
+    \caption[Maximum displacement as a function of offset from base of spigot]{ (a) Maximum displacement as a function of the offset from base of spigot, and (b) Offset from the base of the spigot, starting at about 1mm on the left.}
     \label{fig:offset-from-base}
 \end{figure}

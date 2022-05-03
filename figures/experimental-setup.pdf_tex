@@ -58,7 +58,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=2]{experimental-setup.pdf}}%
     \put(0.30780369,0.56901287){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{experimental-setup.pdf}}%
-    \put(0.43477979,0.51464643){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Vise (X)\end{tabular}}}}%
+    \put(0.43477979,0.51464643){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Vice (X)\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{experimental-setup.pdf}}%
     \put(0.02805906,0.56480778){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensor\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{experimental-setup.pdf}}%

@@ -1,33 +1,32 @@
-The designed experimental setup aims to have an ITAP ``in a vacuum'', so we can characterise its behaviour before any interaction with bone or soft tissue.
-To do so, we simulate the setup seen in figure \ref{fig:experimental-setup}, with the following setup: \begin{enumerate}
-    \item It is held in place by a vise at the stem, \SI{20}{mm} away from the collar, allowing only for rotation about the X-axis.
-    \item The periodic load is applied on the spigot at a given offset (``Load offset''). Default is \SI{1}{mm}.
-    \item The default periodic load is a cosine function with frequency \SI{100}{Hz}, amplitude \SI{0.2}{mm} and duration of 6 periods, as per figure \ref{eq:cos-vals}.
+The experimental setup, as shown in figure \ref{fig:experimental-setup}, aimed to characterise vibrations propagating through ITAP before any interaction with bone or soft tissue.
+It consisted of: \begin{enumerate}
+    \item ITAP held in place by a vice at the stem, \SI{20}{mm} away from the collar, allowing only for rotation about the X-axis.
+    \item A periodic load applied on the spigot at a given offset (``Load offset''), which defaulted to \SI{1}{mm}. The default load was a cosine function with frequency \SI{100}{Hz}, amplitude \SI{0.2}{mm} and duration of 6 periods.
 \end{enumerate}
 
-\begin{figure}\centering
-    \begin{tikzpicture}
-        \begin{axis}[width=12cm, height = 5cm,
-            xlabel = {Time [ms]}, ylabel = {Amplitude [mm]},
-            ]
-            \addplot[no marks, domain=0:60, samples = 200,] {0.2*cos(2*pi*0.1*deg(x))};
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Periodic input load}
-    \label{eq:cos-vals}
-\end{figure}
+% \begin{figure}\centering
+%     \begin{tikzpicture}
+%         \begin{axis}[width=12cm, height = 3cm,
+%             xlabel = {Time [ms]}, ylabel = {Amplitude [mm]},
+%             ]
+%             \addplot[no marks, domain=0:60, samples = 200,] {0.2*cos(2*pi*0.1*deg(x))};
+%         \end{axis}
+%     \end{tikzpicture}
+%     \caption{Periodic input load}
+%     \label{eq:cos-vals}
+% \end{figure}
 
-\begin{figure} \centering
+\begin{figure}[h] \centering
     {\small \incfig[0.8]{experimental-setup}}
-    \caption[Experimental setup being replicated by CAD model]{Experimental setup being replicated by CAD model. Load is applied at the spigot while ITAP is held in place by a vise on the stem.}
+    \caption[Experimental setup being replicated by CAD model]{Experimental setup being replicated by CAD model. Sensors were placed along the ITAP, and a load was applied at the spigot while it was held in place by a vice on the stem.}
     \label{fig:experimental-setup}
 \end{figure}
-\clearpage
+% \clearpage
 
 \subsection{Simplifications}
-In order to reduce computational times, we simplify the model in a couple of ways: Remove most complex features, e.g. fillets, pores in the flange; and remove the flange altogether.
-In first instance we are building up to the interaction with bone, and so it is reasonable to remove the part of the device that interacts with soft tissue.
-Ultimately, we expect this to introduce a reasonable amount of error, particularly for the collar, which we can later on quantify.
+In order to reduce computational time, we simplified the model by removing most complex features of ITAP, e.g. fillets, pores in the flange, and the flange.
+In first instance, we only modelled interactions with bone, thus it was reasonable to remove the part of the device that interacted with soft tissue.
+We accepted that this would introduce some error, and aimed to quantify this after initial modelling.
 This simplification can be seen in Figure \ref{fig:simplification}.
 
 \begin{figure}[h]\centering

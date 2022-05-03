@@ -1,18 +1,35 @@
-\paragraph{Future}
-The original plan for this project encompassed a much larger scope, including analysing the effect of stem length and the method of attachment to bone, applying circular forces and modelling different attachment points.
-Some of this work was to some extent carried out, but ultimately it became clear that a much larger focus on the basic characterisation would lead to a more reflective project and a better understanding for when these other studies are carried out.
+\section{Frequency response}
+We observed a well-behaved, time invariant response for frequencies up to \SI{400}{Hz}, though it is unclear whether the entire bandwidth should be used.
+A study on the detection of bone mechanical stimulation correlated an increase in frequency with a significant increase in the threshold force for detection \cite{jacobs_evaluation_2000}.
+It controlled the amplitude and observed the force needed for detection.
+Most research in this area focuses on perception, but the objective of this thesis was the characterisation of vibrations propagating through ITAP, so the use of amplitude for the dependent variable makes a direct comparison is quite challenging.
+Nevertheless, this thesis showed a frequency-dependent amplitude loss which might explain the observations by Jacobs et al. \cite{jacobs_evaluation_2000} without inferring anything about osseoperception.
+In effect this shows an agreement in results, but it is also hypothesised that the increase in frequency resulted in smaller displacements, which required ``compensating'' with more force, hence the perceived increased threshold of perception.
 
-In parallel to more complex models, there is a need for better understanding of the resolution of osseoperception to vibrotactile feedback.
+Furthermore, vibrations also propagate through the soft tissue/ITAP interface, where we may take advantage of a \SI{1}{Hz} resolution in step-changes below \SI{8}{Hz} \cite{ChaubeyPravin2014Cvhf}.
+However, for the interval of \SIrange{50}{350}{Hz}, increasing the stimulation frequency results in better resolution for both skin and osseoperceptions \cite{haggstrom_vibrotactile_2013,pylatiuk_progress_2004, shah_vibration_2019}.
+Stimulus to tissue was observed through the displacements at the flange and collar.
+Although only a sinusoidal pattern was produced, this suggests the study and usage of more complex temporal patterns at very low frequencies, e.g. square waves, ascending amplitudes, etc, to increase the variety of motions and gestures for which feedback can be given. 
+There is a further benefit to very low frequencies in that the driving circuit produces waves which lose less amplitude --- saving energy ($Energy \propto Amplitude^2$), cost from needing more powerful actuators, etc.
 
-\paragraph{Model limitations}
-This fulcrum-based model was appropriate insofar as it could easily have been tested in the laboratory and it provided a straightforward approach.
-The vise points in the CAD model were boundary conditions that did not allow rotation or displacement, but the reality is that an ITAP inserted into bone is not bound, it simply has its movement limited, which in Abaqus would be called an ``interaction''.
+Beyond \SI{400}{Hz} we observed a changing relative displacement between parts.
+While this is a desirable feature, the mechanoreceptors in the skin are most sensitive at very low frequencies and up to \SI{400}{Hz} \cite{shah_vibration_2019} and no information was found on intraosseous mechanoreceptors.
+The use of higher frequencies is not recommended.
+
+A key design difference is the actuators being presented on the ITAP's spigot, rather than against a prosthetic limb \cite{haggstrom_vibrotactile_2013,jacobs_evaluation_2000}.
+This gives some flexibility, such as controlling the amplitude of the vibration by moving the actuator, but also it allows the exploration of forces in a circle around the spigot.  
+
+\section{Design limitations}
+A fulcrum-based model was appropriate insofar as it is easily reproducible, but it did not reflect bone insertion.
+The vice points in the CAD model were encastre boundary conditions, i.e. did not allow rotation or displacement.
+In reality, ITAP inserted into bone is not bound, it has its movement limited by how it interacts with the material around it.
 Modelling an interaction required making specific decisions about the bone model, which meant we would no longer be characterising the ITAP alone.
 Ultimately it was a reasonable compromise, and it had the benefit of creating data that will allow for a quantification of every simplification made.
 
 Throughout the project there is a large focus on characterising the device even outside of clinically relevant frequencies.
-Because natural frequencies are dependent on the geometry, and ITAP have a large variety of stem lengths, it became necessary to do this process.
-That is, for the particular length we worked with, the device displays linear behaviour across all metrics, but by increasing the stem length to \SI{16}{cm} we saw a resonant frequency at \SI{670}{Hz}, suggesting this exact process will be necessary when we characterise the other lengths.
+Natural resonant frequencies are dependent only on an object's geometry, and ITAP have a large variety of clinically used stem lengths.
+While the process undergone to characterise vibrations was not entirely useful for this configuration, an increase in stem length to \SI{16}{cm} resulted in a resonant frequency at \SI{670}{Hz}.
+This suggests that the routine herein developed will be necessary for some ITAP.
 
 One particularly interesting piece of data we did not successfuly produce was an analysis on the phase and/or frequency shift that seems to occur in the first couple of oscillations for the time-variant frequencies.
 These first few oscillations are also the largest, so there was a concern about an amplitude and frequency combination that in later studies we might find are more likely to cause aseptic loosening.
